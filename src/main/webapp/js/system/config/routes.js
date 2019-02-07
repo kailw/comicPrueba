@@ -90,7 +90,6 @@ wildcart.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/tipousuario/create', {templateUrl: 'js/app/tipousuario/create.html', controller: 'tipousuarioCreateController', resolve: {auth: autenticacionAdministrador}});
 
         $routeProvider.when('/comic/plist_1/:rpp?/:page?/:order?', {templateUrl: 'js/app/producto/plist_1.html', controller: 'productoPlist_1Controller', resolve: {auth: autenticacionAdministrador}});
-        //$routeProvider.when('/producto/plist_1/:rpp?/:page?/:order?', {templateUrl: 'js/app/producto/plist_1.html', controller: 'productoPlist_1Controller', resolve: {auth: autenticacionAdministrador}});
         $routeProvider.when('/comic/view/:id?', {templateUrl: 'js/app/producto/view.html', controller: 'productoViewController', resolve: {auth: autenticacionAdministrador}});
         $routeProvider.when('/comic/edit/:id?', {templateUrl: 'js/app/producto/edit.html', controller: 'productoEditController', resolve: {auth: autenticacionAdministrador}});
         $routeProvider.when('/comic/create', {templateUrl: 'js/app/producto/create.html', controller: 'productoCreateController', resolve: {auth: autenticacionAdministrador}});
@@ -119,11 +118,17 @@ wildcart.config(['$routeProvider', function ($routeProvider) {
 
         $routeProvider.when('/carrito/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/carrito/plist.html', controller: 'carritoPlistController'});
 
-        $routeProvider.when('/tipoproducto/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/tipoproducto/plist.html', controller: 'tipoproductoPlistController', resolve: {auth: autenticacionAdministrador}});
-        $routeProvider.when('/tipoproducto/view/:id?', {templateUrl: 'js/app/tipoproducto/view.html', controller: 'tipoproductoViewController', resolve: {auth: autenticacionAdministrador}});
-        $routeProvider.when('/tipoproducto/edit/:id?', {templateUrl: 'js/app/tipoproducto/edit.html', controller: 'tipoproductoEditController', resolve: {auth: autenticacionAdministrador}});
-        $routeProvider.when('/tipoproducto/remove/:id?', {templateUrl: 'js/app/tipoproducto/remove.html', controller: 'tipoproductoRemoveController', resolve: {auth: autenticacionAdministrador}});
-        $routeProvider.when('/tipoproducto/create', {templateUrl: 'js/app/tipoproducto/create.html', controller: 'tipoproductoCreateController', resolve: {auth: autenticacionAdministrador}});
+        $routeProvider.when('/genero/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/genero/plist.html', controller: 'generoPlistController', resolve: {auth: autenticacionAdministrador}});
+        $routeProvider.when('/genero/view/:id?', {templateUrl: 'js/app/genero/view.html', controller: 'generoViewController', resolve: {auth: autenticacionAdministrador}});
+        $routeProvider.when('/genero/edit/:id?', {templateUrl: 'js/app/genero/edit.html', controller: 'generoEditController', resolve: {auth: autenticacionAdministrador}});
+        $routeProvider.when('/genero/remove/:id?', {templateUrl: 'js/app/genero/remove.html', controller: 'generoRemoveController', resolve: {auth: autenticacionAdministrador}});
+        $routeProvider.when('/genero/create', {templateUrl: 'js/app/genero/create.html', controller: 'generoCreateController', resolve: {auth: autenticacionAdministrador}});
+
+//        $routeProvider.when('/autor/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/genero/plist.html', controller: 'generoPlistController', resolve: {auth: autenticacionAdministrador}});
+//        $routeProvider.when('/autor/view/:id?', {templateUrl: 'js/app/genero/view.html', controller: 'generoViewController', resolve: {auth: autenticacionAdministrador}});
+//        $routeProvider.when('/autor/edit/:id?', {templateUrl: 'js/app/genero/edit.html', controller: 'generoEditController', resolve: {auth: autenticacionAdministrador}});
+//        $routeProvider.when('/autor/remove/:id?', {templateUrl: 'js/app/genero/remove.html', controller: 'generoRemoveController', resolve: {auth: autenticacionAdministrador}});
+//        $routeProvider.when('/autor/create', {templateUrl: 'js/app/genero/create.html', controller: 'generoCreateController', resolve: {auth: autenticacionAdministrador}});
 
 
         $routeProvider.when('/login', {templateUrl: 'js/app/login.html', controller: 'usuarioLoginController', resolve: {auth: autenticacionHome}});

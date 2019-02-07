@@ -130,7 +130,7 @@ body {
 
 /* imagenes de los comics mas destacados */
 
-.portada1 {
+/*.portada1 {
     background: url("../images/destacado1.jpg");
     background-size: cover;
     background-position: top center;
@@ -194,7 +194,7 @@ body {
     box-shadow: 4px 3px 2px #2F3031;
 }
 
-/* imagenes de los comic mas vendidos*/
+ imagenes de los comic mas vendidos
 
 .portadaV1 {
     background: url("../images/vendidos1.jpg");
@@ -234,7 +234,7 @@ body {
     background-position: center;
     border: 2px outset black;
     box-shadow: 4px 3px 2px #2F3031;
-}
+}*/
 
 /* el boton que aperece cuando pasas por encima de un comic */
 

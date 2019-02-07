@@ -1,6 +1,6 @@
 'use strict';
 moduleComponent.component('tipoproductoSelection', {
-    templateUrl: 'js/app/tipoproducto/selection.html',
+    templateUrl: 'js/app/genero/selection.html',
     controllerAs: 'c',
     controller: cController,
     bindings: {

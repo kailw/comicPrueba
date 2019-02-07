@@ -7,7 +7,8 @@ var wildcart = angular.module('MyApp', [
     'tipousuarioControllers',
     'usuarioControllers',
     'productoControllers',
-    'tipoproductoControllers',
+    'generoControllers',
+    'autorControllers',
     'facturaControllers',
     'lineaControllers',
     'components',
@@ -39,13 +40,14 @@ var wildcart = angular.module('MyApp', [
 });
 
 
-var moduleCommon = angular.module ('commonControllers',[]);
-var moduleCarrito = angular.module ('carritoControllers',[]);
-var moduleService = angular.module ('services',[]);
-var moduleTipousuario = angular.module ('tipousuarioControllers',[]);
-var moduleComponent = angular.module ('components',[]);
-var moduleUsuario = angular.module ('usuarioControllers',[]);
-var moduleProducto = angular.module ('productoControllers',[]);
-var moduleTipoproducto = angular.module ('tipoproductoControllers',[]);
-var moduleFactura = angular.module ('facturaControllers',[]);
-var moduleLinea = angular.module ('lineaControllers',[]);
+var moduleCommon = angular.module('commonControllers', []);
+var moduleCarrito = angular.module('carritoControllers', []);
+var moduleService = angular.module('services', []);
+var moduleTipousuario = angular.module('tipousuarioControllers', []);
+var moduleComponent = angular.module('components', []);
+var moduleUsuario = angular.module('usuarioControllers', []);
+var moduleProducto = angular.module('productoControllers', []);
+var moduleGenero = angular.module('generoControllers', []);
+var moduleAutor = angular.module('autorControllers', []);
+var moduleFactura = angular.module('facturaControllers', []);
+var moduleLinea = angular.module('lineaControllers', []);

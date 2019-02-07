@@ -5,13 +5,13 @@
     <div class="primeraParte"></div>
     <a href="javascript:window.history.back();"> <button class="btn btn-success">Volver</button> </a>    
     <form name="userForm" style="margin-bottom: 50px;" ng-show="!mensaje">
-        <h3 style="text-align: center"> <i class="fa fa-box"></i> Editar Tipo Producto</h3>
+        <h3 style="text-align: center"><i class="fas fa-bookmark"></i> Editar Género</h3>
         <div class="form-group row justify-content-center">
             <div class="col-2">
                 <label for="id" class="col-form-label">ID</label>
             </div>
             <div class="col-5">
-                <input type="text" class="form-control-plaintext" id="id" name="id" ng-disabled="true" ng-model="ajaxDatoTipoproducto.id" />
+                <input type="text" class="form-control-plaintext" id="id" name="id" ng-disabled="true" ng-model="ajaxDatoGenero.id" />
             </div>
         </div>
 
@@ -21,7 +21,7 @@
             </div>
             <div class="col-5">
                 <input type="text" class="form-control" id="descripcion" name="descripcion" 
-                       ng-model="ajaxDatoTipoproducto.desc" ng-required="true" ng-pattern="/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/"
+                       ng-model="ajaxDatoGenero.desc" ng-required="true" ng-pattern="/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/"
                        ng-class="{ 'is-invalid' : userForm.descripcion.$invalid && !userForm.descripcion.$pristine, 'is-valid' :userForm.descripcion.$valid && !userForm.descripcion.$pristine}"/>
                 <div ng-show="userForm.descripcion.$error.pattern" class="alert alert-danger" role="alert">
                     Descripcion no válida
@@ -41,7 +41,7 @@
         </div>
     </form>
     <div class="alert alert-success" ng-show="mensaje">
-        Datos actualizados correctamente del {{ob}} {{ajaxDatoTipoproducto.id}}
+        Datos actualizados correctamente del {{ob}} {{ajaxDatoGenero.id}}
     </div>
 </main>
 <footer class="footer" ng-include="'js/app/footer.html'"></footer>

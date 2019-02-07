@@ -1,15 +1,15 @@
 'use strict';
 
-moduleTipoproducto.controller('tipoproductoCreateController', ['$scope', '$http', 'toolService', '$routeParams', 'sessionService',
+moduleGenero.controller('generoCreateController', ['$scope', '$http', 'toolService', '$routeParams', 'sessionService',
     function ($scope, $http, toolService, $routeParams, sessionService) {
         $scope.id = $routeParams.id;
-        $scope.ob = "tipoproducto";
+        $scope.ob = "genero";
 
 
         $scope.guardar = function () {
             var json = {
                 id: null,
-                desc: $scope.desc
+                desc: $scope.desc.toUpperCase()
             }
             $http({
                 method: 'GET',

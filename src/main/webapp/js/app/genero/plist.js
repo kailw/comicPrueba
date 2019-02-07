@@ -1,6 +1,6 @@
 'use strict';
 
-moduleTipoproducto.controller('tipoproductoPlistController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService',
+moduleGenero.controller('generoPlistController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService',
     function ($scope, $http, $location, toolService, $routeParams, sessionService) {
 
         $scope.ob = "genero";

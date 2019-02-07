@@ -53,7 +53,7 @@ moduleProducto.controller('productoCreateController', ['$scope', '$http', '$loca
             if (consulta) {
                 $http({
                     method: 'GET',
-                    url: 'json?ob=tipoproducto&op=get&id=' + $scope.ajaxDatoProducto.id
+                    url: 'json?ob=genero&op=get&id=' + $scope.ajaxDatoProducto.id
                 }).then(function (response) {
                     $scope.ajaxDatoProducto = response.data.message;
                     if ($scope.ajaxDatoProducto !== null) {
