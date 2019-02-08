@@ -1,9 +1,9 @@
 'use strict';
 
-moduleProducto.controller('productoCreateController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService',
+moduleComic.controller('comicCreateController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService',
     function ($scope, $http, $location, toolService, $routeParams, sessionService) {
         $scope.id = $routeParams.id;
-        $scope.ob = "producto";
+        $scope.ob = "comic";
 
 
         $scope.ajaxDatoProducto = {

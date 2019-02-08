@@ -188,7 +188,6 @@ public class ComicBean extends GenericBeanImplementation implements BeanInterfac
         } else {
             this.setId_coleccion(oResultSet.getInt("id_coleccion"));
         }
-
         return this;
     }
 
@@ -263,7 +262,6 @@ public class ComicBean extends GenericBeanImplementation implements BeanInterfac
             strPairs += "id_coleccion=" + id_coleccion;
         }
         strPairs += " WHERE id=" + id;
-
         return strPairs;
     }
 

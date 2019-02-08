@@ -1,21 +1,20 @@
-'use strict'
+'use strict';
 
-moduleProducto.controller('productoViewController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService',
+moduleColeccion.controller('coleccionViewController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService',
     function ($scope, $http, $location, toolService, $routeParams, sessionService) {
         $scope.id = $routeParams.id;
-        $scope.ob = "comic";
+        $scope.ob = "coleccion";
 
         $http({
             method: 'GET',
             url: '/json?ob=' + $scope.ob + '&op=get&id=' + $scope.id
         }).then(function (response) {
             $scope.status = response.status;
-            $scope.ajaxDatoProducto = response.data.message;
+            $scope.ajaxDataColeccion = response.data.message;
         }, function (response) {
-            $scope.ajaxDatoProducto = response.data.message || 'Request failed';
+            $scope.ajaxDataColeccion = response.data.message || 'Request failed';
             $scope.status = response.status;
         });
-
         $scope.isActive = toolService.isActive;
 
     }]);

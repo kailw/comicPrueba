@@ -1,19 +1,17 @@
 <header-component></header-component>
 <main role="main" class="container">
-
-
     <div class="primeraParte"></div>
     <a href="javascript:window.history.back();"> <button class="btn btn-success">Volver</button> </a>    
     <form name="userForm" style="margin-bottom: 50px;" ng-show="!mensaje">
-        <h3 style="text-align: center"><i class="fa fa-box-open"></i> Crear Producto</h3>
+        <h3 style="text-align: center"><i class="fa fa-book-open"></i> Crear Comic</h3>
         <div class="form-group row justify-content-center">
             <div class="col-2">
-                <label for="codigo" class="col-form-label">Codigo</label>            
+                <label for="titulo" class="col-form-label">Título</label>            
             </div>
             <div class="col-5">
-                <input type="text" class="form-control" id="codigo" name="codigo" ng-model="codigo" ng-required="true"
-                       ng-class="{ 'is-invalid' : userForm.codigo.$invalid && !userForm.codigo.$pristine, 'is-valid': userForm.codigo.$valid && !userForm.codigo.$pristine}"/>  
-                <div ng-show="userForm.codigo.$invalid && !userForm.codigo.$pristine" class="alert alert-danger" >Codigo requerido.</div>                
+                <input type="text" class="form-control" id="titulo" name="titulo" ng-model="titulo" ng-required="true"
+                       ng-class="{ 'is-invalid' : userForm.titulo.$invalid && !userForm.titulo.$pristine, 'is-valid': userForm.titulo.$valid && !userForm.titulo.$pristine}"/>  
+                <div ng-show="userForm.titulo.$invalid && !userForm.titulo.$pristine" class="alert alert-danger" >Título requerido.</div>                
             </div>
         </div>
 
@@ -47,6 +45,7 @@
                 </div>
             </div>
         </div>
+        
         <div class="form-group row justify-content-center">
             <div class="col-2">
                 <label for="precio" class="col-form-label">Precio</label>

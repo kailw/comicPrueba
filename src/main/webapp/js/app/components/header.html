@@ -79,7 +79,7 @@
 
 <div id="header" class="bg-dark sticky-top">
     <nav class="navbar navbar-expand-md navbar-light bg-dark">
-        <a class="navbar-brand" href="#">ONCOMICS</a>
+        <a class="navbar-brand" href="#"> <i class="fab fa-optin-monster"></i> ONCOMICS</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -141,8 +141,26 @@
 
 
                 <li class="nav-item"  ng-show="c.isAdmin && c.loginH"  ng-class="{'active': c.isActive('/comic')}">                        
-                    <a class="nav-link hvr-pop" href="comic/plist_1" >
+                    <a class="nav-link hvr-pop" href="comic/plist" >
                         <i class="fas fa-book-open"></i> <span class="desaparece">Comics</span>
+                    </a>
+                </li>
+                
+                <li class="nav-item"  ng-show="c.isAdmin && c.loginH"  ng-class="{'active': c.isActive('/coleccion')}">                        
+                    <a class="nav-link hvr-pop" href="coleccion/plist">                    
+                        <i class="fas fa-book-reader"></i> <span class="desaparece">Colecciones</span>
+                    </a>
+                </li>
+
+                <li class="nav-item"  ng-show="c.isAdmin && c.loginH"  ng-class="{'active': c.isActive('/editorial')}">                        
+                    <a class="nav-link hvr-pop" href="editorial/plist">                    
+                        <i class="fas fa-book"></i> <span class="desaparece">Editoriales</span>
+                    </a>
+                </li>
+
+                <li class="nav-item"  ng-show="c.isAdmin && c.loginH"  ng-class="{'active': c.isActive('/idioma')}">                        
+                    <a class="nav-link hvr-pop" href="idioma/plist">                    
+                        <i class="fas fa-globe"></i> <span class="desaparece">Idiomas</span>
                     </a>
                 </li>
 
@@ -154,17 +172,17 @@
                     </a>
                 </li>
 
+                <li class="nav-item"  ng-show="c.isAdmin && c.loginH"  ng-class="{'active': c.isActive('/autor')}">                        
+                    <a class="nav-link hvr-pop" href="autor/plist" >
+                        <i class="fas fa-user-tie"></i> <span class="desaparece">Autores</span>
+                    </a>
+                </li>
+
                 <li class="nav-item" ng-show="c.isAdmin && c.loginH" ng-class="{'active': c.isActive('/factura/plist')}">
                     <a class="nav-link hvr-pop" href="factura/plist" ng-class="{'active': (c.isActive('/factura/plist') || c.isActive('/linea/plist')
                        || c.isActive('/factura/view') || c.isActive('/factura/edit') || c.isActive('/factura/remove') || c.isActive('/linea/view')
                        || c.isActive('/linea/remove') || c.isActive('/linea/edit') || c.isActive('/factura/create'))}">
                         <i class="fa fa-file-invoice-dollar"></i> <span class="desaparece">Facturas</span>
-                    </a>
-                </li>
-
-                <li class="nav-item"  ng-show="c.isAdmin && c.loginH"  ng-class="{'active': c.isActive('/productoaa')}">                        
-                    <a class="nav-link hvr-pop" href="producto/plist_1" >
-                        <i class="fas fa-book-open"></i> <span class="desaparece">Autores</span>
                     </a>
                 </li>
 

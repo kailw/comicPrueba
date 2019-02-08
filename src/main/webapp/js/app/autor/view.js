@@ -1,20 +1,20 @@
 'use strict';
 
-moduleComic.controller('productoViewUsuarioController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService',
+moduleAutor.controller('autorViewController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService',
     function ($scope, $http, $location, toolService, $routeParams, sessionService) {
         $scope.id = $routeParams.id;
+        $scope.ob = "autor";
 
         $http({
             method: 'GET',
-            url: '/json?ob=producto&op=get&id=' + $scope.id
+            url: '/json?ob=' + $scope.ob + '&op=get&id=' + $scope.id
         }).then(function (response) {
             $scope.status = response.status;
-            $scope.ajaxDatoProducto = response.data.message;
+            $scope.ajaxDataAutor = response.data.message;
         }, function (response) {
-            $scope.ajaxDatoProducto = response.data.message || 'Request failed';
+            $scope.ajaxDataAutor = response.data.message || 'Request failed';
             $scope.status = response.status;
         });
-
         $scope.isActive = toolService.isActive;
 
     }]);

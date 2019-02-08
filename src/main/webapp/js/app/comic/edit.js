@@ -1,6 +1,6 @@
 'use strict';
 
-moduleProducto.controller('productoEditController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService',
+moduleComic.controller('comicEditController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService',
     function ($scope, $http, $location, toolService, $routeParams, sessionService) {
         $scope.id = $routeParams.id;
         $scope.ob = "comic";
@@ -11,35 +11,35 @@ moduleProducto.controller('productoEditController', ['$scope', '$http', '$locati
             url: '/json?ob=' + $scope.ob + '&op=get&id=' + $scope.id
         }).then(function (response) {
             $scope.status = response.status;
-            $scope.ajaxDatoProducto = response.data.message;
-            $scope.ajaxDatoProducto = response.data.message;
-            $scope.ajaxDatoProductoFecha = response.data.message.fechapublicacion;
-            $scope.resultado = $scope.ajaxDatoProductoFecha.slice(0, 3);
+            $scope.ajaxDatoComic = response.data.message;
+            $scope.ajaxDatoComic = response.data.message;
+            $scope.ajaxDatoComicFecha = response.data.message.fechapublicacion;
+            $scope.resultado = $scope.ajaxDatoComicFecha.slice(0, 3);
 
             switch ($scope.resultado) {
                 case "ene":
-                    $scope.fecha = $scope.ajaxDatoProductoFecha.replace("ene", "jan");
+                    $scope.fecha = $scope.ajaxDatoComicFecha.replace("ene", "jan");
                     break;
                 case "abr":
-                    $scope.fecha = $scope.ajaxDatoProductoFecha.replace("abr", "apr");
+                    $scope.fecha = $scope.ajaxDatoComicFecha.replace("abr", "apr");
                     break;
                 case "ago":
-                    $scope.fecha = $scope.ajaxDatoProductoFecha.replace("ago", "aug");
+                    $scope.fecha = $scope.ajaxDatoComicFecha.replace("ago", "aug");
                     break;
                 case "dic":
-                    $scope.fecha = $scope.ajaxDatoProductoFecha.replace("dic", "dec");
+                    $scope.fecha = $scope.ajaxDatoComicFecha.replace("dic", "dec");
                     break;
                 default:
-                    $scope.fecha = $scope.ajaxDatoProductoFecha;
+                    $scope.fecha = $scope.ajaxDatoComicFecha;
                     break;
             }
             $scope.dt = new Date($scope.fecha);
         }, function (response) {
-            $scope.ajaxDatoProducto = response.data.message || 'Request failed';
+            $scope.ajaxDatoComic = response.data.message || 'Request failed';
             $scope.status = response.status;
         });
 
-        $scope.ajaxDatoProducto = {
+        $scope.ajaxDatoComic = {
             id: null,
             titulo: null,
             desc: null,
@@ -53,27 +53,27 @@ moduleProducto.controller('productoEditController', ['$scope', '$http', '$locati
             foto: "deafult.svg",
             destacado: null,
             obj_coleccion: {id: null}
-        };
-        $scope.dt = new Date($scope.fecha);
+        };        
         $scope.guardar = function () {
             $scope.upload();
-            var foto = $scope.ajaxDatoProducto.foto;
+            var foto = $scope.ajaxDatoComic.foto;
             if ($scope.file !== undefined) {
                 foto = $scope.file.name;
             }
             var json = {
-                id: $scope.ajaxDatoProducto.id,
-                titulo: $scope.ajaxDatoProducto.titulo,
-                desc: $scope.ajaxDatoProducto.desc,
-                isbn: $scope.ajaxDatoProducto.isbn,
-                fechapublicacion: $scope.ajaxDatoProducto.fechapublicacion,
-                pagina: $scope.ajaxDatoProducto.pagina,
-                color: $scope.ajaxDatoProducto.color,
-                existencias: $scope.ajaxDatoProducto.existencias,
-                precio: $scope.ajaxDatoProducto.precio,
+                id: $scope.ajaxDatoComic.id,
+                titulo: $scope.ajaxDatoComic.titulo,
+                desc: $scope.ajaxDatoComic.desc,
+                isbn: $scope.ajaxDatoComic.isbn,
+                fechapublicacion: $scope.dt,
+                pagina: $scope.ajaxDatoComic.pagina,
+                color: $scope.ajaxDatoComic.color,
+                existencias: $scope.ajaxDatoComic.existencias,
+                precio: $scope.ajaxDatoComic.precio,                
+                descuento: 15,
                 foto: foto,
-                destacado: $scope.ajaxDatoProducto.destacado,
-                id_coleccion: $scope.ajaxDatoProducto.obj_coleccion.id
+                destacado: $scope.ajaxDatoComic.destacado,
+                id_coleccion: $scope.ajaxDatoComic.obj_coleccion.id
             };
             $http({
                 method: 'GET',
@@ -84,7 +84,7 @@ moduleProducto.controller('productoEditController', ['$scope', '$http', '$locati
                 $scope.status = response.status;
                 $scope.mensaje = true;
             }, function (response) {
-                $scope.ajaxDatoProducto = response.data.message || 'Request failed';
+                $scope.ajaxDatoComic = response.data.message || 'Request failed';
                 $scope.status = response.status;
             });
         };
@@ -100,19 +100,18 @@ moduleProducto.controller('productoEditController', ['$scope', '$http', '$locati
             if (consulta) {
                 $http({
                     method: 'GET',
-                    url: 'json?ob=coleccion&op=get&id=' + $scope.ajaxDatoProducto.obj_coleccion.id
+                    url: 'json?ob=coleccion&op=get&id=' + $scope.ajaxDatoComic.obj_coleccion.id
                 }).then(function (response) {
-                    $scope.ajaxDatoProducto.obj_tipoProducto = response.data.message;
-                    if ($scope.ajaxDatoProducto.obj_tipoProducto !== null) {
+                    $scope.ajaxDatoComic.obj_tipoProducto = response.data.message;
+                    if ($scope.ajaxDatoComic.obj_tipoProducto !== null) {
                         form.userForm.obj_tipoProducto.$setValidity('valid', true);
                     } else {
-                        form.userForm.obj_tipoProducto.$setValidity('valid', false);
-                        ;
+                        form.userForm.obj_tipoProducto.$setValidity('valid', false);                       
                         $scope.vacio = "Error al acceder al tipo de producto";
                     }
                 }, function (response) {
                     form.userForm.obj_tipoProducto.$setValidity('valid', false);
-                    $scope.ajaxDatoProducto.obj_tipoProducto.desc = "Error al acceder al tipo de producto";
+                    $scope.ajaxDatoComic.obj_tipoProducto.desc = "Error al acceder al tipo de producto";
                 });
             } else {
                 form.userForm.obj_tipoProducto.$setValidity('valid', true);
@@ -134,7 +133,6 @@ moduleProducto.controller('productoEditController', ['$scope', '$http', '$locati
                 console.log(response);
             });
         };
-
     }]).directive('fileModel', ['$parse', function ($parse) {
         return {
             restrict: 'A',

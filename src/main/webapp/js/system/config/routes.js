@@ -89,11 +89,11 @@ wildcart.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/tipousuario/remove/:id?', {templateUrl: 'js/app/tipousuario/remove.html', controller: 'tipousuarioRemoveController', resolve: {auth: autenticacionAdministrador}});
         $routeProvider.when('/tipousuario/create', {templateUrl: 'js/app/tipousuario/create.html', controller: 'tipousuarioCreateController', resolve: {auth: autenticacionAdministrador}});
 
-        $routeProvider.when('/comic/plist_1/:rpp?/:page?/:order?', {templateUrl: 'js/app/producto/plist_1.html', controller: 'productoPlist_1Controller', resolve: {auth: autenticacionAdministrador}});
-        $routeProvider.when('/comic/view/:id?', {templateUrl: 'js/app/producto/view.html', controller: 'productoViewController', resolve: {auth: autenticacionAdministrador}});
-        $routeProvider.when('/comic/edit/:id?', {templateUrl: 'js/app/producto/edit.html', controller: 'productoEditController', resolve: {auth: autenticacionAdministrador}});
-        $routeProvider.when('/comic/create', {templateUrl: 'js/app/producto/create.html', controller: 'productoCreateController', resolve: {auth: autenticacionAdministrador}});
-        $routeProvider.when('/comic/remove/:id?', {templateUrl: 'js/app/producto/remove.html', controller: 'productoRemoveController', resolve: {auth: autenticacionAdministrador}});
+        $routeProvider.when('/comic/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/comic/plist.html', controller: 'comicPlistController', resolve: {auth: autenticacionAdministrador}});
+        $routeProvider.when('/comic/view/:id?', {templateUrl: 'js/app/comic/view.html', controller: 'comicViewController', resolve: {auth: autenticacionAdministrador}});
+        $routeProvider.when('/comic/edit/:id?', {templateUrl: 'js/app/comic/edit.html', controller: 'comicEditController', resolve: {auth: autenticacionAdministrador}});
+        $routeProvider.when('/comic/create', {templateUrl: 'js/app/comic/create.html', controller: 'comicCreateController', resolve: {auth: autenticacionAdministrador}});
+        $routeProvider.when('/comic/remove/:id?', {templateUrl: 'js/app/comic/remove.html', controller: 'comicRemoveController', resolve: {auth: autenticacionAdministrador}});
 
         $routeProvider.when('/factura/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/factura/plist.html', controller: 'facturaPlistController', resolve: {auth: autenticacionAdministrador}});
         $routeProvider.when('/factura/view/:id?', {templateUrl: 'js/app/factura/view.html', controller: 'facturaViewController', resolve: {auth: autenticacionAdministrador}});
@@ -124,12 +124,30 @@ wildcart.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/genero/remove/:id?', {templateUrl: 'js/app/genero/remove.html', controller: 'generoRemoveController', resolve: {auth: autenticacionAdministrador}});
         $routeProvider.when('/genero/create', {templateUrl: 'js/app/genero/create.html', controller: 'generoCreateController', resolve: {auth: autenticacionAdministrador}});
 
-//        $routeProvider.when('/autor/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/genero/plist.html', controller: 'generoPlistController', resolve: {auth: autenticacionAdministrador}});
-//        $routeProvider.when('/autor/view/:id?', {templateUrl: 'js/app/genero/view.html', controller: 'generoViewController', resolve: {auth: autenticacionAdministrador}});
-//        $routeProvider.when('/autor/edit/:id?', {templateUrl: 'js/app/genero/edit.html', controller: 'generoEditController', resolve: {auth: autenticacionAdministrador}});
-//        $routeProvider.when('/autor/remove/:id?', {templateUrl: 'js/app/genero/remove.html', controller: 'generoRemoveController', resolve: {auth: autenticacionAdministrador}});
-//        $routeProvider.when('/autor/create', {templateUrl: 'js/app/genero/create.html', controller: 'generoCreateController', resolve: {auth: autenticacionAdministrador}});
+        $routeProvider.when('/autor/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/autor/plist.html', controller: 'autorPlistController', resolve: {auth: autenticacionAdministrador}});
+        $routeProvider.when('/autor/view/:id?', {templateUrl: 'js/app/autor/view.html', controller: 'autorViewController', resolve: {auth: autenticacionAdministrador}});
+        $routeProvider.when('/autor/edit/:id?', {templateUrl: 'js/app/autor/edit.html', controller: 'autorEditController', resolve: {auth: autenticacionAdministrador}});
+        $routeProvider.when('/autor/remove/:id?', {templateUrl: 'js/app/autor/remove.html', controller: 'autorRemoveController', resolve: {auth: autenticacionAdministrador}});
+        $routeProvider.when('/autor/create', {templateUrl: 'js/app/autor/create.html', controller: 'autorCreateController', resolve: {auth: autenticacionAdministrador}});
 
+        $routeProvider.when('/editorial/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/editorial/plist.html', controller: 'editorialPlistController', resolve: {auth: autenticacionAdministrador}});
+        $routeProvider.when('/editorial/view/:id?', {templateUrl: 'js/app/editorial/view.html', controller: 'editorialViewController', resolve: {auth: autenticacionAdministrador}});
+        $routeProvider.when('/editorial/edit/:id?', {templateUrl: 'js/app/editorial/edit.html', controller: 'editorialEditController', resolve: {auth: autenticacionAdministrador}});
+        $routeProvider.when('/editorial/remove/:id?', {templateUrl: 'js/app/editorial/remove.html', controller: 'editorialRemoveController', resolve: {auth: autenticacionAdministrador}});
+        $routeProvider.when('/editorial/create', {templateUrl: 'js/app/editorial/create.html', controller: 'editorialCreateController', resolve: {auth: autenticacionAdministrador}});
+
+        $routeProvider.when('/idioma/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/idioma/plist.html', controller: 'idiomaPlistController', resolve: {auth: autenticacionAdministrador}});
+        $routeProvider.when('/idioma/view/:id?', {templateUrl: 'js/app/idioma/view.html', controller: 'idiomaViewController', resolve: {auth: autenticacionAdministrador}});
+        $routeProvider.when('/idioma/edit/:id?', {templateUrl: 'js/app/idioma/edit.html', controller: 'idiomaEditController', resolve: {auth: autenticacionAdministrador}});
+        $routeProvider.when('/idioma/remove/:id?', {templateUrl: 'js/app/idioma/remove.html', controller: 'idiomaRemoveController', resolve: {auth: autenticacionAdministrador}});
+        $routeProvider.when('/idioma/create', {templateUrl: 'js/app/idioma/create.html', controller: 'idiomaCreateController', resolve: {auth: autenticacionAdministrador}});
+
+
+        $routeProvider.when('/coleccion/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/coleccion/plist.html', controller: 'coleccionPlistController', resolve: {auth: autenticacionAdministrador}});
+        $routeProvider.when('/coleccion/view/:id?', {templateUrl: 'js/app/coleccion/view.html', controller: 'coleccionViewController', resolve: {auth: autenticacionAdministrador}});
+        $routeProvider.when('/coleccion/edit/:id?', {templateUrl: 'js/app/coleccion/edit.html', controller: 'coleccionEditController', resolve: {auth: autenticacionAdministrador}});
+        $routeProvider.when('/coleccion/remove/:id?', {templateUrl: 'js/app/coleccion/remove.html', controller: 'coleccionRemoveController', resolve: {auth: autenticacionAdministrador}});
+        $routeProvider.when('/coleccion/create', {templateUrl: 'js/app/coleccion/create.html', controller: 'coleccionCreateController', resolve: {auth: autenticacionAdministrador}});
 
         $routeProvider.when('/login', {templateUrl: 'js/app/login.html', controller: 'usuarioLoginController', resolve: {auth: autenticacionHome}});
         $routeProvider.when('/logout', {templateUrl: 'js/app/logout.html', controller: 'usuarioLogoutController', resolve: {auth: autenticacionHome}});

@@ -1,11 +1,11 @@
 'use strict';
-moduleComponent.component('productoSelection', {
-    templateUrl: 'js/app/producto/selection.html',
+moduleComponent.component('tipoproductoSelection', {
+    templateUrl: 'js/app/genero/selection.html',
     controllerAs: 'c',
     controller: cController,
     bindings: {
         obj: '=',
-        onProductoSet: '&'
+        onTipoproductoSet: '&'
     },
 });
 
@@ -52,9 +52,10 @@ function cController($http) {
 
 
 
-    self.save = function (id, desc) {
+    self.save = function (id, desc) {     
         self.obj = { id : id, desc: desc};
-        self.onProductoSet();
+        self.onTipoproductoSet();
+
     };
 
     self.ordena = function (order, align) {
@@ -72,7 +73,7 @@ function cController($http) {
         $http({
             method: "GET",
             withCredential: true,
-            url: "json?ob=comic&op=getpage&rpp=10&page=1"
+            url: "json?ob=coleccion&op=getpage&rpp=10&page=1"
         }).then(function (response) {
             self.status = response.status;
             self.data = response.data.message;

@@ -6,9 +6,12 @@ var wildcart = angular.module('MyApp', [
     'commonControllers',
     'tipousuarioControllers',
     'usuarioControllers',
-    'productoControllers',
+    'comicControllers',
+    'coleccionControllers',
     'generoControllers',
     'autorControllers',
+    'editorialControllers',
+    'idiomaControllers',
     'facturaControllers',
     'lineaControllers',
     'components',
@@ -46,8 +49,11 @@ var moduleService = angular.module('services', []);
 var moduleTipousuario = angular.module('tipousuarioControllers', []);
 var moduleComponent = angular.module('components', []);
 var moduleUsuario = angular.module('usuarioControllers', []);
-var moduleProducto = angular.module('productoControllers', []);
+var moduleComic = angular.module('comicControllers', []);
+var moduleColeccion = angular.module('coleccionControllers', []);
 var moduleGenero = angular.module('generoControllers', []);
 var moduleAutor = angular.module('autorControllers', []);
+var moduleEditorial = angular.module('editorialControllers', []);
+var moduleIdioma = angular.module('idiomaControllers', []);
 var moduleFactura = angular.module('facturaControllers', []);
 var moduleLinea = angular.module('lineaControllers', []);
