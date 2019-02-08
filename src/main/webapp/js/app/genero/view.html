@@ -6,11 +6,20 @@
         <caption><i class="fas fa-bookmark"></i> View de Género</caption>
         <tr>
             <th>ID</th>
-            <th>{{ajaxDataTipoproducto.id}}</th>
+            <th>{{ajaxDataGenero.id}}</th>
         </tr>   
         <tr>
             <th>DESCRIPCIÓN</th>
-            <td>{{ajaxDataTipoproducto.desc}}</td>
+
+            <td>
+                <input id="generodescripcion"  type="text" class="form-control botonEditar" 
+                       ng-show="botonGuardar" ng-model="ajaxDataGenero.desc" >
+
+                <span id="generodescripcion2" ng-show="!botonGuardar">{{ajaxDataGenero.desc}}</span>
+                <a  href="{{ob}}/edit/{{ajaxDataGenero.id}}"> 
+                    <button type="button" class="btn btn-primary btn-sm iconoEditar" ng-click="aparecerBoton()" ng-show="!botonGuardar"><i class="far fa-edit"></i></button>                    
+                </a>
+            </td>            
         </tr>     
     </table>
 

@@ -34,7 +34,7 @@ moduleComic.controller('comicPlistController', ['$scope', '$http', '$location', 
 
 
         $scope.resetOrder = function () {
-            $location.url($scope.ob + "/plist_1/" + $scope.rpp + "/1");
+            $location.url($scope.ob + "/plist/" + $scope.rpp + "/1");
             $scope.activar = "false";
         };
 
@@ -46,8 +46,9 @@ moduleComic.controller('comicPlistController', ['$scope', '$http', '$location', 
             } else {
                 $scope.orderURLServidor += "-" + order + "," + align;
                 $scope.orderURLCliente += "-" + order + "," + align;
-            };
-            $location.url($scope.ob + "/plist_1/" + $scope.rpp + "/" + $scope.page + "/" + $scope.orderURLCliente);
+            }
+            ;
+            $location.url($scope.ob + "/plist/" + $scope.rpp + "/" + $scope.page + "/" + $scope.orderURLCliente);
         };
 
         //getcount
@@ -85,7 +86,7 @@ moduleComic.controller('comicPlistController', ['$scope', '$http', '$location', 
 
 
         $scope.update = function () {
-            $location.url($scope.ob + "/plist_1/" + $scope.rpp + "/" + $scope.page + "/" + $scope.orderURLCliente);
+            $location.url($scope.ob + "/plist/" + $scope.rpp + "/" + $scope.page + "/" + $scope.orderURLCliente);
         };
 
         //paginacion neighbourhood

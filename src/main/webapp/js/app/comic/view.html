@@ -21,10 +21,50 @@
 
         <tr>
 
-        <tr ng-repeat="fila in ajaxDatoComicGenero track by $index">
-            <th>GÉNEROS</th>
-            <td>{{fila.obj_genero.desc}}</td>                         
+        <tr>
+            <th  style="margin: 30px">GÉNEROS</th>
+            <td>
+                <span class="padTabla"
+                      ng-repeat="fila in ajaxDatoComicGenero track by $index">
+                    <a href="genero/view/{{fila.obj_genero.id}}"> {{fila.obj_genero.desc}}</a>
+                </span>
+
+            </td>
         </tr>        
+
+
+        <tr>
+            <th  style="margin: 30px">AUTORES</th>
+            <td>
+                <span class="padTabla"
+                      ng-repeat="fila in ajaxDatoAutorEspecialidad track by $index">
+                    <a href="autor/view/{{fila.obj_autor.id}}"> {{fila.obj_autor.nombre}} </a> ({{fila.obj_especialidad.desc}}) 
+                </span>
+
+            </td>
+        </tr>       
+
+        <tr>
+            <th  style="margin: 30px">EDITORIALES</th>
+            <td>
+                <span class="padTabla"
+                      ng-repeat="fila in ajaxDatoComicEditorial track by $index">
+                    <a href="editorial/view/{{fila.obj_editorial.id}}"> {{fila.obj_editorial.desc}} </a>
+                </span>
+
+            </td>
+        </tr>     
+
+        <tr>
+            <th  style="margin: 30px">IDIOMA</th>
+            <td>
+                <span class="padTabla"
+                      ng-repeat="fila in ajaxDatoComicIdioma track by $index">
+                    <a href="idioma/view/{{fila.obj_idioma.id}}">  {{fila.obj_idioma.desc}} </a>
+                </span>
+
+            </td>
+        </tr>  
 
 
         <tr>

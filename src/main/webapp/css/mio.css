@@ -77,6 +77,21 @@ a{
 .MUpBot {
     margin: 1.8% 0;
 }
+
+.padTabla {
+    padding: 0 0 2% 0 !important;
+    display: block !important;
+}
+
+.botonEditar {
+    display: inline-block !important;
+    width: 50% !important;
+}
+
+.iconoEditar {
+    margin-left: 2%;
+}
+
 * {
     box-sizing: border-box;
 }
