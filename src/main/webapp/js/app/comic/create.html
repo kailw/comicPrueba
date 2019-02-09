@@ -20,7 +20,7 @@
                 <label for="descripcion" class="col-form-label">Descripción</label>
             </div>
             <div class="col-5">
-                <input type="text" class="form-control " id="descripcion" name="descripcion" ng-model="descripcion" ng-required="true"
+                <input type="text" class="form-control " id="descripcion" name="descripcion" ng-model="desc" ng-required="true"
                        ng-pattern="/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/" ng-class="{ 'is-invalid' : userForm.descripcion.$invalid && !userForm.descripcion.$pristine, 'is-valid': userForm.descripcion.$valid && !userForm.descripcion.$pristine}"/>
                 <div ng-show="userForm.descripcion.$invalid && !userForm.descripcion.$pristine && !userForm.descripcion.$error.pattern" class="alert alert-danger" role="alert">
                     Descripción obligatoria
@@ -28,6 +28,54 @@
                 <div ng-show="userForm.descripcion.$error.pattern" class="alert alert-danger" role="alert">
                     Descripción no válida
                 </div>
+            </div>
+        </div>
+
+        <div class="form-group row justify-content-center">
+            <div class="col-2">
+                <label for="isbn" class="col-form-label">ISBN</label>
+            </div>
+            <div class="col-5">
+                <input type="text" class="form-control" id="isbn" name="isbn" ng-model="isbn" ng-required="true"
+                       ng-class="{ 'is-invalid' : userForm.isbn.$invalid && !userForm.isbn.$pristine, 'is-valid': userForm.isbn.$valid && !userForm.isbn.$pristine}"/>                       
+                <div ng-show="userForm.isbn.$invalid && !userForm.isbn.$pristine" class="alert alert-danger" >ISBN requerido.</div>
+            </div>
+        </div>
+
+        <div class="form-group row justify-content-center">
+            <div class="col-2">
+                <label for="fechapubliacion" class="col-form-label">Fecha Publicación</label>
+            </div>
+            <div class="col-5">
+                <md-datepicker ng-model="dt" id="fehcapublicacion" name="fechapubliacion" md-placeholder="fechapubliacion"></md-datepicker>
+            </div>                        
+        </div>
+
+
+        <div class="form-group row justify-content-center">
+            <div class="col-2">
+                <label for="paginas" class="col-form-label">Páginas</label>
+            </div>
+            <div class="col-5">
+                <input type="text" class="form-control" id="paginas" name="paginas" ng-model="pagina" 
+                       ng-required="true"  ng-pattern="/^[0-9][0-9]*$/" ng-class="{ 'is-invalid' : userForm.paginas.$invalid && !userForm.paginas.$pristine, 'is-valid': userForm.paginas.$valid && !userForm.paginas.$pristine}"/>
+                <div ng-show="userForm.paginas.$invalid && !userForm.paginas.$pristine && !userForm.paginas.$error.pattern" class="alert alert-danger" role="alert">
+                    Paginas obligatorio
+                </div>
+                <div ng-show="userForm.paginas.$error.pattern" class="alert alert-danger" role="alert">
+                    Formato de página no válido
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group row justify-content-center">
+            <div class="col-2">
+                <label for="color" class="col-form-label">Color</label>
+            </div>
+            <div class="col-5">
+                <md-checkbox  ng-model="color"  aria-label="color"  class="md-primary" style="margin-top: 6px">           
+                </md-checkbox>
             </div>
         </div>
 
@@ -45,7 +93,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="form-group row justify-content-center">
             <div class="col-2">
                 <label for="precio" class="col-form-label">Precio</label>
@@ -61,26 +109,44 @@
 
         <div class="form-group row justify-content-center">
             <div class="col-2">
-                <label for="foto" class="col-form-label">Foto</label>
+                <label for="descuento" class="col-form-label">Descuento</label>
             </div>
-            <!--            <div class="col-5">
-                            <input type="text" class="form-control" id="foto" name="foto" ng-model="foto" ng-required="true"
-                                   ng-class="{ 'is-invalid' : userForm.foto.$invalid && !userForm.foto.$pristine, 'is-valid': userForm.foto.$valid && !userForm.foto.$pristine}"/>
-                            <div ng-show="userForm.foto.$invalid && !userForm.foto.$pristine" class="alert alert-danger" >Foto requerida.</div>
-                        </div>            -->
             <div class="col-5">
-                <input type="file" name="file" class="form-control-file" id="file" file-model="file" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])"/>
-                <img id="output" src="images/default.svg" alt="default" style="width: 60px; height: 50px;"/>
+                <input type="text" class="form-control" id="descuento" name="descuento" ng-model="descuento" 
+                       ng-pattern="/^[0-9][0-9]*$/" ng-class="{ 'is-invalid' : userForm.descuento.$invalid && !userForm.descuento.$pristine, 'is-valid': userForm.descuento.$valid && !userForm.descuento.$pristine}"/>
+                <div ng-show="userForm.descuento.$error.pattern" class="alert alert-danger" role="alert">
+                    Descuento no válido
+                </div>
             </div>
-
         </div>
-
-        <tipoproducto-selection class="modal fade" id="cadd-location-modal" obj="ajaxDatoProducto" 
-                                on-tipoproducto-set="tipoProductoRefresh(this,false)"></tipoproducto-selection>
 
         <div class="form-group row justify-content-center">
             <div class="col-2">
-                <label for="id_tipoProducto" class=" col-form-label">Tipo Producto</label>
+                <label for="foto" class="col-form-label">Imagen</label>
+            </div>
+            <div class="col-5">
+                <input type="file" name="file" class="form-control-file" id="foto" file-model="file" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])"/>
+                <img id="output" src="images/default.svg" alt="default" style="width: 60px; height: 50px;"/>
+            </div>
+        </div>
+
+        <div class="form-group row justify-content-center">
+            <div class="col-2">
+                <label for="destacado" class="col-form-label">Destacado</label>
+            </div>
+            <div class="col-5">
+                <md-checkbox  ng-model="destacado"  aria-label="destacado"  class="md-primary" style="margin-top: 6px">           
+                </md-checkbox>
+            </div>
+        </div>
+
+
+        <coleccion-selection class="modal fade" id="cadd-location-modal" obj="ajaxDatoComic" 
+                             on-tipoproducto-set="tipoProductoRefresh(this,false)"></coleccion-selection>
+
+        <div class="form-group row justify-content-center">
+            <div class="col-2">
+                <label for="id_coleccion" class=" col-form-label">Colección</label>
             </div>
             <div class="col-5">          
                 <div class="input-group">
@@ -90,15 +156,15 @@
                               data-target="#cadd-location-modal">                                  
                         </span>
                     </div>
-                    <input ng-model="ajaxDatoProducto.id"
+                    <input ng-model="ajaxDatoComic.id"
                            ng-change="tipoProductoRefresh(this, true)"
                            aria-describedby="basic-addon2"
-                           id="id_tipoProducto"
-                           name="id_tipoProducto"
+                           id="id_coleccion"
+                           name="id_coleccion"
                            type="text"
                            size="5"
                            ng-model-options="{debounce: 1000}"
-                           maxlength="5" ng-required="true"  class="form-control" ng-class="{ 'is-invalid' : userForm.id_tipoProducto.$invalid && !userForm.id_tipoProducto.$pristine, 'is-valid': userForm.id_tipoProducto.$valid}" />
+                           maxlength="5" ng-required="true"  class="form-control" ng-class="{ 'is-invalid' : userForm.id_coleccion.$invalid && !userForm.id_coleccion.$pristine, 'is-valid': userForm.id_coleccion.$valid}" />
                 </div>
             </div>
         </div>    
@@ -107,8 +173,8 @@
             </div>
             <div class="col-5">                   
                 <div class="form-group">
-                    <a href="tipoproducto/view/{{ajaxDatoProducto.id}}" class="form-control btn btn-light" style="background: lightgray; color:dark; text-align:left;" ng-class="{ 'disabled': userForm.id_tipoProducto.$invalid}" >
-                        <span >Tipo de producto {{ajaxDatoProducto.desc}} {{vacio}}</span>
+                    <a href="coleccion/view/{{ajaxDatoComic.id}}" class="form-control btn btn-light" style="background: lightgray; color:dark; text-align:left;" ng-class="{ 'disabled': userForm.id_coleccion.$invalid}" >
+                        <span >Colección: {{ajaxDatoComic.desc}} {{vacio}}</span>
                     </a>
                 </div>
             </div>
@@ -121,8 +187,8 @@
                 <label for="id_tipoUsuario" class=" col-form-label"></label>
             </div>
             <div class="col-5">
-                <div ng-show="!userForm.id_tipoProducto.$valid && !userForm.id_tipoProducto.$pristine" class="alert alert-danger" style="width: auto;" role="alert">
-                    El tipo de producto es incorrecto
+                <div ng-show="!userForm.id_coleccion.$valid && !userForm.id_coleccion.$pristine" class="alert alert-danger" style="width: auto;" role="alert">
+                    La colección es incorrecta
                 </div>
             </div>
         </div>
@@ -136,7 +202,7 @@
         </div>
     </form>    
     <div class="alert alert-success" ng-show="mensaje">
-        Se ha creado el {{ob}} con el id {{idCreado}} llamado "{{descripcion}}"
+        Se ha creado el {{ob}} con el id {{idCreado}} llamado "{{titulo}}"
     </div>
 </main>
 <!--<footer class="footer" ng-include="'js/app/footer.html'"></footer>-->

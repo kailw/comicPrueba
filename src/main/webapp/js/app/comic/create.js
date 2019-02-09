@@ -4,9 +4,10 @@ moduleComic.controller('comicCreateController', ['$scope', '$http', '$location',
     function ($scope, $http, $location, toolService, $routeParams, sessionService) {
         $scope.id = $routeParams.id;
         $scope.ob = "comic";
+        $scope.fechapubliacion = new Date();
 
 
-        $scope.ajaxDatoProducto = {
+        $scope.ajaxDatoComic = {
             id: null,
             desc: null
         };
@@ -18,15 +19,20 @@ moduleComic.controller('comicCreateController', ['$scope', '$http', '$location',
             if ($scope.file !== undefined) {
                 foto = $scope.file.name;
             }
-
             var json = {
                 id: null,
-                codigo: $scope.codigo,
-                desc: $scope.descripcion,
+                titulo: $scope.titulo,
+                desc: $scope.desc,
+                isbn: $scope.isbn,
+                fechapublicacion: $scope.fechapubliacion,
+                pagina: $scope.pagina,
+                color: $scope.color,
                 existencias: $scope.existencias,
                 precio: $scope.precio,
+                descuento: $scope.descuento,
                 foto: foto,
-                id_tipoProducto: $scope.ajaxDatoProducto.id
+                destacado: $scope.destacado,
+                id_coleccion: $scope.ajaxDatoComic.id
             };
             $http({
                 method: 'GET',
@@ -53,22 +59,22 @@ moduleComic.controller('comicCreateController', ['$scope', '$http', '$location',
             if (consulta) {
                 $http({
                     method: 'GET',
-                    url: 'json?ob=genero&op=get&id=' + $scope.ajaxDatoProducto.id
+                    url: 'json?ob=coleccion&op=get&id=' + $scope.ajaxDatoComic.id
                 }).then(function (response) {
-                    $scope.ajaxDatoProducto = response.data.message;
-                    if ($scope.ajaxDatoProducto !== null) {
-                        form.userForm.id_tipoProducto.$setValidity('valid', true);
+                    $scope.ajaxDatoComic = response.data.message;
+                    if ($scope.ajaxDatoComic !== null) {
+                        form.userForm.id_coleccion.$setValidity('valid', true);
                     } else {
-                        form.userForm.id_tipoProducto.$setValidity('valid', false);
-                        $scope.vacio = "Error al acceder al tipo de producto";                        
+                        form.userForm.id_coleccion.$setValidity('valid', false);
+                        $scope.vacio = "Error al acceder a la colección";
                     }
 
                 }, function (response) {
-                    form.userForm.id_tipoProducto.$setValidity('valid', false);
-                    $scope.ajaxDatoProducto.desc = "Error al acceder al tipo de producto";
+                    form.userForm.id_coleccion.$setValidity('valid', false);
+                    $scope.ajaxDatoComic.desc = "Error al acceder al la colección";
                 });
             } else {
-                form.userForm.id_tipoProducto.$setValidity('valid', true);
+                form.userForm.id_coleccion.$setValidity('valid', true);
             }
         };
 

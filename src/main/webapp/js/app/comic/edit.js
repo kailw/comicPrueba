@@ -53,7 +53,7 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
             foto: "deafult.svg",
             destacado: null,
             obj_coleccion: {id: null}
-        };        
+        };
         $scope.guardar = function () {
             $scope.upload();
             var foto = $scope.ajaxDatoComic.foto;
@@ -69,7 +69,7 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
                 pagina: $scope.ajaxDatoComic.pagina,
                 color: $scope.ajaxDatoComic.color,
                 existencias: $scope.ajaxDatoComic.existencias,
-                precio: $scope.ajaxDatoComic.precio,                
+                precio: $scope.ajaxDatoComic.precio,
                 descuento: 15,
                 foto: foto,
                 destacado: $scope.ajaxDatoComic.destacado,
@@ -106,7 +106,7 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
                     if ($scope.ajaxDatoComic.obj_tipoProducto !== null) {
                         form.userForm.obj_tipoProducto.$setValidity('valid', true);
                     } else {
-                        form.userForm.obj_tipoProducto.$setValidity('valid', false);                       
+                        form.userForm.obj_tipoProducto.$setValidity('valid', false);
                         $scope.vacio = "Error al acceder al tipo de producto";
                     }
                 }, function (response) {

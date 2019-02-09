@@ -136,6 +136,12 @@ wildcart.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/editorial/remove/:id?', {templateUrl: 'js/app/editorial/remove.html', controller: 'editorialRemoveController', resolve: {auth: autenticacionAdministrador}});
         $routeProvider.when('/editorial/create', {templateUrl: 'js/app/editorial/create.html', controller: 'editorialCreateController', resolve: {auth: autenticacionAdministrador}});
 
+        $routeProvider.when('/especialidad/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/especialidad/plist.html', controller: 'especialidadPlistController', resolve: {auth: autenticacionAdministrador}});
+        $routeProvider.when('/especialidad/view/:id?', {templateUrl: 'js/app/especialidad/view.html', controller: 'especialidadViewController', resolve: {auth: autenticacionAdministrador}});
+        $routeProvider.when('/especialidad/edit/:id?', {templateUrl: 'js/app/especialidad/edit.html', controller: 'especialidadEditController', resolve: {auth: autenticacionAdministrador}});
+        $routeProvider.when('/especialidad/remove/:id?', {templateUrl: 'js/app/especialidad/remove.html', controller: 'especialidadRemoveController', resolve: {auth: autenticacionAdministrador}});
+        $routeProvider.when('/especialidad/create', {templateUrl: 'js/app/especialidad/create.html', controller: 'especialidadCreateController', resolve: {auth: autenticacionAdministrador}});
+
         $routeProvider.when('/idioma/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/idioma/plist.html', controller: 'idiomaPlistController', resolve: {auth: autenticacionAdministrador}});
         $routeProvider.when('/idioma/view/:id?', {templateUrl: 'js/app/idioma/view.html', controller: 'idiomaViewController', resolve: {auth: autenticacionAdministrador}});
         $routeProvider.when('/idioma/edit/:id?', {templateUrl: 'js/app/idioma/edit.html', controller: 'idiomaEditController', resolve: {auth: autenticacionAdministrador}});
