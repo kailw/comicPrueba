@@ -1,5 +1,5 @@
 'use strict';
-moduleComponent.component('coleccionSelection', {
+moduleComponent.component('tipoproductoSelection', {
     templateUrl: 'js/app/coleccion/selection.html',
     controllerAs: 'c',
     controller: cController,
@@ -52,8 +52,8 @@ function cController($http) {
 
 
 
-    self.save = function (id, desc) {     
-        self.obj = { id : id, desc: desc};
+    self.save = function (id, desc) {
+        self.obj = {id: id, desc: desc};
         self.onTipoproductoSet();
 
     };

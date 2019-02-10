@@ -4,10 +4,6 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
     function ($scope, $http, $location, toolService, $routeParams, sessionService) {
         $scope.id = $routeParams.id;
         $scope.ob = "comic";
-        $scope.ob2 = "genero";
-        $scope.ob3 = "comicgenero";
-        $scope.ob4 = "idioma";
-        $scope.ob5 = "comicidioma";
 
 
         $http({
@@ -42,47 +38,6 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
             $scope.ajaxDatoComic = response.data.message || 'Request failed';
             $scope.status = response.status;
         });
-
-
-
-
-
-        $http({
-            method: 'GET',
-            url: '/json?ob=' + $scope.ob2 + '&op=getpage&rpp=1000&page=1'
-        }).then(function (response) {
-            $scope.status = response.status;
-            $scope.ajaxDatoGenero = response.data.message;
-        }, function (response) {
-            $scope.ajaxDatoGenero = response.data.message || 'Request failed';
-            $scope.status = response.status;
-        });
-
-
-        $http({
-            method: 'GET',
-            url: '/json?ob=' + $scope.ob3 + '&op=getpagex&campo=id_comic&rpp=1000&page=1&id=' + $scope.id
-        }).then(function (response) {
-            $scope.status = response.status;
-            $scope.ajaxDatoComicGenero = response.data.message;
-        }, function (response) {
-            $scope.ajaxDatoComicGenero = response.data.message || 'Request failed';
-            $scope.status = response.status;
-        });
-
-
-        $http({
-            method: 'GET',
-            url: '/json?ob=' + $scope.ob4 + '&op=getpage&rpp=1000&page=1'
-        }).then(function (response) {
-            $scope.status = response.status;
-            $scope.ajaxDatoIdioma = response.data.message;
-        }, function (response) {
-            $scope.ajaxDatoIdioma = response.data.message || 'Request failed';
-            $scope.status = response.status;
-        });
-
-
 
         $scope.ajaxDatoComic = {
             id: null,

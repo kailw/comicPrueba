@@ -6,12 +6,22 @@
         <caption><i class="fas fa-user-tie"></i> View de Autor</caption>
         <tr>
             <th>ID</th>
-            <th>{{ajaxDataAutor.id}}</th>
+            <th>{{ajaxDatoAutorNombre.id}}</th>
         </tr>   
         <tr>
             <th>NOMBRE</th>
-            <td>{{ajaxDataAutor.nombre}}</td>
+            <td>{{ajaxDatoAutorNombre.nombre}}</td>
         </tr>     
+
+        <tr>
+            <th  style="margin: 30px">ESPECIALIDADES</th>
+            <td>
+                <span class="padTabla"
+                      ng-repeat="fila in ajaxDatoAutorEspecialidad track by $index">
+                    <a href="especialidad/view/{{fila.obj_especialidad.id}}"> {{fila.obj_especialidad.desc}}</a>
+                </span>
+            </td>
+        </tr>   
     </table>
 
 </main>

@@ -12,6 +12,15 @@
             <th>DESCRIPCIÓN</th>
             <td>{{ajaxDataTipousuario.desc}}</td>
         </tr>     
+        <tr>
+            <th  style="margin: 30px">USUARIOS</th>
+            <td>
+                <span class="padTabla"
+                      ng-repeat="fila in ajaxDataUsuarios track by $index">
+                    <a href="usuario/view/{{fila.id}}"> {{fila.nombre}} {{fila.ape1}} {{fila.ape2}}</a>
+                </span>
+            </td>
+        </tr>   
     </table> 
 </main>
 <footer class="footer" ng-include="'js/app/footer.html'"></footer>

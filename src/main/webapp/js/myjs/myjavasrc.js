@@ -1,12 +1,12 @@
 
-window.onload = function () {
-    setTimeout(function () {
-        var contenedor = document.getElementById("contenedor_carga");
-        contenedor.style.visibility = "hidden";
-        contenedor.style.opacity = "0";
-    }, 1000);
-
-}
+//window.onload = function () {
+//    setTimeout(function () {
+//        var contenedor = document.getElementById("contenedor_carga");
+//        contenedor.style.visibility = "hidden";
+//        contenedor.style.opacity = "0";
+//    }, 1000);
+//
+//}
 
 $(function () {
     var availableTags = [
@@ -26,10 +26,21 @@ $(function () {
         source: availableTags
     });
 
-    $("#accordion").accordion({
-        // 'active': 1
-    });
 
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            }
+        });
+    }
     // $('.gallery').flickity({
     //     arrowShape: 'M 0,50 L 60,00 L 50,30 L 80,30 L 80,70 L 50,70 L 60,100 Z'
     // });
@@ -37,23 +48,23 @@ $(function () {
     // $(".flickity-viewport").css({"height": "100%"});
 
     // $(".gallery-cell-principal ").css({"height": "800px"});
-    
+
 
 
     $(".precio1").html("3,40€");
-    $("div[class*=\"precio\"").css({ "text-align": "center", "font-size": "1.5em" });
+    $("div[class*=\"precio\"").css({"text-align": "center", "font-size": "1.5em"});
 
     $(".titulo1").html("The increible Hulk and Wolverine");
-    $("div[class*=\"titulo\"").css({ "text-align": "center", "font-size": "1.2em" });
+    $("div[class*=\"titulo\"").css({"text-align": "center", "font-size": "1.2em"});
 
     $(".cesta1").html("AÑADIR A LA CESTA");
-    $("div[class*=\"cesta\"]").css({ "background": "#ED1410", "text-align": "center", "color": "white", "padding": "4px 0", "cursor": "pointer", "transform": "skew(-6deg)" });
+    $("div[class*=\"cesta\"]").css({"background": "#ED1410", "text-align": "center", "color": "white", "padding": "4px 0", "cursor": "pointer", "transform": "skew(-6deg)"});
 
     $(".cesta1").on("mouseenter", function () {
-        $(".cesta1").css({ "background": "#0053BA", "transition": "background 0.2s linear" });
+        $(".cesta1").css({"background": "#0053BA", "transition": "background 0.2s linear"});
     });
     $(".cesta1").on("mouseleave", function () {
-        $(".cesta1").css({ "background": "#ED1410" });
+        $(".cesta1").css({"background": "#ED1410"});
     });
 
 
@@ -77,17 +88,17 @@ $(function () {
 
 
     $(".precio1N").html("5,45 €");
-    $(".precio1N").css({ "text-decoration": "line-through", "font-size": "1em" });
+    $(".precio1N").css({"text-decoration": "line-through", "font-size": "1em"});
 
     $(".precio2").html("3,20 €");
     $(".titulo2").html("Dared Evil");
 
     $(".cesta2").html("AÑADIR A LA CESTA");
     $(".cesta2").on("mouseenter", function () {
-        $(".cesta2").css({ "background": "#0053BA", "transition": "background 0.2s linear" });
+        $(".cesta2").css({"background": "#0053BA", "transition": "background 0.2s linear"});
     });
     $(".cesta2").on("mouseleave", function () {
-        $(".cesta2").css({ "background": "#ED1410" });
+        $(".cesta2").css({"background": "#ED1410"});
     });
 
     function redireccionar() {
@@ -131,10 +142,10 @@ $(function () {
 
     $(".cesta3").html("AÑADIR A LA CESTA");
     $(".cesta3").on("mouseenter", function () {
-        $(".cesta3").css({ "background": "#0053BA", "transition": "background 0.2s linear" });
+        $(".cesta3").css({"background": "#0053BA", "transition": "background 0.2s linear"});
     });
     $(".cesta3").on("mouseleave", function () {
-        $(".cesta3").css({ "background": "#ED1410" });
+        $(".cesta3").css({"background": "#ED1410"});
     });
 
 
@@ -144,10 +155,10 @@ $(function () {
 
     $(".cesta4").html("AÑADIR A LA CESTA");
     $(".cesta4").on("mouseenter", function () {
-        $(".cesta4").css({ "background": "#0053BA", "transition": "background 0.2s linear" });
+        $(".cesta4").css({"background": "#0053BA", "transition": "background 0.2s linear"});
     });
     $(".cesta4").on("mouseleave", function () {
-        $(".cesta4").css({ "background": "#ED1410" });
+        $(".cesta4").css({"background": "#ED1410"});
     });
 
 
@@ -163,10 +174,10 @@ $(function () {
 
     $(".cesta5").html("AÑADIR A LA CESTA");
     $(".cesta5").on("mouseenter", function () {
-        $(".cesta5").css({ "background": "#0053BA", "transition": "background 0.2s linear" });
+        $(".cesta5").css({"background": "#0053BA", "transition": "background 0.2s linear"});
     });
     $(".cesta5").on("mouseleave", function () {
-        $(".cesta5").css({ "background": "#ED1410" });
+        $(".cesta5").css({"background": "#ED1410"});
     });
 
 
@@ -176,10 +187,10 @@ $(function () {
 
     $(".cesta6").html("AÑADIR A LA CESTA");
     $(".cesta6").on("mouseenter", function () {
-        $(".cesta6").css({ "background": "#0053BA", "transition": "background 0.2s linear" });
+        $(".cesta6").css({"background": "#0053BA", "transition": "background 0.2s linear"});
     });
     $(".cesta6").on("mouseleave", function () {
-        $(".cesta6").css({ "background": "#ED1410" });
+        $(".cesta6").css({"background": "#ED1410"});
     });
 
 
@@ -192,10 +203,10 @@ $(function () {
 
     $(".cesta7").html("AÑADIR A LA CESTA");
     $(".cesta7").on("mouseenter", function () {
-        $(".cesta7").css({ "background": "#0053BA", "transition": "background 0.2s linear" });
+        $(".cesta7").css({"background": "#0053BA", "transition": "background 0.2s linear"});
     });
     $(".cesta7").on("mouseleave", function () {
-        $(".cesta7").css({ "background": "#ED1410" });
+        $(".cesta7").css({"background": "#ED1410"});
     });
 
 
@@ -206,10 +217,10 @@ $(function () {
 
     $(".cesta8").html("AÑADIR A LA CESTA");
     $(".cesta8").on("mouseenter", function () {
-        $(".cesta8").css({ "background": "#0053BA", "transition": "background 0.2s linear" });
+        $(".cesta8").css({"background": "#0053BA", "transition": "background 0.2s linear"});
     });
     $(".cesta8").on("mouseleave", function () {
-        $(".cesta8").css({ "background": "#ED1410" });
+        $(".cesta8").css({"background": "#ED1410"});
     });
 
     $(".tituloV1").html("Captian America #5");

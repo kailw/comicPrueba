@@ -4,6 +4,7 @@ moduleColeccion.controller('coleccionViewController', ['$scope', '$http', '$loca
     function ($scope, $http, $location, toolService, $routeParams, sessionService) {
         $scope.id = $routeParams.id;
         $scope.ob = "coleccion";
+        $scope.ob2 = "comic";
 
         $http({
             method: 'GET',
@@ -13,6 +14,17 @@ moduleColeccion.controller('coleccionViewController', ['$scope', '$http', '$loca
             $scope.ajaxDataColeccion = response.data.message;
         }, function (response) {
             $scope.ajaxDataColeccion = response.data.message || 'Request failed';
+            $scope.status = response.status;
+        });
+
+        $http({
+            method: 'GET',
+            url: '/json?ob=' + $scope.ob2 + '&op=getpagex&campo=id_coleccion&id=' + $scope.id + '&rpp=1000' + '&page=1'
+        }).then(function (response) {
+            $scope.status = response.status;
+            $scope.ajaxDatoComic = response.data.message;
+        }, function (response) {
+            $scope.ajaxDatoComic = response.data.message || 'Request failed';
             $scope.status = response.status;
         });
         $scope.isActive = toolService.isActive;

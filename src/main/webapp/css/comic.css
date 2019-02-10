@@ -5,7 +5,7 @@
 /****************** MAIN ********************/
 
 body {
-    height: 100%;
+    height: 100%;    
 }
 
 #main {
@@ -13,7 +13,7 @@ body {
     display: grid;
     grid-template-rows: auto 1fr 0.1fr;    
     grid-template-areas: "HEADER" "CONTENIDO" "FOOTER";
-    background-color: #42403F;
+/*    background-color: #42403F;*/
     row-gap: 50px;
 }
 
@@ -54,56 +54,56 @@ body {
 
 /* imagenes del primer carrousel */
 
- /* .entrada1 {
-    background: url("../images/entrada1.jpg");
-    background-size: cover;
-    background-position: center center;
-    border-radius: 5px;
-    border: 4px outset black;
+/* .entrada1 {
+   background: url("../images/entrada1.jpg");
+   background-size: cover;
+   background-position: center center;
+   border-radius: 5px;
+   border: 4px outset black;
 } 
 
- .entrada2 {
-    background: url("../images/entrada2.jpg");
-    background-size: 80%;
-    border-radius: 5px;
-    background-position: 0 50%;
-    border: 4px outset black;
+.entrada2 {
+   background: url("../images/entrada2.jpg");
+   background-size: 80%;
+   border-radius: 5px;
+   background-position: 0 50%;
+   border: 4px outset black;
 }
 
 .entrada3 {
-    background: url("../images/entrada3.jpg");
-    background-size: cover;
-    background-position: center;
-    border-radius: 5px;
-    border: 4px outset black;
+   background: url("../images/entrada3.jpg");
+   background-size: cover;
+   background-position: center;
+   border-radius: 5px;
+   border: 4px outset black;
 }
 
 .entrada4 {
-    background: url("../images/entrada4.jpg");
-    background-size: cover;
-    background-position: center;
-    border-radius: 5px;
-    border: 4px outset black;
+   background: url("../images/entrada4.jpg");
+   background-size: cover;
+   background-position: center;
+   border-radius: 5px;
+   border: 4px outset black;
 }
 
 .entrada5 {
-    background: url("../images/entrada5.jpg");
-    background-size: cover;
-    background-position: center;
-    border-radius: 5px;
-    border: 4px outset black;
+   background: url("../images/entrada5.jpg");
+   background-size: cover;
+   background-position: center;
+   border-radius: 5px;
+   border: 4px outset black;
 }  */
 
 /* external css: flickity.css del primer carrousel */
 
 .gallery {
     z-index: 1;
-    
+
 }
 
 .gallery-cell-principal {
     width: 80%;
-    margin: 0 2%;
+    margin: 0 0.5%;
 }
 
 .imagenCarrousel1 {
@@ -130,7 +130,7 @@ body {
 
 /* imagenes de los comics mas destacados */
 
-/*.portada1 {
+.portada1 {
     background: url("../images/destacado1.jpg");
     background-size: cover;
     background-position: top center;
@@ -194,7 +194,7 @@ body {
     box-shadow: 4px 3px 2px #2F3031;
 }
 
- imagenes de los comic mas vendidos
+/*// imagenes de los comic mas vendidos*/
 
 .portadaV1 {
     background: url("../images/vendidos1.jpg");
@@ -234,7 +234,7 @@ body {
     background-position: center;
     border: 2px outset black;
     box-shadow: 4px 3px 2px #2F3031;
-}*/
+}
 
 /* el boton que aperece cuando pasas por encima de un comic */
 
@@ -311,7 +311,7 @@ div[class*="precio"] {
     border: 1px solid black;
     height: 20px;
 }
- */
+*/
 
 /* lo del icono de carrito*/
 
@@ -366,15 +366,15 @@ div[class*="precio"] {
         display: none;
     }
 
-    
+
     #main {
         grid-template-rows: auto auto auto;       
     }
-    
+
     #contenido {
         grid-template-rows: auto 0.5fr;
         grid-template-areas: "COMICS" "INFORMACION";
-        
+
     }
 
     #footer {
@@ -394,7 +394,7 @@ div[class*="precio"] {
         height: 380px;
         margin: 0 1.7%;
     }
-    
 
-  
+
+
 }

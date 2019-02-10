@@ -122,7 +122,7 @@ moduleFactura.controller('facturaPlistController', ['$scope', '$http', '$locatio
 
             $http({
                 method: 'GET',
-                url: '/json?ob=linea&op=getlineafactura&rpp=500&page=1&id=' + id
+                url: '/json?ob=linea&op=getpagex&campo=id_factura&rpp=500&page=1&id=' + id
             }).then(function (response) {
                 $scope.status = response.status;
                 $scope.ajaxDatoLineaFactura = response.data.message;
@@ -145,13 +145,13 @@ moduleFactura.controller('facturaPlistController', ['$scope', '$http', '$locatio
                         doc.text(95, 290, "Pagina " + pagina);
                     }
                     doc.setFontSize(13);
-                    $scope.productoCodigo = $scope.ajaxDatoLineaFactura[i].obj_Producto.codigo;
-                    $scope.productoDesc = $scope.ajaxDatoLineaFactura[i].obj_Producto.desc;
+                    $scope.productoCodigo = $scope.ajaxDatoLineaFactura[i].obj_Comic.titulo;
+                    $scope.productoDesc = $scope.ajaxDatoLineaFactura[i].obj_Comic.desc;
                     $scope.productoCantidad = $scope.ajaxDatoLineaFactura[i].cantidad;
                     $scope.productoCantidadTotal += $scope.ajaxDatoLineaFactura[i].cantidad;
-                    $scope.productoPrecio = $scope.ajaxDatoLineaFactura[i].obj_Producto.precio * $scope.productoCantidad;
-                    $scope.productoPrecioUno = $scope.ajaxDatoLineaFactura[i].obj_Producto.precio;
-                    $scope.productoPrecioTotal += $scope.ajaxDatoLineaFactura[i].obj_Producto.precio * $scope.productoCantidad;
+                    $scope.productoPrecio = $scope.ajaxDatoLineaFactura[i].obj_Comic.precio * $scope.productoCantidad;
+                    $scope.productoPrecioUno = $scope.ajaxDatoLineaFactura[i].obj_Comic.precio;
+                    $scope.productoPrecioTotal += $scope.ajaxDatoLineaFactura[i].obj_Comic.precio * $scope.productoCantidad;
                     doc.text(10, linea, $scope.productoCodigo);
                     doc.text(40, linea, $scope.productoDesc);
                     doc.text(125, linea, $scope.productoCantidad.toString());

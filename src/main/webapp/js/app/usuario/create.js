@@ -19,6 +19,7 @@ moduleUsuario.controller('usuarioCreateController', ['$scope', '$http', '$locati
                 ape2: $scope.ape2,
                 login: $scope.login,
                 pass: forge_sha256($scope.pass),
+                email: $scope.email,
                 id_tipousuario: $scope.ajaxDatoUsuario.id,
                 validacion: $scope.validacion
             };

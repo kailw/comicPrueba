@@ -12,6 +12,15 @@
             <th>DESCRIPCIÓN</th>
             <td>{{ajaxDataColeccion.desc}}</td>
         </tr>     
+        <tr>
+            <th  style="margin: 30px">COMICS QUE PERTENECEN A ESTA COLECCIÓN</th>
+            <td>
+                <span class="padTabla"
+                      ng-repeat="fila in ajaxDatoComic track by $index">
+                    <a href="comic/view/{{fila.id}}"> {{fila.titulo}}</a>                    
+                </span>
+            </td>
+        </tr>   
     </table>
 
 </main>

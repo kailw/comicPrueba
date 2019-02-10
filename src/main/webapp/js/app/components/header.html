@@ -79,7 +79,7 @@
 
 <div id="header" class="bg-dark sticky-top">
     <nav class="navbar navbar-expand-md navbar-light bg-dark">
-        <a class="navbar-brand" href="#"> <i class="fab fa-optin-monster"></i> ONCOMICS</a>
+        <a class="navbar-brand" href="/home"> <i class="fab fa-optin-monster"></i> ONCOMICS</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -116,11 +116,18 @@
                         </ul>-->
 
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item" ng-class="{'active': c.isActive('/home')}">
-                    <a class="nav-link hvr-pop" href="home"><i class="fa fa-home"></i> 
+                <li class="nav-item" ng-class="{'active': c.isActive('/home')}" ng-if="c.idTipoUsuario !== 1 || c.idTipoUsuario == null && c.loginH" >
+                    <a class="nav-link hvr-pop" href="/home"><i class="fa fa-home"></i> 
                         <span class="desaparece"> Inicio</span><span class="sr-only">(current)</span>
                     </a>
                 </li>
+
+                <li class="nav-item" ng-class="{'active': c.isActive('/comic')}" ng-if="c.idTipoUsuario !== 1 || c.idTipoUsuario == null && c.loginH" >
+                    <a class="nav-link hvr-pop" href="user/comic/plist"><i class="fa fa-book-open"></i> 
+                        <span class="desaparece"> Comics</span><span class="sr-only">(current)</span>
+                    </a>
+                </li>
+
 
                 <li class="nav-item"  ng-show="c.isAdmin && c.loginH" ng-class="{'active': c.isActive('/usuario/plist')}">
                     <a class="nav-link hvr-pop" href="usuario/plist" 
@@ -148,7 +155,7 @@
 
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    <a class="nav-link dropdown-toggle nav-link hvr-pop"   ng-show="c.isAdmin && c.loginH" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false" ng-class="{'active': c.isActive('/comic') || c.isActive('/genero')  || c.isActive('/editorial') 
                        || c.isActive('/idioma')}">
                         <i class="fas fa-book-open"></i> <span class="desaparece"> Comics </span>
@@ -188,14 +195,14 @@
                                     </a>
                                 </li>-->
 
-<!--                <li class="nav-item"  ng-show="c.isAdmin && c.loginH"  ng-class="{'active': c.isActive('/autor')}">                        
-                    <a class="nav-link hvr-pop" href="autor/plist" >
-                        <i class="fas fa-user-tie"></i> <span class="desaparece">Autores</span>
-                    </a>
-                </li>-->
+                <!--                <li class="nav-item"  ng-show="c.isAdmin && c.loginH"  ng-class="{'active': c.isActive('/autor')}">                        
+                                    <a class="nav-link hvr-pop" href="autor/plist" >
+                                        <i class="fas fa-user-tie"></i> <span class="desaparece">Autores</span>
+                                    </a>
+                                </li>-->
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    <a class="nav-link dropdown-toggle nav-link hvr-pop"  ng-show="c.isAdmin && c.loginH" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false" ng-class="{'active': c.isActive('/autor') || c.isActive('/especialidad')}">
                         <i class="fas fa-user-tie"></i> <span class="desaparece"> Autores </span>
                     </a>
@@ -205,13 +212,12 @@
                     </div>
                 </li>
 
-                <li class="nav-item" ng-show="c.isAdmin && c.loginH" ng-class="{'active': c.isActive('/factura/plist')}">
-                    <a class="nav-link hvr-pop" href="factura/plist" ng-class="{'active': (c.isActive('/factura/plist') || c.isActive('/linea/plist')
-                       || c.isActive('/factura/view') || c.isActive('/factura/edit') || c.isActive('/factura/remove') || c.isActive('/linea/view')
-                       || c.isActive('/linea/remove') || c.isActive('/linea/edit') || c.isActive('/factura/create'))}">
+                <li class="nav-item" ng-show="c.isAdmin && c.loginH" ng-class="{'active': c.isActive('/factura')}">
+                    <a class="nav-link hvr-pop" href="factura/plist">
                         <i class="fa fa-file-invoice-dollar"></i> <span class="desaparece">Facturas</span>
                     </a>
                 </li>
+
 
 
                 <li class="nav-item" ng-if="c.idTipoUsuario === 2 && c.loginH" ng-class="{'active': c.isActive('/user/usuario/plistfactura')}">
@@ -219,11 +225,6 @@
                         <i class="fas fa-hand-holding-usd"></i> <span class="desaparece"> Mis Facturas </span> </a>
                 </li>
 
-                <li class="nav-item" ng-if="c.idTipoUsuario === 2 && c.loginH" ng-class="{'active': c.isActive('/user/producto')}">                        
-                    <a class="nav-link hvr-pop" href="user/producto/plist" >
-                        <i class="fas fa-archive"></i> <span class="desaparece"> Ver Productos</span>
-                    </a>
-                </li>
             </ul>
 
 

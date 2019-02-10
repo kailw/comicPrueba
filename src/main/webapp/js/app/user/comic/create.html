@@ -42,8 +42,6 @@
             </div>
         </div>
 
-
-        <!--        GENEROS ===================================================-->
         <div class="form-group row justify-content-center">
             <div class="col-2">
                 <!--                <label for="genero" class="col-form-label">Géneros</label>-->
@@ -51,159 +49,101 @@
             <div class="col-5">
                 <md-input-container>
                     <label>Géneros</label>
-                    <md-select style="max-width: 250px" ng-model="seleccionarGenero" data-md-container-class="selectdemoSelectHeader " multiple="" ng-required="true">
+                    <md-select  style="max-width: 250px" ng-model="seleccionarGenero" md-on-close="clearSearchTerm()" data-md-container-class="selectdemoSelectHeader" multiple="">
                         <md-select-header class="demo-select-header">
-                            <input  type="text" placeholder="Busca su género" class="demo-header-searchbox _md-text" ng-model="generos" onkeydown="event.stopPropagation()">
+                            <input ng-model="searchTerm" type="search" placeholder="Busca los géneros" class="demo-header-searchbox md-text">
                         </md-select-header>
-                        <md-optgroup label="generos">
-                            <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoComicGenero | orderBy: 'desc' | filter:generos " ng-required="true">{{fila.desc}}</md-option>
+                        <md-optgroup label="vegetables">
+                            <md-option ng-value="fila.desc" ng-repeat="fila in ajaxDatoComicGenero | filter:searchTerm" >{{fila.desc}}</md-option>
                         </md-optgroup>
                     </md-select>
                 </md-input-container>
-                <div ng-show="userForm.seleccionarGenero.$pristine" class="alert alert-danger" role="alert">
-                    Genero obligatorio
-                </div>
-                {{seleccionarGenero}}
             </div>
         </div>
 
 
-        <!--        AUTOR 1  =========================================-->
         <div class="form-group row justify-content-center">  
-            <div class="col-2">
+            <div class="col-md-3">
             </div>
-            <div class="col-5">
-                <md-input-container style="margin-right: 20px;">
-                    <label>Autores</label>
-                    <md-select  style="max-width: 250px" ng-model="seleccionarAutor1" data-md-container-class="selectdemoSelectHeader" ng-required="true">
-                        <md-select-header class="demo-select-header">
-                            <input ng-model="autor1" type="text" placeholder="Busca su autor" class="demo-header-searchbox" onkeydown="event.stopPropagation()">
-                        </md-select-header>
-                        <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoAutor | orderBy: 'nombre' | filter:autor1 ">{{fila.nombre}}</md-option>
+            <div class="col-sm-10 col-md-2">
+                <md-input-container>
+                    <label>Autor</label>
+                    <md-select ng-model="size">
+                        <md-option ng-repeat="size in ajaxDatoAutor" value="{{size}}">{{size.nombre}}</md-option>
                     </md-select>
                 </md-input-container>
-                {{seleccionarAutor1}}
-
+            </div>
+            <div class="col-sm-10 col-md-4">
                 <md-input-container>
-                    <label>Especialidades</label>
-                    <md-select  ng-required="true" style="max-width: 250px" ng-model="seleccionarEspecialidad1" md-on-close="clearSearchTerm()" data-md-container-class="selectdemoSelectHeader" multiple="">
+                    <label>Especialidad</label>
+                    <md-select  style="max-width: 250px" ng-model="seleccionarEspecialidad" md-on-close="clearSearchTerm()" data-md-container-class="selectdemoSelectHeader" multiple="">
                         <md-select-header class="demo-select-header">
-                            <input ng-model="especialidad1" type="search" placeholder="Busca su especialidad" class="demo-header-searchbox md-text" onkeydown="event.stopPropagation()">
+                            <input ng-model="searchTerm" type="search" placeholder="Busca su especialidad" class="demo-header-searchbox md-text">
                         </md-select-header>
-                        <md-optgroup label="especialidad">
-                            <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoAutorEspecialidad | orderBy: 'desc' | filter:especialidad1" >{{fila.desc}}</md-option>
+                        <md-optgroup label="vegetables">
+                            <md-option ng-value="fila.desc" ng-repeat="fila in ajaxDatoAutorEspecialidad | filter:searchTerm" >{{fila.desc}}</md-option>
                         </md-optgroup>
                     </md-select>
                 </md-input-container>
-                {{seleccionarEspecialidad1}}
                 <button type="button" class="btn btn-light" ng-click="otroInput()"> <i class="fas fa-plus-circle"></i></button>
+
             </div>
         </div>   
 
-
-        <!--        AUTOR 2  ===================================================-->
         <div class="form-group row justify-content-center" ng-show="aparecer">  
-            <div class="col-2">
+            <div class="col-md-3">
             </div>
-            <div class="col-5">
-                <md-input-container style="margin-right: 20px;">
-                    <label>Autores</label>
-                    <md-select  style="max-width: 250px" ng-model="seleccionarAutor2" data-md-container-class="selectdemoSelectHeader" ng-required="model1">
-                        <md-select-header class="demo-select-header">
-                            <input ng-model="autor2" type="text" placeholder="Busca su autor" class="demo-header-searchbox" onkeydown="event.stopPropagation()">
-                        </md-select-header>
-                        <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoAutor | orderBy: 'nombre' | filter:autor2">{{fila.nombre}}</md-option>
+            <div class="col-sm-10 col-md-2">
+                <md-input-container>
+                    <label>Autor</label>
+                    <md-select ng-model="size1">
+                        <md-option ng-repeat="size in ajaxDatoAutor" value="{{size}}">{{size.nombre}}</md-option>
                     </md-select>
                 </md-input-container>
-                {{seleccionarAutor2}}
-
-
+            </div>
+            <div class="col-sm-10 col-md-4">
                 <md-input-container>
-                    <label>Especialidades</label>
-                    <md-select  ng-required="model1" style="max-width: 250px" ng-model="seleccionarEspecialidad2" md-on-close="clearSearchTerm()" data-md-container-class="selectdemoSelectHeader" multiple="">
+                    <label>Especialidad</label>
+                    <md-select  style="max-width: 250px" ng-model="seleccionarEspecialidad2" md-on-close="clearSearchTerm()" data-md-container-class="selectdemoSelectHeader" multiple="">
                         <md-select-header class="demo-select-header">
-                            <input ng-model="especialidad2" type="search" placeholder="Busca su especialidad" class="demo-header-searchbox md-text" onkeydown="event.stopPropagation()">
+                            <input ng-model="searchTerm" type="search" placeholder="Busca su especialidad" class="demo-header-searchbox md-text">
                         </md-select-header>
-                        <md-optgroup label="especialidad">
-                            <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoAutorEspecialidad | orderBy: 'desc' | filter:especialidad2" >{{fila.desc}}</md-option>
+                        <md-optgroup label="vegetables">
+                            <md-option ng-value="fila.desc" ng-repeat="fila in ajaxDatoAutorEspecialidad | filter:searchTerm" >{{fila.desc}}</md-option>
                         </md-optgroup>
                     </md-select>
                 </md-input-container>
-                {{seleccionarEspecialidad2}}
                 <button type="button" class="btn btn-light" ng-click="quitarInput()"> <i class="fas fa-minus-circle"></i></button>
             </div>
         </div>   
 
-        <!--        AUTOR 3  ===================================================-->
-        <div class="form-group row justify-content-center" ng-show="aparecer2">   
-            <div class="col-2">
+
+        <div class="form-group row justify-content-center" ng-show="aparecer2">  
+            <div class="col-md-3">
             </div>
-            <div class="col-5">
-                <md-input-container style="margin-right: 20px;">
-                    <label>Autores</label>
-                    <md-select   ng-required="model2" style="max-width: 250px" ng-model="seleccionarAutor3" data-md-container-class="selectdemoSelectHeader">
-                        <md-select-header class="demo-select-header">
-                            <input ng-model="autor3" type="text" placeholder="Busca su autor" class="demo-header-searchbox" onkeydown="event.stopPropagation()">
-                        </md-select-header>
-                        <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoAutor | orderBy: 'nombre' | filter:autor3">{{fila.nombre}}</md-option>
+            <div class="col-sm-10 col-md-2">
+                <md-input-container>
+                    <label>Autor</label>
+                    <md-select ng-model="size2">
+                        <md-option ng-repeat="size in ajaxDatoAutor" value="{{size}}">{{size.nombre}}</md-option>
                     </md-select>
                 </md-input-container>
-                {{seleccionarAutor3}}
+            </div>
+            <div class="col-sm-10 col-md-4">
                 <md-input-container>
-                    <label>Especialidades</label>
-                    <md-select ng-required="model2" style="max-width: 250px" ng-model="seleccionarEspecialidad3" md-on-close="clearSearchTerm()" data-md-container-class="selectdemoSelectHeader" multiple="">
+                    <label>Especialidad</label>
+                    <md-select  style="max-width: 250px" ng-model="seleccionarEspecialidad3" md-on-close="clearSearchTerm()" data-md-container-class="selectdemoSelectHeader" multiple="">
                         <md-select-header class="demo-select-header">
-                            <input ng-model="especialidad3" type="search" placeholder="Busca su especialidad" class="demo-header-searchbox md-text" onkeydown="event.stopPropagation()">
+                            <input ng-model="searchTerm" type="search" placeholder="Busca su especialidad" class="demo-header-searchbox md-text">
                         </md-select-header>
-                        <md-optgroup label="especialidad">
-                            <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoAutorEspecialidad | orderBy: 'desc' | filter:especialidad3" >{{fila.desc}}</md-option>
+                        <md-optgroup label="vegetables">
+                            <md-option ng-value="fila.desc" ng-repeat="fila in ajaxDatoAutorEspecialidad | filter:searchTerm" >{{fila.desc}}</md-option>
                         </md-optgroup>
                     </md-select>
                 </md-input-container>
-                {{seleccionarEspecialidad3}}
                 <button type="button" class="btn btn-light" ng-click="quitarInput2()"> <i class="fas fa-minus-circle"></i></button>
             </div>
-        </div>   
-
-        <div class="form-group row justify-content-center">   
-            <div class="col-2">
-            </div>
-            <div class="col-5">
-                <md-input-container>
-                    <label>Idiomas</label>
-                    <md-select ng-required="true" style="max-width: 250px" ng-model="seleccionarIdioma" md-on-close="clearSearchTerm()" data-md-container-class="selectdemoSelectHeader" multiple="">
-                        <md-select-header class="demo-select-header">
-                            <input ng-model="idioma" type="search" placeholder="Busca su idioma" class="demo-header-searchbox md-text" onkeydown="event.stopPropagation()">
-                        </md-select-header>
-                        <md-optgroup label="idioma">
-                            <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoIdioma | orderBy: 'desc' | filter:idioma" >{{fila.desc}}</md-option>
-                        </md-optgroup>
-                    </md-select>
-                </md-input-container>
-                {{seleccionarIdioma}}
-            </div>
-        </div>   
-
-<!--        <div class="form-group row justify-content-center">   
-            <div class="col-2">
-            </div>
-            <div class="col-5">
-                <md-input-container>
-                    <label>Idiomas</label>
-                    <md-select ng-required="true" style="max-width: 250px" ng-model="seleccionarIdioma" md-on-close="clearSearchTerm()" data-md-container-class="selectdemoSelectHeader" multiple="">
-                        <md-select-header class="demo-select-header">
-                            <input ng-model="idioma" type="search" placeholder="Busca su idioma" class="demo-header-searchbox md-text" onkeydown="event.stopPropagation()">
-                        </md-select-header>
-                        <md-optgroup label="idioma">
-                            <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoIdioma | orderBy: 'desc' | filter:idioma" >{{fila.desc}}</md-option>
-                        </md-optgroup>
-                    </md-select>
-                </md-input-container>
-                {{seleccionarIdioma}}
-            </div>
-        </div>   -->
-
-
+        </div>  
 
         <div class="form-group row justify-content-center">
             <div class="col-2">

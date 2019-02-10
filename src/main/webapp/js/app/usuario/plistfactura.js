@@ -5,7 +5,7 @@ moduleUsuario.controller('usuarioPlistFacturaController', ['$scope', 'toolServic
         $scope.totalPages = 1;
         $scope.id = $routeParams.id;
         $scope.select = ["5", "10", "25", "50", "500"];
-        
+
         if (!$routeParams.order) {
             $scope.orderURLServidor = "";
             $scope.orderURLCliente = "";
@@ -131,7 +131,7 @@ moduleUsuario.controller('usuarioPlistFacturaController', ['$scope', 'toolServic
 
             $http({
                 method: 'GET',
-                url: '/json?ob=linea&op=getlineafactura&rpp=500&page=1&id=' + id
+                url: '/json?ob=linea&op=getpagex&campo=id_factura&rpp=500&page=1&id=' + id
             }).then(function (response) {
                 $scope.status = response.status;
                 $scope.ajaxDatoLineaFactura = response.data.message;
@@ -144,23 +144,23 @@ moduleUsuario.controller('usuarioPlistFacturaController', ['$scope', 'toolServic
                 var pagina = 1;
                 doc.setFontSize(10);
                 doc.text(95, 290, "Pagina " + pagina);
-                for (var i = 0; i < $scope.ajaxDatoLineaFactura.length; i++) {                    
-                    if (i % 18 === 0 && i !== 0) {                        
+                for (var i = 0; i < $scope.ajaxDatoLineaFactura.length; i++) {
+                    if (i % 18 === 0 && i !== 0) {
                         doc.addPage('a4', 1);
-                        doc.addImage(imgData, 'JPEG', 10, 14, 58, 40);                        
+                        doc.addImage(imgData, 'JPEG', 10, 14, 58, 40);
                         $scope.dibujarHeader(id, fecha);
-                        linea = 110;                                                
+                        linea = 110;
                         pagina += pagina;
                         doc.text(95, 290, "Pagina " + pagina);
                     }
                     doc.setFontSize(13);
-                    $scope.productoCodigo = $scope.ajaxDatoLineaFactura[i].obj_Producto.codigo;
-                    $scope.productoDesc = $scope.ajaxDatoLineaFactura[i].obj_Producto.desc;
+                    $scope.productoCodigo = $scope.ajaxDatoLineaFactura[i].obj_Comic.titulo;
+                    $scope.productoDesc = $scope.ajaxDatoLineaFactura[i].obj_Comic.desc;
                     $scope.productoCantidad = $scope.ajaxDatoLineaFactura[i].cantidad;
                     $scope.productoCantidadTotal += $scope.ajaxDatoLineaFactura[i].cantidad;
-                    $scope.productoPrecio = $scope.ajaxDatoLineaFactura[i].obj_Producto.precio * $scope.productoCantidad;
-                    $scope.productoPrecioUno = $scope.ajaxDatoLineaFactura[i].obj_Producto.precio;
-                    $scope.productoPrecioTotal += $scope.ajaxDatoLineaFactura[i].obj_Producto.precio * $scope.productoCantidad;
+                    $scope.productoPrecio = $scope.ajaxDatoLineaFactura[i].obj_Comic.precio * $scope.productoCantidad;
+                    $scope.productoPrecioUno = $scope.ajaxDatoLineaFactura[i].obj_Comic.precio;
+                    $scope.productoPrecioTotal += $scope.ajaxDatoLineaFactura[i].obj_Comic.precio * $scope.productoCantidad;
                     doc.text(10, linea, $scope.productoCodigo);
                     doc.text(40, linea, $scope.productoDesc);
                     doc.text(125, linea, $scope.productoCantidad.toString());
@@ -182,7 +182,7 @@ moduleUsuario.controller('usuarioPlistFacturaController', ['$scope', 'toolServic
 
                 doc.text(170, 279, $scope.precioTotal.toFixed(2).toString());
 
-                doc.setFontSize(10);                
+                doc.setFontSize(10);
                 doc.save("facturaNo." + id + ".pdf");
 
             }, function (response) {
@@ -232,7 +232,7 @@ moduleUsuario.controller('usuarioPlistFacturaController', ['$scope', 'toolServic
             doc.text(115, 17, 'Fecha Factura:    ' + fecha);
 
             doc.setFontType('normal');
-            doc.setFontSize(10);            
+            doc.setFontSize(10);
         };
 
     }

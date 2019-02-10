@@ -49,7 +49,7 @@ moduleUsuario.controller('usuarioPlistFacturaUsuarioController', ['$scope', 'too
         //getcount
         $http({
             method: 'GET',
-            url: '/json?ob=factura&op=getcountfacturauser&id=' + $scope.id
+            url: '/json?ob=factura&op=getcount&id=' + $scope.id
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuariosNumber = response.data.message;
@@ -66,11 +66,13 @@ moduleUsuario.controller('usuarioPlistFacturaUsuarioController', ['$scope', 'too
 
         $http({
             method: 'GET',
-            url: '/json?ob=factura&op=getpagexusuario&id=' + $scope.id + '&rpp=' + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
+            url: '/json?ob=factura&op=getpagex&campo=id_usuario&id=' + $scope.id + '&rpp=' + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuarios = response.data.message;
-
+            if (response.data.message.length > 0) {
+                $scope.facturaVacia = true;
+            }
         }, function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuarios = response.data.message || 'Request failed';
@@ -143,12 +145,12 @@ moduleUsuario.controller('usuarioPlistFacturaUsuarioController', ['$scope', 'too
                 var pagina = 1;
                 doc.setFontSize(10);
                 doc.text(95, 290, "Pagina " + pagina);
-                for (var i = 0; i < $scope.ajaxDatoLineaFactura.length; i++) {                    
-                    if (i % 18 === 0 && i !== 0) {                        
+                for (var i = 0; i < $scope.ajaxDatoLineaFactura.length; i++) {
+                    if (i % 18 === 0 && i !== 0) {
                         doc.addPage('a4', 1);
-                        doc.addImage(imgData, 'JPEG', 10, 14, 58, 40);                        
+                        doc.addImage(imgData, 'JPEG', 10, 14, 58, 40);
                         $scope.dibujarHeader(id, fecha);
-                        linea = 110;                                                
+                        linea = 110;
                         pagina += pagina;
                         doc.text(95, 290, "Pagina " + pagina);
                     }
@@ -181,7 +183,7 @@ moduleUsuario.controller('usuarioPlistFacturaUsuarioController', ['$scope', 'too
 
                 doc.text(170, 279, $scope.precioTotal.toFixed(2).toString());
 
-                doc.setFontSize(10);                
+                doc.setFontSize(10);
                 doc.save("facturaNo." + id + ".pdf");
 
             }, function (response) {
@@ -231,7 +233,7 @@ moduleUsuario.controller('usuarioPlistFacturaUsuarioController', ['$scope', 'too
             doc.text(115, 17, 'Fecha Factura:    ' + fecha);
 
             doc.setFontType('normal');
-            doc.setFontSize(10);            
+            doc.setFontSize(10);
         };
 
     }

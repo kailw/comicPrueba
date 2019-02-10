@@ -31,7 +31,7 @@ var autenticacionUsuario = function ($q, $location, $http, sessionService) {
         url: 'json?ob=usuario&op=check'
     }).then(function (response) {
         //comprobar que el usuario en sesión es usuario
-        if (response.data.message.obj_tipoUsuario.id === 2) {
+        if (response.data.message.obj_tipoUsuario.id === 2 || response.data.message === "No active session") {
             //hay que meter el usuario activo en el sessionService
             sessionService.setTipoUserId(response.data.message.obj_tipoUsuario.id);
             sessionService.setSessionActive();
@@ -83,6 +83,7 @@ var autenticacionHome = function ($q, sessionService, $http) {
 wildcart.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/', {templateUrl: 'js/app/common/home.html', controller: 'homeController', resolve: {auth: autenticacionHome}});
         $routeProvider.when('/home', {templateUrl: 'js/app/common/home.html', controller: 'homeController', resolve: {auth: autenticacionHome}});
+
         $routeProvider.when('/tipousuario/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/tipousuario/plist.html', controller: 'tipousuarioPlistController', resolve: {auth: autenticacionAdministrador}});
         $routeProvider.when('/tipousuario/view/:id?', {templateUrl: 'js/app/tipousuario/view.html', controller: 'tipousuarioViewController', resolve: {auth: autenticacionAdministrador}});
         $routeProvider.when('/tipousuario/edit/:id?', {templateUrl: 'js/app/tipousuario/edit.html', controller: 'tipousuarioEditController', resolve: {auth: autenticacionAdministrador}});
@@ -158,18 +159,19 @@ wildcart.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/login', {templateUrl: 'js/app/login.html', controller: 'usuarioLoginController', resolve: {auth: autenticacionHome}});
         $routeProvider.when('/logout', {templateUrl: 'js/app/logout.html', controller: 'usuarioLogoutController', resolve: {auth: autenticacionHome}});
 
+        $routeProvider.when('/register', {templateUrl: 'js/app/register.html', controller: 'usuarioRegisterController', resolve: {auth: autenticacionHome}});
+
         $routeProvider.when('/user/usuario/view/:id?', {templateUrl: 'js/app/user/usuario/view.html', controller: 'usuarioViewUsuarioController', resolve: {auth: autenticacionUsuario}});
         $routeProvider.when('/user/usuario/plistfactura/:id?/:rpp?/:page?/:order?', {templateUrl: 'js/app/user/usuario/plistfactura.html', controller: 'usuarioPlistFacturaUsuarioController', resolve: {auth: autenticacionUsuario}});
 
         $routeProvider.when('/user/factura/plistlinea/:id?/:rpp?/:page?/:order?', {templateUrl: 'js/app/user/factura/plistlinea.html', controller: 'facturaPlistLineaUsuarioController', resolve: {auth: autenticacionUsuario}});
         $routeProvider.when('/user/factura/view/:id?', {templateUrl: 'js/app/user/factura/view.html', controller: 'facturaViewUsuarioController', resolve: {auth: autenticacionUsuario}});
 
-        $routeProvider.when('/user/producto/view/:id?', {templateUrl: 'js/app/user/producto/view.html', controller: 'productoViewUsuarioController', resolve: {auth: autenticacionUsuario}});
-        $routeProvider.when('/user/producto/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/user/producto/plist.html', controller: 'productoPlistUsuarioController', resolve: {auth: autenticacionUsuario}});
+        $routeProvider.when('/user/comic/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/comic/plist.html', controller: 'comicPlistController', resolve: {auth: autenticacionUsuario}});
+        $routeProvider.when('/user/comic/view/:id?', {templateUrl: 'js/app/comic/view.html', controller: 'comicViewController', resolve: {auth: autenticacionUsuario}});
 
-
-
-
+        $routeProvider.when('/user/comic/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/comic/plist.html', controller: 'comicPlistController', resolve: {auth: autenticacionHome}});
+        $routeProvider.when('/user/comic/view/:id?', {templateUrl: 'js/app/comic/view.html', controller: 'comicViewController', resolve: {auth: autenticacionHome}});
 
         $routeProvider.otherwise({redirectTo: '/'});
     }]);

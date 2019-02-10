@@ -163,6 +163,7 @@ public class GenericServiceImplementation implements ServiceInterface {
         ConnectionInterface oConnectionPool = null;
         Connection oConnection;
         int idAjena, iRpp, iPage;
+        DaoInterface oDao = null;
         try {
             idAjena = 0;
             if (oRequest.getParameter("id") != null) {
@@ -174,28 +175,29 @@ public class GenericServiceImplementation implements ServiceInterface {
             HashMap<String, String> hmOrder = ParameterCook.getOrderParams(oRequest.getParameter("order"));
             oConnectionPool = ConnectionFactory.getConnection(ConnectionConstants.connectionPool);
             oConnection = oConnectionPool.newConnection();
-            TipousuarioBean tipo = new TipousuarioBean();
+//            TipousuarioBean tipo = new TipousuarioBean();
             ArrayList<BeanInterface> alBean = null;
-            DaoInterface oDao = null;
-            if (usuarioSession != null) {
-                int tipoUsuarioIdSesion = usuarioSession.getObj_tipoUsuario().getId();
-                String tipoUsuarioDescSesion = usuarioSession.getObj_tipoUsuario().getDesc();
-                if (campo.equalsIgnoreCase("id_comic")) {
-                    tipo.setId(1);
-                    usuarioSession.setObj_tipoUsuario(tipo);
-                    oDao = DaoFactory.getDao(oConnection, ob, usuarioSession);
-                } else {
-                    oDao = DaoFactory.getDao(oConnection, ob, usuarioSession);
-                }
-                alBean = oDao.getpageX(iRpp, iPage, hmOrder, 1, idAjena, campo);
-                tipo.setId(tipoUsuarioIdSesion);
-                tipo.setDesc(tipoUsuarioDescSesion);
-                usuarioSession.setObj_tipoUsuario(tipo);
-            } else if (campo.equalsIgnoreCase("id_comic")) {
-                LineaDao_0 od = new LineaDao_0(oConnection, ob, usuarioSession);
-                alBean = od.getpageX(iRpp, iPage, hmOrder, 1, idAjena, campo);
-            }
+            oDao = DaoFactory.getDao(oConnection, ob, usuarioSession);
 
+//            if (usuarioSession != null) {
+//                int tipoUsuarioIdSesion = usuarioSession.getObj_tipoUsuario().getId();
+//                String tipoUsuarioDescSesion = usuarioSession.getObj_tipoUsuario().getDesc();
+//                if (campo.equalsIgnoreCase("id_comic")) {
+//                    tipo.setId(1);
+//                    usuarioSession.setObj_tipoUsuario(tipo);
+//                    oDao = DaoFactory.getDao(oConnection, ob, usuarioSession);
+//                } else {
+//                    oDao = DaoFactory.getDao(oConnection, ob, usuarioSession);
+//                }
+//                alBean = oDao.getpageX(iRpp, iPage, hmOrder, 1, idAjena, campo);
+//                tipo.setId(tipoUsuarioIdSesion);
+//                tipo.setDesc(tipoUsuarioDescSesion);
+//                usuarioSession.setObj_tipoUsuario(tipo);
+//            } else if (campo.equalsIgnoreCase("id_comic")) {
+//                LineaDao_0 od = new LineaDao_0(oConnection, ob, usuarioSession);
+//                alBean = od.getpageX(iRpp, iPage, hmOrder, 1, idAjena, campo);>
+//            }
+            alBean = oDao.getpageX(iRpp, iPage, hmOrder, 1, idAjena, campo);
             Gson oGson = (new GsonBuilder()).excludeFieldsWithoutExposeAnnotation().create();
             oReplyBean = new ReplyBean(200, oGson.toJson(alBean));
         } catch (Exception ex) {

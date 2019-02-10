@@ -52,11 +52,11 @@ public class UsuarioDao_0 extends GenericDaoImplementation implements DaoInterfa
 //    public int update(BeanInterface oBean) throws Exception {
 //        throw new Exception("Error en Dao remove de " + ob + ": No autorizado");
 //    }
-
-    @Override
-    public ArrayList<BeanInterface> getpageX(int iRpp, int iPage, HashMap<String, String> hmOrder, Integer expand, int idAjena, String campo) throws Exception {
-        throw new Exception("Error en Dao remove de " + ob + ": No autorizado");
-    }
+//
+//    @Override
+//    public ArrayList<BeanInterface> getpageX(int iRpp, int iPage, HashMap<String, String> hmOrder, Integer expand, int idAjena, String campo) throws Exception {
+//        throw new Exception("Error en Dao remove de " + ob + ": No autorizado");
+//    }
 
     public UsuarioBean login(String strUserName, String strPassword) throws Exception {
         String strSQL = "SELECT * FROM " + ob + " WHERE login=? AND pass=? AND validacion=true";
@@ -113,7 +113,7 @@ public class UsuarioDao_0 extends GenericDaoImplementation implements DaoInterfa
     }
 
     public UsuarioBean activar(String strUserName, String strPassword, String strToken) throws Exception {
-        String strSQL = "SELECT * FROM " + ob + " token=?";
+        String strSQL = "SELECT * FROM " + ob + " WHERE token=?";
         UsuarioBean oUsuarioBean;
         ResultSet oResultSet = null;
         PreparedStatement oPreparedStatement = null;

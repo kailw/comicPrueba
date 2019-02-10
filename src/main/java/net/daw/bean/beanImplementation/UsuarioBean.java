@@ -209,7 +209,11 @@ public class UsuarioBean extends GenericBeanImplementation implements BeanInterf
         strColumns += EncodingHelper.quotate(login) + ",";
         strColumns += EncodingHelper.quotate(pass) + ",";
         strColumns += EncodingHelper.quotate(email) + ",";
-        strColumns += id_tipousuario + ",";
+        if (id_tipousuario != 0) {
+            strColumns += id_tipousuario + ",";
+        } else {
+            strColumns += 2 + ",";
+        }
         strColumns += EncodingHelper.quotate(SecureTokenGenerator.nextToken()) + ",";
         strColumns += 0;
         return strColumns;
