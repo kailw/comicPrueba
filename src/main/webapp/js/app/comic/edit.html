@@ -66,11 +66,10 @@
                             <input  type="text" placeholder="Busca su género" class="demo-header-searchbox _md-text" ng-model="generos" onkeydown="event.stopPropagation()">
                         </md-select-header>
                         <md-optgroup label="generos" id="gener">
-                            <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoComicGenero | filter:generos " ng-required="true" selected>{{fila.obj_genero.desc}}</md-option>
+                            <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoGenero| filter:generos" ng-required="true" ng-selected="recorrer(fila.desc)">{{fila.desc}}</md-option>
                         </md-optgroup>
                     </md-select>
                 </md-input-container>
-                {{seleccionarGenero}}
             </div>
         </div>
 
@@ -86,10 +85,9 @@
                         <md-select-header class="demo-select-header">
                             <input ng-model="autor1" type="text" placeholder="Busca su autor" class="demo-header-searchbox" onkeydown="event.stopPropagation()">
                         </md-select-header>
-                        <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoComicAutor | orderBy: 'nombre' | filter:autor1 " selected>{{fila.obj_autor.nombre}}</md-option>
+                        <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoComicAutor| orderBy: 'nombre' | filter:autor1 " >{{fila.obj_autor.nombre}}</md-option>
                     </md-select>
                 </md-input-container>
-                {{seleccionarAutor1}}
 
                 <md-input-container>
                     <label>Especialidades</label>
@@ -103,7 +101,6 @@
                         </md-optgroup>
                     </md-select>
                 </md-input-container>
-                {{seleccionarEspecialidad1}}
                 <button type="button" class="btn btn-light" ng-click="otroInput()"> <i class="fas fa-plus-circle"></i></button>
             </div>
         </div>  
@@ -121,11 +118,10 @@
                             <input ng-model="idioma" type="search" placeholder="Busca su idioma" class="demo-header-searchbox md-text" onkeydown="event.stopPropagation()">
                         </md-select-header>
                         <md-optgroup label="idioma">
-                            <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoComicIdioma | orderBy: 'desc' | filter:idioma" selected >{{fila.obj_idioma.desc}}</md-option>
+                            <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoIdioma| orderBy: 'desc' | filter:idioma"  ng-selected="recorrer2(fila.desc)">{{fila.desc}}</md-option>
                         </md-optgroup>
                     </md-select>
                 </md-input-container>
-                {{seleccionarIdioma}}
             </div>
         </div>   
 

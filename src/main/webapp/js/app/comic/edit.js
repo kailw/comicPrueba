@@ -48,7 +48,6 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
 
 
 
-
         $http({
             method: 'GET',
             url: '/json?ob=' + $scope.ob2 + '&op=getpage&rpp=1000&page=1'
@@ -61,16 +60,29 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
         });
 
 
+
         $http({
             method: 'GET',
             url: '/json?ob=' + $scope.ob3 + '&op=getpagex&campo=id_comic&rpp=1000&page=1&id=' + $scope.id
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDatoComicGenero = response.data.message;
+            $scope.recorrer = function (desc) {
+                for (var i = 0; i < $scope.ajaxDatoComicGenero.length; i++) {
+                    if ($scope.ajaxDatoComicGenero[i].obj_genero.desc === desc) {
+                        return true;
+                    }
+                    ;
+                }
+            };
         }, function (response) {
             $scope.ajaxDatoComicGenero = response.data.message || 'Request failed';
             $scope.status = response.status;
         });
+
+
+
+
 
 
         $http({
@@ -83,6 +95,7 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
             $scope.ajaxDatoIdioma = response.data.message || 'Request failed';
             $scope.status = response.status;
         });
+        
 
         $http({
             method: 'GET',
@@ -90,10 +103,19 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDatoComicIdioma = response.data.message;
+            $scope.recorrer2 = function (desc) {
+                for (var i = 0; i < $scope.ajaxDatoComicIdioma.length; i++) {
+                    if ($scope.ajaxDatoComicIdioma[i].obj_idioma.desc === desc) {
+                        return true;
+                    }
+                    ;
+                }
+            };
         }, function (response) {
             $scope.ajaxDatoComicIdioma = response.data.message || 'Request failed';
             $scope.status = response.status;
         });
+
 
         $http({
             method: 'GET',
@@ -101,13 +123,11 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDatoComicAutor = response.data.message;
-            for (var i = 0; i < response.data.message.length; i++) {
-                $scope.ajaxAutorNombre = response.data.message[i].nombre;
-                $scope.ajaxAutorEspecialidad = response.data.message[i].obj_especialidad.desc;
-//                if ($scope.ajaxAutorNombre == response.data.message[i].nombre) {
-//                    $scope.ajaxAutorEspecialidad = response.data.message[i].obj_especialidad.desc;
-//                }
-            };
+//            for (var i = 0; i < response.data.message.length; i++) {
+//                $scope.ajaxAutorNombre = response.data.message[i].nombre;
+//                $scope.ajaxAutorEspecialidad = response.data.message[i].obj_especialidad.desc;
+//            }
+            ;
 
 
         }, function (response) {
