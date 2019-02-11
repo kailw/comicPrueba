@@ -122,7 +122,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item" ng-class="{'active': c.isActive('/comic')}" ng-if="c.idTipoUsuario !== 1 || c.idTipoUsuario == null && c.loginH" >
+                <li class="nav-item" ng-class="{'active': c.isActive('/user/comic')}" ng-if="c.idTipoUsuario !== 1 || c.idTipoUsuario == null && c.loginH" >
                     <a class="nav-link hvr-pop" href="user/comic/plist"><i class="fa fa-book-open"></i> 
                         <span class="desaparece"> Comics</span><span class="sr-only">(current)</span>
                     </a>
@@ -227,13 +227,12 @@
 
             </ul>
 
+            <a href="carrito/plist"><button ng-if="c.idTipoUsuario !== 1" class="btn btn-warning hvr-wobble-horizontal" style="margin-right: 10px;"> <i class="fa fa-shopping-cart"> <span ng-show="c.carrito > 0">{{c.carrito}}</span></i></button></a>                         
 
             <div ng-show="!c.loginH">
                 <a href="/login"><button type="button" class="btn btn-danger"><i class="fas fa-sign-in-alt"> Login</i></button></a>
-            </div>
-
-            <div ng-show="c.loginH">                   
-                <a href="carrito/plist"><button ng-if="c.idTipoUsuario === 2" class="btn btn-warning hvr-wobble-horizontal"> <i class="fa fa-shopping-cart"> <span ng-show="c.carrito > 0">{{c.carrito}}</span></i></button></a>                        
+            </div>            
+            <div ng-show="c.loginH">                                   
                 <a href="usuario/view/{{c.usuariologeadoID}}"><button type="button" ng-if="c.idTipoUsuario === 1" class="btn btn-info"><i class="fa fa-user-circle"> Bienvenido/a <strong style="color: black;">{{c.usuariologeado}}</strong> </i></button></a>            
                 <a href="user/usuario/view/{{c.usuariologeadoID}}"><button type="button" ng-if="c.idTipoUsuario === 2" class="btn btn-info"><i class="fa fa-user-circle"> Bienvenido/a <strong style="color: black;">{{c.usuariologeado}}</strong> </i></button></a>            
                 <a href="/logout" > <button type="button" class="btn btn-primary" style="width:auto"> <i class="fas fa-sign-out-alt"> </i></button></a>

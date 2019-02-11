@@ -1,13 +1,13 @@
 'use strict';
 
-moduleComic.controller('comicPlistController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService',
-    function ($scope, $http, $location, toolService, $routeParams, sessionService) {
+moduleComic.controller('comicPlistUsuarioController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService', '$route', '$mdDialog', 'countcarritoService',
+    function ($scope, $http, $location, toolService, $routeParams, sessionService, $route, $mdDialog, countcarritoService) {
 
         $scope.totalPages = 1;
-        $scope.select = ["5", "10", "25", "50", "500"];
+        $scope.select = ["4", "8", "12", "24", "50", "500"];
         $scope.ob = "comic";
 
-
+        countcarritoService.updateCarrito();
         if (!$routeParams.order) {
             $scope.orderURLServidor = "";
             $scope.orderURLCliente = "";
@@ -17,7 +17,7 @@ moduleComic.controller('comicPlistController', ['$scope', '$http', '$location', 
         }
 
         if (!$routeParams.rpp) {
-            $scope.rpp = "10";
+            $scope.rpp = "8";
         } else {
             $scope.rpp = $routeParams.rpp;
         }
@@ -34,10 +34,38 @@ moduleComic.controller('comicPlistController', ['$scope', '$http', '$location', 
 
 
         $scope.resetOrder = function () {
-            $location.url($scope.ob + "/plist/" + $scope.rpp + "/1");
+            $location.url("user/" + $scope.ob + "/plist/8/1");
             $scope.activar = "false";
         };
 
+
+        $scope.add = function (id) {
+            $http({
+                method: 'GET',
+                url: '/json?ob=carrito&op=add&comic=' + id + '&cantidad=1'
+            }).then(function (response) {
+                $scope.ajaxDataCantidadTotal = 0;
+                for (var i = 0; i < response.data.message.length; i++) {
+                    $scope.ajaxDataCantidadTotal += response.data.message[i].cantidad;
+                    if (id === response.data.message[i].obj_Comic.id) {
+                        $scope.ajaxDataCantidad = response.data.message[i].cantidad;
+                        $scope.ajaxDataDesc = response.data.message[i].obj_Comic.desc;
+                        $scope.ajaxDataExistencias = response.data.message[i].obj_Comic.existencias;
+                        if (response.data.message[i].obj_Comic.existencias === $scope.ajaxDataCantidad) {
+                            $scope.showAlert('Has elgido el maximo de existencias del poducto:' + response.data.message[i].obj_Comic.desc, " Cantidad:" + $scope.ajaxDataCantidad);
+
+                        } else {
+                            $scope.showAlert("Has añadido el producto: " + $scope.ajaxDataDesc + " a tu carrito", "Cantidad:" + $scope.ajaxDataCantidad);
+                        }
+                    }
+                }
+                countcarritoService.updateCarrito();
+
+            }, function (response) {
+                $scope.status = response.status;
+                $scope.error = $scope.status + " " + response.message || 'Request failed';
+            });
+        };
 
         $scope.ordena = function (order, align) {
             if ($scope.orderURLServidor === "") {
@@ -48,7 +76,7 @@ moduleComic.controller('comicPlistController', ['$scope', '$http', '$location', 
                 $scope.orderURLCliente += "-" + order + "," + align;
             }
             ;
-            $location.url($scope.ob + "/plist/" + $scope.rpp + "/" + $scope.page + "/" + $scope.orderURLCliente);
+            $location.url("user/" + $scope.ob + "/plist/" + $scope.rpp + "/" + $scope.page + "/" + $scope.orderURLCliente);
         };
 
         //getcount
@@ -57,15 +85,15 @@ moduleComic.controller('comicPlistController', ['$scope', '$http', '$location', 
             url: '/json?ob=' + $scope.ob + '&op=getcount'
         }).then(function (response) {
             $scope.status = response.status;
-            $scope.ajaxDataComicNumber = response.data.message;
-            $scope.totalPages = Math.ceil($scope.ajaxDataComicNumber / $scope.rpp);
+            $scope.ajaxDataProductosNumber = response.data.message;
+            $scope.totalPages = Math.ceil($scope.ajaxDataProductosNumber / $scope.rpp);
             if ($scope.page > $scope.totalPages) {
                 $scope.page = $scope.totalPages;
                 $scope.update();
             }
             pagination2();
         }, function (response) {
-            $scope.ajaxDataComicNumber = response.data.message || 'Request failed';
+            $scope.ajaxDataProductosNumber = response.data.message || 'Request failed';
             $scope.status = response.status;
         });
 
@@ -77,16 +105,16 @@ moduleComic.controller('comicPlistController', ['$scope', '$http', '$location', 
             url: '/json?ob=' + $scope.ob + '&op=getpage&rpp=' + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
         }).then(function (response) {
             $scope.status = response.status;
-            $scope.ajaxDataComic = response.data.message;
+            $scope.ajaxDataProductos = response.data.message;
         }, function (response) {
             $scope.status = response.status;
-            $scope.ajaxDataComic = response.data.message || 'Request failed';
+            $scope.ajaxDataProductos = response.data.message || 'Request failed';
         });
 
 
 
         $scope.update = function () {
-            $location.url($scope.ob + "/plist/" + $scope.rpp + "/" + $scope.page + "/" + $scope.orderURLCliente);
+            $location.url("user/" + $scope.ob + "/plist/" + $scope.rpp + "/" + $scope.page + "/" + $scope.orderURLCliente);
         };
 
         //paginacion neighbourhood
@@ -114,6 +142,17 @@ moduleComic.controller('comicPlistController', ['$scope', '$http', '$location', 
         ;
 
         $scope.isActive = toolService.isActive;
+
+        $scope.showAlert = function (titulo, description) {
+            $mdDialog.show(
+                    $mdDialog.alert()
+                    .clickOutsideToClose(false)
+                    .title(titulo)
+                    .textContent(description)
+                    .ariaLabel('Alert Dialog Demo')
+                    .ok('OK!')
+                    );
+        };
     }
 
 

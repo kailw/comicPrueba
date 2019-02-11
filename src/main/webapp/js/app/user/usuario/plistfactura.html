@@ -1,6 +1,6 @@
 <header-component></header-component>
-<div class="container-fluid MUpBot">
-    <div class="row" ng-show="facturaVacia">
+<div class="container-fluid ">
+    <div class="row MUpBot" ng-show="facturaVacia" >
         <div class="col-sm-6 col-md-7">
             <h1 class="h2"> <i class="fa fa-user"></i> Usuario: <a href="user/usuario/view/{{ajaxDatosUsuarios.id}}"> {{ajaxDatosUsuarios.nombre}} {{ajaxDatosUsuarios.ape1}}</a></h1>
         </div>
@@ -33,7 +33,7 @@
                     <td>{{fila.iva}}</td>                                                
                     <td>
                         <a href="user/factura/plistlinea/{{fila.id}}/10/1" class="btn table-warning" ng-if="fila.numLinea >= 1">
-                            <i>{{fila.link_linea}}</i>
+                            <i>{{fila.numLinea}}</i>
                         </a>
                     </td>
                     <td>

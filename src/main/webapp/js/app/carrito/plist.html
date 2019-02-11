@@ -32,58 +32,58 @@
                         Acciones
                     </th>
                 </tr>
-<!--                <tr class="thead-dark">
-                    <th id="colorNegroborder">                    
-                        <button type="button" class="btn btn-light btn-sm" ng-click="ordena('foto', 'asc')">
-                            <i class="fas fa-long-arrow-alt-up"></i>
-                        </button>
-                        <button type="button" class="btn btn-light btn-sm" ng-click="ordena('foto', 'desc')">
-                            <i class="fas fa-long-arrow-alt-down"></i>
-                        </button>                         
-                    </th>
-                    <th id="colorNegroborder">                
-                        <button type="button" class="btn btn-light btn-sm" ng-click="ordena('desc', 'asc')">
-                            <i class="fas fa-long-arrow-alt-up"></i>
-                        </button>
-                        <button type="button" class="btn btn-light btn-sm" ng-click="ordena('desc', 'desc')">
-                            <i class="fas fa-long-arrow-alt-down"></i>
-                        </button>                  
-                    </th>
-                    <th id="colorNegroborder">                    
-                        <button type="button" class="btn btn-light btn-sm" ng-click="ordena('precio', 'asc')">
-                            <a class="fas fa-long-arrow-alt-up" ></a>
-
-                        </button>
-                        <button type="button" class="btn btn-light btn-sm" ng-click="ordena('precio', 'desc')">
-                            <i class="fas fa-long-arrow-alt-down"></i>
-                        </button></th>
-                    <th id="colorNegroborder">
-                        <button type="button" class="btn btn-light btn-sm" ng-click="ordena('cantidad', 'asc')">
-                            <i class="fas fa-long-arrow-alt-up"></i>
-                        </button>
-                        <button type="button" class="btn btn-light btn-sm" ng-click="ordena('cantidad', 'desc')">
-                            <i class="fas fa-long-arrow-alt-down"></i>
-                        </button>
-                    </th>
-                    <th id="colorNegroborder">                    
-                    </th>
-                </tr>-->
+                <!--                <tr class="thead-dark">
+                                    <th id="colorNegroborder">                    
+                                        <button type="button" class="btn btn-light btn-sm" ng-click="ordena('foto', 'asc')">
+                                            <i class="fas fa-long-arrow-alt-up"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-light btn-sm" ng-click="ordena('foto', 'desc')">
+                                            <i class="fas fa-long-arrow-alt-down"></i>
+                                        </button>                         
+                                    </th>
+                                    <th id="colorNegroborder">                
+                                        <button type="button" class="btn btn-light btn-sm" ng-click="ordena('desc', 'asc')">
+                                            <i class="fas fa-long-arrow-alt-up"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-light btn-sm" ng-click="ordena('desc', 'desc')">
+                                            <i class="fas fa-long-arrow-alt-down"></i>
+                                        </button>                  
+                                    </th>
+                                    <th id="colorNegroborder">                    
+                                        <button type="button" class="btn btn-light btn-sm" ng-click="ordena('precio', 'asc')">
+                                            <a class="fas fa-long-arrow-alt-up" ></a>
+                
+                                        </button>
+                                        <button type="button" class="btn btn-light btn-sm" ng-click="ordena('precio', 'desc')">
+                                            <i class="fas fa-long-arrow-alt-down"></i>
+                                        </button></th>
+                                    <th id="colorNegroborder">
+                                        <button type="button" class="btn btn-light btn-sm" ng-click="ordena('cantidad', 'asc')">
+                                            <i class="fas fa-long-arrow-alt-up"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-light btn-sm" ng-click="ordena('cantidad', 'desc')">
+                                            <i class="fas fa-long-arrow-alt-down"></i>
+                                        </button>
+                                    </th>
+                                    <th id="colorNegroborder">                    
+                                    </th>
+                                </tr>-->
 
 
                 <tr ng-repeat="fila in ajaxDataCarritoShow track by $index">
-                    <td>{{fila.obj_Producto.foto}}</td>
-                    <td>{{fila.obj_Producto.desc}}</td>
-                    <td>{{fila.obj_Producto.precio.toFixed(2)}}</td>
+                    <td>{{fila.obj_Comic.foto}}</td>
+                    <td>{{fila.obj_Comic.desc}}</td>
+                    <td>{{fila.obj_Comic.precio.toFixed(2)}}</td>
                     <td>{{fila.cantidad}}</td>                
-                    <td>{{(fila.obj_Producto.precio * fila.cantidad).toFixed(2)}}</td>
+                    <td>{{(fila.obj_Comic.precio * fila.cantidad).toFixed(2)}}</td>
                     <td> 
-                        <a  ng-click="carrito('add', fila.obj_Producto.id, '1')"> 
+                        <a  ng-click="carrito('add', fila.obj_Comic.id, '1')"> 
                             <button style="font-size:15px" class="btn btn-info"><i class="fa fa-plus"></i></button>
                         </a> 
-                        <a  ng-click="carrito('reduce', fila.obj_Producto.id, '1')"> 
+                        <a  ng-click="carrito('reduce', fila.obj_Comic.id, '1')"> 
                             <button style="font-size:15px" class="btn btn-success"><i class="fa fa-minus"></i></button>
                         </a> 
-                        <a  ng-click="carrito('reduce', fila.obj_Producto.id, fila.cantidad)">
+                        <a  ng-click="carrito('reduce', fila.obj_Comic.id, fila.cantidad)">
                             <button style="font-size:15px" class="btn btn-danger"><i class="fa fa-trash-alt"></i></button>
                         </a> 
                     </td>                                  
@@ -110,7 +110,7 @@
 
     <div ng-show="carritoVacio" class="row justify-content-center">        
         <div class="alert alert-primary col-5" style="text-align: center">
-            Tu carrito esta vacío. <a href="user/producto/plist" class="badge badge-primary"> VER LISTA DE PRODUCTOS </a>
+            Tu carrito esta vacío. <a href="user/comic/plist" class="badge badge-primary"> VER LISTA DE PRODUCTOS </a>
         </div>
     </div>    
     <div ng-show="productoComprado" class="row justify-content-center">        
@@ -118,5 +118,11 @@
             Se ha creado la factura correctamente <a href="user/usuario/plistfactura/{{usuariologeadoID}}" class="badge badge-success"> VER FACTURA </a>
         </div>
     </div>    
+    <div ng-show="nologeado" class="row justify-content-center">        
+        <div class="alert alert-primary col-5" style="text-align: center">
+            Necesitas iniciar sesión para comprar  <a href="login" class="badge badge-success"> Iniciar sesión </a>
+        </div>
+    </div>    
+
 </div>
 <footer class="footer" ng-include="'js/app/footer.html'"></footer>

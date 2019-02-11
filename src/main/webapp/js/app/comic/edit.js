@@ -8,6 +8,8 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
         $scope.ob3 = "comicgenero";
         $scope.ob4 = "idioma";
         $scope.ob5 = "comicidioma";
+        $scope.ob6 = "autor";
+        $scope.ob7 = "autorespecialidad";
 
 
         $http({
@@ -81,6 +83,38 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
             $scope.ajaxDatoIdioma = response.data.message || 'Request failed';
             $scope.status = response.status;
         });
+
+        $http({
+            method: 'GET',
+            url: '/json?ob=' + $scope.ob5 + '&op=getpagex&campo=id_comic&rpp=1000&page=1&id=' + $scope.id
+        }).then(function (response) {
+            $scope.status = response.status;
+            $scope.ajaxDatoComicIdioma = response.data.message;
+        }, function (response) {
+            $scope.ajaxDatoComicIdioma = response.data.message || 'Request failed';
+            $scope.status = response.status;
+        });
+
+        $http({
+            method: 'GET',
+            url: '/json?ob=' + $scope.ob7 + '&op=getpagex&campo=id_comic&rpp=1000&page=1&id=' + $scope.id
+        }).then(function (response) {
+            $scope.status = response.status;
+            $scope.ajaxDatoComicAutor = response.data.message;
+            for (var i = 0; i < response.data.message.length; i++) {
+                $scope.ajaxAutorNombre = response.data.message[i].nombre;
+                $scope.ajaxAutorEspecialidad = response.data.message[i].obj_especialidad.desc;
+//                if ($scope.ajaxAutorNombre == response.data.message[i].nombre) {
+//                    $scope.ajaxAutorEspecialidad = response.data.message[i].obj_especialidad.desc;
+//                }
+            };
+
+
+        }, function (response) {
+            $scope.ajaxDatoComicAutor = response.data.message || 'Request failed';
+            $scope.status = response.status;
+        });
+
 
 
 

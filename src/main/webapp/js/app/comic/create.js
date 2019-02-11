@@ -71,16 +71,16 @@ moduleComic.controller('comicCreateController', ['$scope', '$http', '$location',
         });
         
         
-        $http({
-            method: 'GET',
-            url: '/json?ob=' + $scope.ob9 + '&op=getpage&rpp=1000&page=1'
-        }).then(function (response) {
-            $scope.status = response.status;
-            $scope.ajaxDatoIdioma = response.data.message;
-        }, function (response) {
-            $scope.ajaxDatoIdioma = response.data.message || 'Request failed';
-            $scope.status = response.status;
-        });
+//        $http({
+//            method: 'GET',
+//            url: '/json?ob=' + $scope.ob9 + '&op=getpage&rpp=1000&page=1'
+//        }).then(function (response) {
+//            $scope.status = response.status;
+//            $scope.ajaxDatoEditorial = response.data.message;
+//        }, function (response) {
+//            $scope.ajaxDatoEditorial = response.data.message || 'Request failed';
+//            $scope.status = response.status;
+//        });
 
 
 

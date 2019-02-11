@@ -8,7 +8,9 @@ moduleCarrito.controller('carritoPlistController', ['$scope', '$http', '$locatio
         $scope.ob = "carrito";
         $scope.error = "";
         $scope.productoComprado = false;
-        $scope.usuariologeadoID = sessionService.getId();
+        $scope.usuariologeadoID = sessionService.getId();        
+        $scope.nologeado = false;
+        
         if (!$routeParams.order) {
             $scope.orderURLServidor = "";
             $scope.orderURLCliente = "";
@@ -16,7 +18,7 @@ moduleCarrito.controller('carritoPlistController', ['$scope', '$http', '$locatio
             $scope.orderURLServidor = "&order=" + $routeParams.order;
             $scope.orderURLCliente = $routeParams.order;
         }
-
+        countcarritoService.updateCarrito();
 
 
         $scope.resetOrder = function () {
@@ -54,10 +56,10 @@ moduleCarrito.controller('carritoPlistController', ['$scope', '$http', '$locatio
                 $scope.carritoVacio = false;
                 $scope.carritoVacioTabla = true;
                 for (var i = 0; i < response.data.message.length; i++) {
-                    $scope.precioProducto += (response.data.message[i].obj_Producto.precio * response.data.message[i].cantidad);
+                    $scope.precioProducto += (response.data.message[i].obj_Comic.precio * response.data.message[i].cantidad);
                     $scope.cantidadProducto += response.data.message[i].cantidad;
                 }
-            }            
+            }
         }, function (response) {
             $scope.status = response.status;
             $scope.error += $scope.status + " " + response.message || 'Request failed';
@@ -66,9 +68,10 @@ moduleCarrito.controller('carritoPlistController', ['$scope', '$http', '$locatio
 
 
         $scope.carrito = function (operacion, id, cantidad) {
+
             $http({
                 method: 'GET',
-                url: '/json?ob=' + $scope.ob + '&op=' + operacion + '&producto=' + id + '&cantidad=' + cantidad
+                url: '/json?ob=' + $scope.ob + '&op=' + operacion + '&comic=' + id + '&cantidad=' + cantidad
             }).then(function (response) {
                 $scope.ajaxDataCarritoShow = response.data.message;
                 $scope.precioProducto = 0;
@@ -80,14 +83,14 @@ moduleCarrito.controller('carritoPlistController', ['$scope', '$http', '$locatio
                 } else {
                     if (operacion === "add") {
                         for (var i = 0; i < response.data.message.length; i++) {
-                            $scope.precioProducto += (response.data.message[i].obj_Producto.precio * response.data.message[i].cantidad);
+                            $scope.precioProducto += (response.data.message[i].obj_Comic.precio * response.data.message[i].cantidad);
                             $scope.cantidadProducto += response.data.message[i].cantidad;
                         }
                     }
 
                     if (operacion === "reduce") {
                         for (var j = 0; j < response.data.message.length; j++) {
-                            $scope.precioProducto += response.data.message[j].obj_Producto.precio;
+                            $scope.precioProducto += response.data.message[j].obj_Comic.precio;
                             $scope.cantidadProducto += response.data.message[j].cantidad;
                         }
                     }
@@ -119,22 +122,26 @@ moduleCarrito.controller('carritoPlistController', ['$scope', '$http', '$locatio
 
 
         $scope.buy = function () {
-            $http({
-                method: 'GET',
-                url: '/json?ob=' + $scope.ob + '&op=buy'
-            }).then(function (response) {
-                $scope.status = response.status;
-                $scope.ajaxDataCarritoShow = response.data.message;
-                $scope.productoComprado = true;
-                $scope.carritoVacioTabla = false;
-                $scope.carritoVacio = false;
-                console.log($scope.ajaxDataCarritoShow);
-                countcarritoService.updateCarrito();
-            }, function (response) {
-                $scope.status = response.status;
-                $scope.error += $scope.status + " " + response.data.message || 'Request failed';
-                console.log($scope.error);
-            });
+            if (sessionService.getId() > 0) {
+                $http({
+                    method: 'GET',
+                    url: '/json?ob=' + $scope.ob + '&op=buy'
+                }).then(function (response) {
+                    $scope.status = response.status;
+                    $scope.ajaxDataCarritoShow = response.data.message;
+                    $scope.productoComprado = true;
+                    $scope.carritoVacioTabla = false;
+                    $scope.carritoVacio = false;
+                    console.log($scope.ajaxDataCarritoShow);
+                    countcarritoService.updateCarrito();
+                }, function (response) {
+                    $scope.status = response.status;
+                    $scope.error += $scope.status + " " + response.data.message || 'Request failed';
+                    console.log($scope.error);
+                });
+            } else {
+                $scope.nologeado = true;
+            }
         };
 
         $scope.update = function () {

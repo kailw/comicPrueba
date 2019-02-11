@@ -24,7 +24,7 @@ var autenticacionAdministrador = function ($q, $location, $http, sessionService,
 };
 
 
-var autenticacionUsuario = function ($q, $location, $http, sessionService) {
+var autenticacionUsuario = function ($q, $location, $http, sessionService,countcarritoService) {
     var deferred = $q.defer();
     $http({
         method: 'GET',
@@ -37,6 +37,7 @@ var autenticacionUsuario = function ($q, $location, $http, sessionService) {
             sessionService.setSessionActive();
             sessionService.setUserName(response.data.message.nombre + " " + response.data.message.ape1);
             sessionService.setId(response.data.message.id);
+            countcarritoService.updateCarrito();
             deferred.resolve(response.data.message);
         } else {
             $location.path('/home');
@@ -166,11 +167,11 @@ wildcart.config(['$routeProvider', function ($routeProvider) {
 
         $routeProvider.when('/user/factura/plistlinea/:id?/:rpp?/:page?/:order?', {templateUrl: 'js/app/user/factura/plistlinea.html', controller: 'facturaPlistLineaUsuarioController', resolve: {auth: autenticacionUsuario}});
         $routeProvider.when('/user/factura/view/:id?', {templateUrl: 'js/app/user/factura/view.html', controller: 'facturaViewUsuarioController', resolve: {auth: autenticacionUsuario}});
+//
+//        $routeProvider.when('/user/comic/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/user/producto/plist.html', controller: 'comicPlistController', resolve: {auth: autenticacionUsuario}});
+//        $routeProvider.when('/user/comic/view/:id?', {templateUrl: 'js/app/comic/view.html', controller: 'comicViewController', resolve: {auth: autenticacionUsuario}});
 
-        $routeProvider.when('/user/comic/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/comic/plist.html', controller: 'comicPlistController', resolve: {auth: autenticacionUsuario}});
-        $routeProvider.when('/user/comic/view/:id?', {templateUrl: 'js/app/comic/view.html', controller: 'comicViewController', resolve: {auth: autenticacionUsuario}});
-
-        $routeProvider.when('/user/comic/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/comic/plist.html', controller: 'comicPlistController', resolve: {auth: autenticacionHome}});
+        $routeProvider.when('/user/comic/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/user/comic/plist.html', controller: 'comicPlistUsuarioController', resolve: {auth: autenticacionHome}});
         $routeProvider.when('/user/comic/view/:id?', {templateUrl: 'js/app/comic/view.html', controller: 'comicViewController', resolve: {auth: autenticacionHome}});
 
         $routeProvider.otherwise({redirectTo: '/'});

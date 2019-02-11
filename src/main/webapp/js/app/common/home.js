@@ -1,11 +1,12 @@
 'use strict';
 
-moduleCommon.controller('homeController', ['$scope', '$location', 'toolService', 'sessionService', '$http',
-    function ($scope, $location, toolService, sessionService, $http) {
+moduleCommon.controller('homeController', ['$scope', '$location', 'toolService', 'sessionService', '$http', 'countcarritoService',
+    function ($scope, $location, toolService, sessionService, $http, countcarritoService) {
 
         $scope.ruta = $location.path();
         $scope.ob1 = "comic";
         $scope.ob2 = "linea";
+        countcarritoService.updateCarrito();
 
         $http({
             method: 'GET',
