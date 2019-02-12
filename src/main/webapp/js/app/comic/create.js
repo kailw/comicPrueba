@@ -80,16 +80,16 @@ moduleComic.controller('comicCreateController', ['$scope', '$http', '$location',
         });
 
 
-//        $http({
-//            method: 'GET',
-//            url: '/json?ob=' + $scope.ob9 + '&op=getpage&rpp=1000&page=1'
-//        }).then(function (response) {
-//            $scope.status = response.status;
-//            $scope.ajaxDatoEditorial = response.data.message;
-//        }, function (response) {
-//            $scope.ajaxDatoEditorial = response.data.message || 'Request failed';
-//            $scope.status = response.status;
-//        });
+        $http({
+            method: 'GET',
+            url: '/json?ob=' + $scope.ob9 + '&op=getpage&rpp=1000&page=1'
+        }).then(function (response) {
+            $scope.status = response.status;
+            $scope.ajaxDatoEditorial = response.data.message;
+        }, function (response) {
+            $scope.ajaxDatoEditorial = response.data.message || 'Request failed';
+            $scope.status = response.status;
+        });
 
 
 
@@ -108,7 +108,7 @@ moduleComic.controller('comicCreateController', ['$scope', '$http', '$location',
                 $scope.destacado = false;
             }
 
-            if ($scope.descuento === null || $scope.descuento === undefined) {
+            if ($scope.descuento === "" || $scope.descuento === undefined) {
                 $scope.descuento = 0;
             }
 
@@ -176,10 +176,26 @@ moduleComic.controller('comicCreateController', ['$scope', '$http', '$location',
                     });
                 }
 
+                $scope.idEditorial = $scope.seleccionarEditorial;
+                var json4 = {
+                    id: null,
+                    id_comic: $scope.idCreado,
+                    id_editorial: $scope.idEditorial
+                };
+                $http({
+                    method: 'GET',
+                    withCredentials: true,
+                    url: '/json?ob=' + $scope.ob10 + '&op=create',
+                    params: {json: JSON.stringify(json4)}
+                }).then(function (response) {
+                    $scope.status = response.status;
+                }, function (response) {
+                    $scope.status = response.status;
+                });
 
-                for (var z = 0; z <= $scope.seleccionarAutor.length; z++) {
-//                    $scope.totalAutores[$scope.seleccionarAutor[z]] = $scope.seleccionarEspecialidad[z];
-                    for (var x = 0; x <= $scope.seleccionarEspecialidad[z].length; x++) {
+
+                for (var z = 0; z < $scope.seleccionarAutor.length; z++) {
+                    for (var x = 0; x < $scope.seleccionarEspecialidad[z].length; x++) {
                         var json2 = {
                             id: null,
                             id_especialidad: $scope.seleccionarEspecialidad[z][x],
@@ -196,95 +212,9 @@ moduleComic.controller('comicCreateController', ['$scope', '$http', '$location',
                         }, function (response) {
                             $scope.status = response.status;
                         });
-
+                        $scope.mensaje = true;
                     }
                 }
-
-//                for (var autor in $scope.totalAutores.length) {
-//
-//                    var json2 = {
-//                        id: null,
-//                        id_especialidad: $scope.idEspecialidad,
-//                        id_comic: $scope.idCreado,
-//                        id_autor: autor
-//                    };
-//                    $http({
-//                        method: 'GET',
-//                        withCredentials: true,
-//                        url: '/json?ob=' + $scope.ob6 + '&op=create',
-//                        params: {json: JSON.stringify(json2)}
-//                    }).then(function (response) {
-//                        $scope.status = response.status;
-//                    }, function (response) {
-//                        $scope.status = response.status;
-//                    });
-//                }
-
-
-//                $scope.idAutor = $scope.seleccionarAutor0;
-//                for (var i = 0; i < $scope.seleccionarEspecialidad1.length; i++) {
-//                    $scope.idEspecialidad = $scope.seleccionarEspecialidad1[i];
-//                    var json2 = {
-//                        id: null,
-//                        id_especialidad: $scope.idEspecialidad,
-//                        id_comic: $scope.idCreado,
-//                        id_autor: $scope.idAutor
-//                    };
-//                    $http({
-//                        method: 'GET',
-//                        withCredentials: true,
-//                        url: '/json?ob=' + $scope.ob6 + '&op=create',
-//                        params: {json: JSON.stringify(json2)}
-//                    }).then(function (response) {
-//                        $scope.status = response.status;
-//                    }, function (response) {
-//                        $scope.status = response.status;
-//                    });
-//                }
-
-//                if ($scope.seleccionarAutor2 > 0) {
-//                    $scope.idAutor = $scope.seleccionarAutor2;
-//                    for (var i = 0; i < $scope.seleccionarEspecialidad2.length; i++) {
-//                        $scope.idEspecialidad = $scope.seleccionarEspecialidad2[i];
-//                        var json3 = {
-//                            id: null,
-//                            id_especialidad: $scope.idEspecialidad,
-//                            id_comic: $scope.idCreado,
-//                            id_autor: $scope.idAutor
-//                        };
-//                        $http({
-//                            method: 'GET',
-//                            withCredentials: true,
-//                            url: '/json?ob=' + $scope.ob6 + '&op=create',
-//                            params: {json: JSON.stringify(json3)}
-//                        }).then(function (response) {
-//                            $scope.status = response.status;
-//                        }, function (response) {
-//                            $scope.status = response.status;
-//                        });
-//                    }
-//                } else if ($scope.seleccionarAutor3 > 0) {
-//                    $scope.idAutor = $scope.seleccionarAutor3;
-//                    for (var i = 0; i < $scope.seleccionarEspecialidad3.length; i++) {
-//                        $scope.idEspecialidad = $scope.seleccionarEspecialidad3[i];
-//                        var json4 = {
-//                            id: null,
-//                            id_especialidad: $scope.idEspecialidad,
-//                            id_comic: $scope.idCreado,
-//                            id_autor: $scope.idAutor
-//                        };
-//                        $http({
-//                            method: 'GET',
-//                            withCredentials: true,
-//                            url: '/json?ob=' + $scope.ob6 + '&op=create',
-//                            params: {json: JSON.stringify(json4)}
-//                        }).then(function (response) {
-//                            $scope.status = response.status;
-//                        }, function (response) {
-//                            $scope.status = response.status;
-//                        });
-//                    }
-//                }
             }, function (response) {
                 $scope.status = response.status;
             });
@@ -293,37 +223,19 @@ moduleComic.controller('comicCreateController', ['$scope', '$http', '$location',
 
 
         $scope.otroInput = function () {
-            $scope.ajaxDatoAutoresEspecialidades.push("sd");
+            if ($scope.ajaxDatoAutoresEspecialidades.length <= 5) {
+                $scope.ajaxDatoAutoresEspecialidades.push("sd");
+                $scope.menos = true;
+            }
         };
 
-//        $scope.variable = 0;
-//        $scope.model1 = false;
-//        $scope.model2 = false;
-//        $scope.otroInput = function () {
-//            if ($scope.variable === 0) {
-//                $scope.aparecer = true;
-//                $scope.model1 = true;
-//            } else {
-//                $scope.aparecer2 = true;
-//                $scope.variable = 0;
-//                $scope.model2 = true;
-//            }
-//
-//            $scope.variable++;
-//        };
-//
-//
-//        $scope.quitarInput = function () {
-//            $scope.aparecer = false;
-//            $scope.variable = 0;
-//            $scope.model1 = false;
-//
-//        };
-//        $scope.quitarInput2 = function () {
-//            $scope.aparecer2 = false;
-//            $scope.variable = 0;
-//            $scope.model2 = false;
-//        };
+        $scope.quitarInput = function () {
+            if ($scope.ajaxDatoAutoresEspecialidades.length > 1) {
+                $scope.ajaxDatoAutoresEspecialidades.pop();
+            } else {
+                $scope.menos = false;
+            }
+        };
 
 
 

@@ -36,8 +36,7 @@
         <tr>
             <th  style="margin: 30px">AUTORES</th>
             <td>
-                <span class="padTabla"
-                      ng-repeat="fila in ajaxDatoAutorEspecialidad track by $index">
+                <span class="padTabla" ng-repeat="fila in ajaxDatoAutorEspecialidad | orderBy: 'obj_autor.nombre'">
                     <a href="autor/view/{{fila.obj_autor.id}}"> {{fila.obj_autor.nombre}} </a> ({{fila.obj_especialidad.desc}}) 
                 </span>
 

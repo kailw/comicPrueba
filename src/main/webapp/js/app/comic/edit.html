@@ -32,12 +32,9 @@
             </div>
             <div class="col-5">
                 <input type="text" class="form-control " id="descripcion" name="descripcion" ng-model="ajaxDatoComic.desc" ng-required="true"
-                       ng-pattern="/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/" ng-class="{ 'is-invalid' : userForm.descripcion.$invalid && !userForm.descripcion.$pristine, 'is-valid': userForm.descripcion.$valid && !userForm.descripcion.$pristine}"/>
+                       ng-class="{ 'is-invalid' : userForm.descripcion.$invalid && !userForm.descripcion.$pristine, 'is-valid': userForm.descripcion.$valid && !userForm.descripcion.$pristine}"/>
                 <div ng-show="!userForm.descripcion.$valid && !userForm.descripcion.$pristine && !userForm.descripcion.$error.pattern" class="alert alert-danger" role="alert">
                     Descripcion obligatoria
-                </div>
-                <div ng-show="userForm.descripcion.$error.pattern" class="alert alert-danger" role="alert">
-                    Descripcion no válida
                 </div>
             </div>
         </div>
@@ -75,7 +72,7 @@
 
 
 
-        <div class="form-group row justify-content-center">  
+        <div class="form-group row justify-content-center"  ng-repeat="fila in ajaxDatoAutoresEspecialidades track by $index">  
             <div class="col-2">
             </div>
             <div class="col-5">
@@ -85,7 +82,7 @@
                         <md-select-header class="demo-select-header">
                             <input ng-model="autor1" type="text" placeholder="Busca su autor" class="demo-header-searchbox" onkeydown="event.stopPropagation()">
                         </md-select-header>
-                        <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoComicAutor| orderBy: 'nombre' | filter:autor1 " >{{fila.obj_autor.nombre}}</md-option>
+                        <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoAutor | orderBy: 'nombre' | filter:autor1 " ng-selected="recorrer4(fila.nombre)">{{fila.nombre}}</md-option>
                     </md-select>
                 </md-input-container>
 
@@ -96,8 +93,7 @@
                             <input ng-model="especialidad1" type="search" placeholder="Busca su especialidad" class="demo-header-searchbox md-text" onkeydown="event.stopPropagation()">
                         </md-select-header>
                         <md-optgroup label="especialidad">
-                            <!--                            <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoComicAutor | orderBy: 'desc' | filter:especialidad1" selected>{{fila.obj_especialidad.desc}}</md-option>-->
-                            <md-option ng-value="fila.id" selected>{{ajaxAutorEspecialidad}}</md-option>
+                            <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoAutorEspecialidad | orderBy: 'desc' | filter:especialidad1"  ng-selected="recorrer5(fila.desc)">{{fila.desc}}</md-option>
                         </md-optgroup>
                     </md-select>
                 </md-input-container>
@@ -106,6 +102,22 @@
         </div>  
 
 
+
+        <div class="form-group row justify-content-center">   
+            <div class="col-2">
+            </div>
+            <div class="col-5">
+                <md-input-container style="margin-right: 120px; width: 30%;">
+                    <label>Editoriales</label>
+                    <md-select  ng-required="true" style="max-width: 280px" ng-model="seleccionarEditorial" data-md-container-class="selectdemoSelectHeader" >
+                        <md-select-header class="demo-select-header">
+                            <input ng-model="editorial" type="text" placeholder="Busca su editorial" class="demo-header-searchbox" onkeydown="event.stopPropagation()">
+                        </md-select-header>
+                        <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoEditorial | orderBy: 'desc' | filter:editorial " ng-selected="recorrer3(fila.desc)">{{fila.desc}}</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+        </div>   
 
         <div class="form-group row justify-content-center">   
             <div class="col-2">
@@ -127,10 +139,10 @@
 
         <div class="form-group row justify-content-center">
             <div class="col-2">
-                <label for="fechapubliacion" class="col-form-label">Fecha Publicación</label>
+                <label for="fechapublicacion" class="col-form-label">Fecha Publicación</label>
             </div>
             <div class="col-5">
-                <md-datepicker ng-model="dt" id="fehcapublicacion" name="fechapubliacion" md-placeholder="fechapubliacion"></md-datepicker>
+                <md-datepicker ng-model="dt" id="fehcapublicacion" name="fechapublicacion" md-placeholder="fechapublicacion"></md-datepicker>
             </div>                        
         </div>
 
