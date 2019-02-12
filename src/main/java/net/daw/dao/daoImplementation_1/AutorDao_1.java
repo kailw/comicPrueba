@@ -48,6 +48,8 @@ public class AutorDao_1 extends GenericDaoImplementation implements DaoInterface
             strSQL += " LIMIT " + (iPage - 1) * iRpp + ", " + iRpp;
             ResultSet oResultSet = null;
             PreparedStatement oPreparedStatement = null;
+            int id1 = 0;
+            int id2 = 0;
             try {
                 oPreparedStatement = oConnection.prepareStatement(strSQL);
                 oResultSet = oPreparedStatement.executeQuery();
@@ -63,11 +65,13 @@ public class AutorDao_1 extends GenericDaoImplementation implements DaoInterface
                     oBeanAutor.fill(oResultSet, oConnection, expand, oUsuarioBeanSession);
                     if (autorAux == null) {
                         autorAux = oBeanAutor;
+                        id1 = autorAux.getId();
                         aEspAutBean.add(oBeanAutor);
                     }
-                    int id1 = autorAux.getId();
-                    int id2 = oBeanAutor.getId();
-                    if (id1!=id2) {
+
+                    id2 = oBeanAutor.getId();
+                    
+                    if (id1 != id2) {
                         aEspAutBean.add(aEspBean);
                         alBean.add(aEspAutBean);
                         autorAux = oBeanAutor;
