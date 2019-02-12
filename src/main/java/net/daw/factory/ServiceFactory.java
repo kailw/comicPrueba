@@ -343,6 +343,9 @@ public class ServiceFactory {
                             case "getpagex":
                                 oReplyBean = oAutorService1.getpageX();
                                 break;
+                            case "getpageAutorEspecialidad":
+                                oReplyBean = oAutorService1.getpageAutorEspecialidad();
+                                break;
                             default:
                                 oReplyBean = new ReplyBean(500, "Operation doesn't exist");
                                 break;

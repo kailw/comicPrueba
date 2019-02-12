@@ -18,6 +18,7 @@ import net.daw.bean.publicBeanInterface.BeanInterface;
 import net.daw.connection.publicConnectionInterface.ConnectionInterface;
 import net.daw.constant.ConnectionConstants;
 import net.daw.dao.daoImplementation_0.LineaDao_0;
+import net.daw.dao.daoImplementation_1.AutorDao_1;
 import net.daw.dao.publicDaoInterface.DaoInterface;
 import net.daw.factory.BeanFactory;
 import net.daw.factory.ConnectionFactory;
@@ -222,6 +223,30 @@ public class GenericServiceImplementation implements ServiceInterface {
             oConnection = oConnectionPool.newConnection();
             DaoInterface oDao = DaoFactory.getDao(oConnection, ob, usuarioSession);
             ArrayList<BeanInterface> alBean = oDao.getpage(iRpp, iPage, hmOrder, 1);
+            Gson oGson = (new GsonBuilder()).excludeFieldsWithoutExposeAnnotation().create();
+            oReplyBean = new ReplyBean(200, oGson.toJson(alBean));
+        } catch (Exception ex) {
+            throw new Exception("ERROR: Service level: getpage method: " + ob + " object", ex);
+        } finally {
+            oConnectionPool.disposeConnection();
+        }
+        return oReplyBean;
+    }
+
+    public ReplyBean getpageAutorEspecialidad() throws Exception {
+        ReplyBean oReplyBean;
+        ConnectionInterface oConnectionPool = null;
+        Connection oConnection;
+        int iRpp, iPage;
+        try {
+            int id = Integer.parseInt(oRequest.getParameter("id"));
+            iRpp = Integer.parseInt(oRequest.getParameter("rpp"));
+            iPage = Integer.parseInt(oRequest.getParameter("page"));
+            HashMap<String, String> hmOrder = ParameterCook.getOrderParams(oRequest.getParameter("order"));
+            oConnectionPool = ConnectionFactory.getConnection(ConnectionConstants.connectionPool);
+            oConnection = oConnectionPool.newConnection();
+            AutorDao_1 oDao = new AutorDao_1(oConnection, ob, usuarioSession);
+            ArrayList<?> alBean = oDao.getpageAutorEspecialidad(id, iRpp, iPage, hmOrder, 1);
             Gson oGson = (new GsonBuilder()).excludeFieldsWithoutExposeAnnotation().create();
             oReplyBean = new ReplyBean(200, oGson.toJson(alBean));
         } catch (Exception ex) {

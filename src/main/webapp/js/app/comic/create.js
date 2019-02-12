@@ -49,8 +49,7 @@ moduleComic.controller('comicCreateController', ['$scope', '$http', '$location',
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDatoAutor = response.data.message;
-            $scope.ajaxDatoAutoresEspecialidades.push("dsfa");
-            console.log($scope.ajaxDatoAutoresEspecialidades);
+            $scope.ajaxDatoAutoresEspecialidades.push("dsfa");            
             //$scope.ajaxDatoAutoresEspecialidades = $scope.ajaxDatoAutor;
         }, function (response) {
             $scope.ajaxDatoAutor = response.data.message || 'Request failed';

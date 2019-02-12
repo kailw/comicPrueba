@@ -67,7 +67,9 @@
         <!--        AUTOR 1  =========================================-->
 
         <div class="form-group row justify-content-center" ng-repeat="fila in ajaxDatoAutoresEspecialidades track by $index">  
-            <div class="col-2">
+            <div class="col-2 align-self-center">
+                <button type="button" class="btn btn-light" ng-click="otroInput()"  ng-if="$index < 1"> <i class="fas fa-plus-circle"></i></button>
+                <button type="button" class="btn btn-light" ng-click="quitarInput()" ng-if="$index > 0"> <i class="fas fa-minus-circle"></i></button>
             </div>
             <div class="col-5">
                 <md-input-container style="margin-right: 120px; width: 30%;">
@@ -88,15 +90,14 @@
                             <input ng-model="especialidad1" type="search" placeholder="Busca su especialidad" class="demo-header-searchbox md-text" onkeydown="event.stopPropagation()">
                         </md-select-header>
                         <md-optgroup label="especialidad">
-                            <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoAutorEspecialidad | orderBy: 'desc' | filter:especialidad1" >{{fila.desc}}</md-option>
+                            <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoAutorEspecialidad| orderBy: 'desc' | filter:especialidad1" >{{fila.desc}}</md-option>
                         </md-optgroup>
                     </md-select>
                 </md-input-container>
-            </div>  
-        </div>   
+            </div>                
+        </div>                
 
-        <button type="button" class="btn btn-light" ng-click="otroInput()" style="position: absolute; right: 30%; top: 49%"> <i class="fas fa-plus-circle"></i></button>
-        <button type="button" class="btn btn-light" ng-click="quitarInput()"style="position: absolute; right: 27%; top: 49%" ng-show="menos"> <i class="fas fa-minus-circle"></i></button>
+        
 
 
         <div class="form-group row justify-content-center">   
@@ -109,7 +110,7 @@
                         <md-select-header class="demo-select-header">
                             <input ng-model="editorial" type="text" placeholder="Busca su editorial" class="demo-header-searchbox" onkeydown="event.stopPropagation()">
                         </md-select-header>
-                        <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoEditorial | orderBy: 'desc' | filter:editorial ">{{fila.desc}}</md-option>
+                        <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoEditorial| orderBy: 'desc' | filter:editorial ">{{fila.desc}}</md-option>
                     </md-select>
                 </md-input-container>
             </div>
@@ -126,7 +127,7 @@
                             <input ng-model="idioma" type="search" placeholder="Busca su idioma" class="demo-header-searchbox md-text" onkeydown="event.stopPropagation()">
                         </md-select-header>
                         <md-optgroup label="idioma">
-                            <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoIdioma | orderBy: 'desc' | filter:idioma" >{{fila.desc}}</md-option>
+                            <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoIdioma| orderBy: 'desc' | filter:idioma" >{{fila.desc}}</md-option>
                         </md-optgroup>
                     </md-select>
                 </md-input-container>
