@@ -148,15 +148,6 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
             $scope.status = response.status;
             $scope.ajaxDatoComicAutor = response.data.message;
 //            $scope.ajaxDatoAutoresEspecialidades = $scope.ajaxDatoComicAutor;
-            $scope.recorrer4 = function (nombre) {
-                for (var i = 0; i < $scope.ajaxDatoComicAutor.length; i++) {
-                    if ($scope.ajaxDatoComicAutor[i].obj_autor.nombre === nombre) {
-                        return true;
-                    }
-                    ;
-                }
-            };
-
             $scope.recorrer5 = function (desc) {
                 for (var i = 0; i < $scope.ajaxDatoComicAutor.length; i++) {
                     if ($scope.ajaxDatoComicAutor[i].obj_especialidad.desc === desc) {
@@ -165,17 +156,6 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
                     ;
                 }
             };
-
-//            for (var i = 0; i < $scope.ajaxDatoAutor.length; i++) {
-//                $scope.nombreAutor = $scope.ajaxDatoComicAutor[i].obj_autor.nombre;                
-//                for (var x = 0; i < $scope.ajaxDatoAutorEspecialidad.length; i++) {
-//                    $scope.ajaxDatoAutoresEspecialidades = i + 1;
-//                    if ($scope.nombreAutor === $scope.ajaxDatoComicAutor[i].obj_autor.nombre) {
-//                        $scope.seleccionarEspecialidad[i] === $scope.ajaxDatoComicAutor[i].obj_especialidad.desc;
-//                    }
-//
-//                }
-//            }
         }, function (response) {
             $scope.ajaxDatoComicAutor = response.data.message || 'Request failed';
             $scope.status = response.status;
@@ -192,6 +172,46 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
             $scope.ajaxDatoEditorial = response.data.message || 'Request failed';
             $scope.status = response.status;
         });
+
+
+/////////////////////////////getpageAutorEspecialidad
+        $http({
+            method: 'GET',
+            url: '/json?ob=' + $scope.ob6 + '&op=getpageAutorEspecialidad&id=' + $scope.id + '&rpp=10&page=1'
+        }).then(function (response) {
+            $scope.status = response.status;
+            $scope.ajaxDatoAutorEspecialSeleccionado = response.data.message;
+            $scope.arrayAux = [];
+            for (var i = 0; i < $scope.ajaxDatoAutorEspecialSeleccionado.length; i++) {
+                $scope.arrayAux.push($scope.ajaxDatoAutorEspecialSeleccionado[i]);
+            }
+
+        }, function (response) {
+            $scope.ajaxDatoAutorEspecialSeleccionado = response.data.message || 'Request failed';
+            $scope.status = response.status;
+        });
+
+
+        var indice = 0;
+        $scope.recorrer4 = function (id, i) {
+            if($scope.arrayAux.length == 0){
+                return;
+            }
+            if(i==0){
+                indice=0;
+            }
+            for (var i = 0; i < $scope.arrayAux.length; i++) {
+                if (id === $scope.arrayAux[i][0].id) {
+                    if (indice == 0) {
+                        indice++;
+                        $scope.arrayAux.splice(i, 1);
+                        return true;
+                    }
+                }
+            }
+        };
+        
+        
 
 /////////////////////////////comicEditorial
         $http({
@@ -296,15 +316,15 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
 
 
         $scope.otroInput = function () {
-            if ($scope.ajaxDatoAutoresEspecialidades.length <= 5) {
-                $scope.ajaxDatoAutoresEspecialidades.push("sd");
+            if ($scope.ajaxDatoAutorEspecialSeleccionado.length <= 5) {
+                $scope.ajaxDatoAutorEspecialSeleccionado.push("sd");
                 $scope.menos = true;
             }
         };
 
         $scope.quitarInput = function () {
-            if ($scope.ajaxDatoAutoresEspecialidades.length > 1) {
-                $scope.ajaxDatoAutoresEspecialidades.pop();
+            if ($scope.ajaxDatoAutorEspecialSeleccionado.length > 1) {
+                $scope.ajaxDatoAutorEspecialSeleccionado.pop();
             } else {
                 $scope.menos = false;
             }

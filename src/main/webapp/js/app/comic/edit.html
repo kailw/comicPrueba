@@ -72,7 +72,7 @@
 
 
 
-        <div class="form-group row justify-content-center"  ng-repeat="fila in ajaxDatoAutoresEspecialidades track by $index">  
+        <div class="form-group row justify-content-center"  ng-repeat="fila in ajaxDatoAutorEspecialSeleccionado track by $index">  
             <div class="col-2 align-self-center">
                 <button type="button" class="btn btn-light" ng-click="otroInput()"  ng-if="$index < 1"> <i class="fas fa-plus-circle"></i></button>
                 <button type="button" class="btn btn-light" ng-click="quitarInput()" ng-if="$index > 0"> <i class="fas fa-minus-circle"></i></button>
@@ -85,8 +85,9 @@
                         <md-select-header class="demo-select-header">
                             <input ng-model="autor1" type="text" placeholder="Busca su autor" class="demo-header-searchbox" onkeydown="event.stopPropagation()">
                         </md-select-header>
-                        <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoAutor| orderBy: 'nombre' | filter:autor1 " ng-selected="recorrer4(fila.nombre)">{{fila.nombre}}</md-option>
+                        <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoAutor| filter:autor1" ng-selected="recorrer4(fila.id,$index)">{{fila.nombre}}</md-option>
                     </md-select>
+                    {{seleccionarAutor[$index]}}
                 </md-input-container>
 
                 <md-input-container>
