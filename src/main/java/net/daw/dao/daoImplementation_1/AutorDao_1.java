@@ -42,7 +42,7 @@ public class AutorDao_1 extends GenericDaoImplementation implements DaoInterface
 
         ArrayList<Object> alBean;
         ArrayList<Object> aEspAutBean = new ArrayList<>();
-        ArrayList<BeanInterface> aEspBean;
+        ArrayList<BeanInterface> aEspBean = new ArrayList<>();
         AutorBean autorAux = null;
         if (iRpp > 0 && iRpp < 100000 && iPage > 0 && iPage < 100000000) {
             strSQL += " LIMIT " + (iPage - 1) * iRpp + ", " + iRpp;
@@ -55,9 +55,6 @@ public class AutorDao_1 extends GenericDaoImplementation implements DaoInterface
                 oResultSet = oPreparedStatement.executeQuery();
                 alBean = new ArrayList<>();
                 while (oResultSet.next()) {
-
-                    aEspBean = new ArrayList<>();
-                    EspecialidadBean especialidadAux = new EspecialidadBean();
                     AutorBean oBeanAutor = new AutorBean();
                     EspecialidadBean oBeanEspecialidad = new EspecialidadBean();
                     oBeanEspecialidad.setId(oResultSet.getInt("e.id"));
@@ -65,29 +62,27 @@ public class AutorDao_1 extends GenericDaoImplementation implements DaoInterface
                     oBeanAutor.fill(oResultSet, oConnection, expand, oUsuarioBeanSession);
                     if (autorAux == null) {
                         autorAux = oBeanAutor;
-                        id1 = autorAux.getId();
                         aEspAutBean.add(oBeanAutor);
                     }
-
+                    id1 = autorAux.getId();
                     id2 = oBeanAutor.getId();
-                    
+
                     if (id1 != id2) {
                         aEspAutBean.add(aEspBean);
                         alBean.add(aEspAutBean);
-                        autorAux = oBeanAutor;
                         aEspAutBean = new ArrayList<>();
-                        aEspBean = new ArrayList<>();
                         aEspAutBean.add(oBeanAutor);
+                        aEspBean = new ArrayList<>();
                         aEspBean.add(oBeanEspecialidad);
+                        autorAux = oBeanAutor;
+
                     } else {
                         aEspBean.add(oBeanEspecialidad);
                     }
-
                     if (oResultSet.isLast()) {
                         aEspAutBean.add(aEspBean);
                         alBean.add(aEspAutBean);
                     }
-
                 }
             } catch (SQLException e) {
                 throw new Exception("Error en Dao getpage de " + ob, e);
