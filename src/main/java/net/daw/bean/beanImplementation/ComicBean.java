@@ -14,6 +14,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
+
+
 import net.daw.bean.genericBeanImplementation.GenericBeanImplementation;
 import net.daw.bean.publicBeanInterface.BeanInterface;
 import net.daw.dao.publicDaoInterface.DaoInterface;
@@ -174,7 +176,15 @@ public class ComicBean extends GenericBeanImplementation implements BeanInterfac
         this.setTitulo(oResultSet.getString("titulo"));
         this.setDesc(oResultSet.getString("desc"));
         this.setIsbn(oResultSet.getString("isbn"));
-        this.setFechapublicacion(oResultSet.getDate("fechapublicacion"));
+        
+        
+        
+        this.setFechapublicacion((java.util.Date) oResultSet.getDate("fechapublicacion"));
+        //this.setFechapublicacion((java.util.Date) oResultSet.getTimestamp("fechapublicacion"));
+        
+        
+        
+        
         this.setPagina(oResultSet.getInt("pagina"));
         this.setColor(oResultSet.getBoolean("color"));
         this.setExistencias(oResultSet.getInt("existencias"));
