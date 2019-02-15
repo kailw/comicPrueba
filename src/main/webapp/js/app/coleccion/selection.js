@@ -1,5 +1,5 @@
 'use strict';
-moduleComponent.component('tipoproductoSelection', {
+moduleComponent.component('coleccionSelection', {
     templateUrl: 'js/app/coleccion/selection.html',
     controllerAs: 'c',
     controller: cController,

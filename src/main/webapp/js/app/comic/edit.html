@@ -54,11 +54,11 @@
         <div class="form-group row justify-content-center">
             <div class="col-2">
                 <!--                <label for="genero" class="col-form-label">Géneros</label>-->
-            </div>
+            </div>          
             <div class="col-5">
                 <md-input-container>
                     <label>Géneros</label>
-                    <md-select style="max-width: 250px" ng-model="seleccionarGenero" data-md-container-class="selectdemoSelectHeader " multiple="" ng-required="true"  md-on-close="clearSearchTerm()" >
+                    <md-select style="max-width: 250px" ng-model="seleccionarGenero" ng-change="cambiar('genero')" data-md-container-class="selectdemoSelectHeader " multiple="" ng-required="true"  md-on-close="clearSearchTerm()" >
                         <md-select-header class="demo-select-header">
                             <input  type="text" placeholder="Busca su género" class="demo-header-searchbox _md-text" ng-model="generos" onkeydown="event.stopPropagation()">
                         </md-select-header>
@@ -66,7 +66,7 @@
                             <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoGenero| filter:generos">{{fila.desc}}</md-option>
                         </md-optgroup>
                     </md-select>
-                </md-input-container>
+                </md-input-container>   
             </div>
         </div>
 
@@ -75,13 +75,13 @@
         <div class="form-group row justify-content-center"  ng-repeat="fila in ajaxArrayAutorEspecial track by $index">  
             <div class="col-2 align-self-center">
                 <button type="button" class="btn btn-light" ng-click="otroInput()"  ng-if="$index < 1"> <i class="fas fa-plus-circle"></i></button>
-                <button type="button" class="btn btn-light" ng-click="quitarInput()" ng-if="$index > 0"> <i class="fas fa-minus-circle"></i></button>
+                <button type="button" class="btn btn-light" ng-click="quitarInput($index)" ng-if="$index > 0"> <i class="fas fa-minus-circle"></i></button>
             </div>
 
             <div class="col-5">
                 <md-input-container style="margin-right: 20px;">
                     <label>Autores</label>
-                    <md-select  style="max-width: 250px" ng-model="seleccionarAutor[$index]" data-md-container-class="selectdemoSelectHeader" ng-required="true">
+                    <md-select   ng-change="cambiar('autor')" style="max-width: 250px" ng-model="seleccionarAutor[$index]" data-md-container-class="selectdemoSelectHeader" ng-required="true">
                         <md-select-header class="demo-select-header">
                             <input ng-model="autor1" type="text" placeholder="Busca su autor" class="demo-header-searchbox" onkeydown="event.stopPropagation()">
                         </md-select-header>
@@ -91,7 +91,7 @@
 
                 <md-input-container>
                     <label>Especialidades</label>
-                    <md-select  ng-required="true" style="max-width: 250px" ng-model="seleccionarEspecialidad[$index]" md-on-close="clearSearchTerm()" data-md-container-class="selectdemoSelectHeader" multiple="">
+                    <md-select   ng-change="cambiar('autor')" ng-required ="true" style="max-width: 250px" ng-model="seleccionarEspecialidad[$index]" md-on-close="clearSearchTerm()" data-md-container-class="selectdemoSelectHeader" multiple="">
                         <md-select-header class="demo-select-header">
                             <input ng-model="especialidad1" type="search" placeholder="Busca su especialidad" class="demo-header-searchbox md-text" onkeydown="event.stopPropagation()">
                         </md-select-header>
@@ -116,7 +116,7 @@
                             <input ng-model="editorial" type="text" placeholder="Busca su editorial" class="demo-header-searchbox" onkeydown="event.stopPropagation()">
                         </md-select-header>
                         <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoEditorial| orderBy: 'desc' | filter:editorial">{{fila.desc}}</md-option>
-                    </md-select>
+                    </md-select>                    
                 </md-input-container>
             </div>
         </div>   
@@ -127,7 +127,7 @@
             <div class="col-5">
                 <md-input-container>
                     <label>Idiomas</label>
-                    <md-select ng-required="true" style="max-width: 250px" ng-model="seleccionarIdioma" md-on-close="clearSearchTerm()" data-md-container-class="selectdemoSelectHeader" multiple="">
+                    <md-select  ng-change="cambiar('idioma')" ng-required="true" style="max-width: 250px" ng-model="seleccionarIdioma" md-on-close="clearSearchTerm()" data-md-container-class="selectdemoSelectHeader" multiple="">
                         <md-select-header class="demo-select-header">
                             <input ng-model="idioma" type="search" placeholder="Busca su idioma" class="demo-header-searchbox md-text" onkeydown="event.stopPropagation()">
                         </md-select-header>
@@ -135,7 +135,7 @@
                             <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoIdioma| orderBy: 'desc' | filter:idioma" >{{fila.desc}}</md-option>
                         </md-optgroup>
                     </md-select>
-                </md-input-container>
+                </md-input-container>                
             </div>
         </div>   
 
@@ -235,59 +235,24 @@
             </div>
         </div>
 
-        <coleccion-selection class="modal fade" id="cadd-location-modal" obj="ajaxDatoComic.obj_coleccion" 
-                             on-tipoproducto-set="tipoProductoRefresh(this,false)"></coleccion-selection>        
 
-        <div class="form-group row justify-content-center">
-            <div class="col-2">
-                <label for="obj_coleccion" class="col-form-label">Colección</label>
+        <div class="form-group row justify-content-center">   
+            <div class="col-2" style="margin-top: 16px">
+                <label for="coleccion" class="col-form-label">Colección</label>
             </div>
-            <div class="col-5">          
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text fas fa-search"
-                              data-toggle="modal"
-                              data-target="#cadd-location-modal">                                  
-                        </span>
-                    </div>
-                    <input ng-model="ajaxDatoComic.obj_coleccion.id"
-                           ng-change="tipoProductoRefresh(this, true)"
-                           aria-describedby="basic-addon2"
-                           id="obj_coleccion"
-                           name="obj_coleccion"
-                           type="text"
-                           size="5"
-                           ng-model-options="{debounce: 1000}"
-                           maxlength="5" ng-required="true"  class="form-control"
-                           ng-class="{ 'is-invalid' : userForm.obj_coleccion.$invalid && !userForm.obj_coleccion.$pristine, 'is-valid': userForm.obj_coleccion.$valid && !userForm.obj_coleccion.$pristine}" />
-                </div>
-            </div><!--
-            -->                </div>
-
-        <div class="form-group row justify-content-center">
-            <div class="col-2">               
-            </div>
-            <div class="col-5"> 
-                <div class="form-group" style="width: auto;">
-                    <a href="coleccion/view/{{ajaxDatoComic.obj_coleccion.id}}" class="form-control btn btn-light" 
-                       style="background: lightgray; color:dark; text-align:left;" class="input-group-text"
-                       ng-class="{ 'disabled': userForm.obj_coleccion.$invalid}" >
-                        <span >Colección: {{ajaxDatoComic.obj_coleccion.desc}} {{vacio}}</span>
-                    </a>
-                </div>
-            </div>      
-        </div>
-
-        <div class="form-group row justify-content-center">
-            <div class="col-2">
-                <label for="obj_coleccion" class="col-form-label"></label>              
-            </div>            
             <div class="col-5">
-                <div ng-show="!userForm.obj_coleccion.$valid" class="alert alert-danger" style="width: auto;" role="alert">
-                    La coleccion es incorrecta.
-                </div>
+                <md-input-container style="margin-right: 120px; width: 50%;">
+                    <label>Colección</label>
+                    <md-select ng-model="seleccionarColeccion" data-md-container-class="selectdemoSelectHeader" >
+                        <md-select-header class="demo-select-header">
+                            <input ng-model="editorial" type="text" placeholder="Busca su coleccion" class="demo-header-searchbox" onkeydown="event.stopPropagation()">
+                        </md-select-header>
+                        <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoColeccion| orderBy: 'desc' | filter:editorial">{{fila.desc}}</md-option>
+                    </md-select>                    
+                </md-input-container>
             </div>
-        </div>
+        </div> 
+
 
 
 
