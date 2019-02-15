@@ -58,12 +58,12 @@
             <div class="col-5">
                 <md-input-container>
                     <label>Géneros</label>
-                    <md-select style="max-width: 250px" ng-model="seleccionarGenero" data-md-container-class="selectdemoSelectHeader " multiple="" ng-required="true">
+                    <md-select style="max-width: 250px" ng-model="seleccionarGenero" data-md-container-class="selectdemoSelectHeader " multiple="" ng-required="true"  md-on-close="clearSearchTerm()" >
                         <md-select-header class="demo-select-header">
                             <input  type="text" placeholder="Busca su género" class="demo-header-searchbox _md-text" ng-model="generos" onkeydown="event.stopPropagation()">
                         </md-select-header>
                         <md-optgroup label="generos" id="gener">
-                            <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoGenero| filter:generos" ng-required="true" ng-selected="recorrer(fila.desc)">{{fila.desc}}</md-option>
+                            <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoGenero| filter:generos">{{fila.desc}}</md-option>
                         </md-optgroup>
                     </md-select>
                 </md-input-container>
@@ -72,7 +72,7 @@
 
 
 
-        <div class="form-group row justify-content-center"  ng-repeat="fila in ajaxDatoAutorEspecialSeleccionado track by $index">  
+        <div class="form-group row justify-content-center"  ng-repeat="fila in ajaxArrayAutorEspecial track by $index">  
             <div class="col-2 align-self-center">
                 <button type="button" class="btn btn-light" ng-click="otroInput()"  ng-if="$index < 1"> <i class="fas fa-plus-circle"></i></button>
                 <button type="button" class="btn btn-light" ng-click="quitarInput()" ng-if="$index > 0"> <i class="fas fa-minus-circle"></i></button>
@@ -85,9 +85,8 @@
                         <md-select-header class="demo-select-header">
                             <input ng-model="autor1" type="text" placeholder="Busca su autor" class="demo-header-searchbox" onkeydown="event.stopPropagation()">
                         </md-select-header>
-                        <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoAutor| filter:autor1" ng-selected="recorrer4(fila.id,$index)">{{fila.nombre}}</md-option>
-                    </md-select>
-                    {{seleccionarAutor[$index]}}
+                        <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoAutor| orderBy: 'nombre' | filter:autor1">{{fila.nombre}}</md-option>
+                    </md-select>                    
                 </md-input-container>
 
                 <md-input-container>
@@ -97,9 +96,9 @@
                             <input ng-model="especialidad1" type="search" placeholder="Busca su especialidad" class="demo-header-searchbox md-text" onkeydown="event.stopPropagation()">
                         </md-select-header>
                         <md-optgroup label="especialidad">
-                            <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoAutorEspecialidad| orderBy: 'desc' | filter:especialidad1"  ng-selected="recorrer5(fila.desc)">{{fila.desc}}</md-option>
+                            <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoAutorEspecialidad| orderBy: 'desc' | filter:especialidad1">{{fila.desc}}</md-option>
                         </md-optgroup>
-                    </md-select>
+                    </md-select>                    
                 </md-input-container>               
             </div>
         </div>  
@@ -116,7 +115,7 @@
                         <md-select-header class="demo-select-header">
                             <input ng-model="editorial" type="text" placeholder="Busca su editorial" class="demo-header-searchbox" onkeydown="event.stopPropagation()">
                         </md-select-header>
-                        <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoEditorial| orderBy: 'desc' | filter:editorial " ng-selected="recorrer3(fila.desc)">{{fila.desc}}</md-option>
+                        <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoEditorial| orderBy: 'desc' | filter:editorial">{{fila.desc}}</md-option>
                     </md-select>
                 </md-input-container>
             </div>
@@ -133,7 +132,7 @@
                             <input ng-model="idioma" type="search" placeholder="Busca su idioma" class="demo-header-searchbox md-text" onkeydown="event.stopPropagation()">
                         </md-select-header>
                         <md-optgroup label="idioma">
-                            <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoIdioma| orderBy: 'desc' | filter:idioma"  ng-selected="recorrer2(fila.desc)">{{fila.desc}}</md-option>
+                            <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoIdioma| orderBy: 'desc' | filter:idioma" >{{fila.desc}}</md-option>
                         </md-optgroup>
                     </md-select>
                 </md-input-container>
