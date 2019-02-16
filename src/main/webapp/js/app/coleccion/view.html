@@ -14,11 +14,14 @@
         </tr>     
         <tr>
             <th  style="margin: 30px">COMICS QUE PERTENECEN A ESTA COLECCIÓN</th>
-            <td>
+            <td ng-if="ajaxDatoComic[0].id >= 1">
                 <span class="padTabla"
                       ng-repeat="fila in ajaxDatoComic track by $index">
                     <a href="comic/view/{{fila.id}}"> {{fila.titulo}}</a>                    
                 </span>
+            </td>
+            <td ng-if="ajaxDatoComic <= 0">
+                <a href="comic/create"> No hay ningún comic en esta colección</a>         
             </td>
         </tr>   
     </table>

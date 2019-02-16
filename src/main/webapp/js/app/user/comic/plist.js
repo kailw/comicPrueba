@@ -6,6 +6,7 @@ moduleComic.controller('comicPlistUsuarioController', ['$scope', '$http', '$loca
         $scope.totalPages = 1;
         $scope.select = ["4", "8", "12", "24", "50", "500"];
         $scope.ob = "comic";
+        $scope.ob2 = "genero";
 
         countcarritoService.updateCarrito();
         if (!$routeParams.order) {
@@ -49,13 +50,13 @@ moduleComic.controller('comicPlistUsuarioController', ['$scope', '$http', '$loca
                     $scope.ajaxDataCantidadTotal += response.data.message[i].cantidad;
                     if (id === response.data.message[i].obj_Comic.id) {
                         $scope.ajaxDataCantidad = response.data.message[i].cantidad;
-                        $scope.ajaxDataDesc = response.data.message[i].obj_Comic.desc;
+                        $scope.ajaxDataTitulo = response.data.message[i].obj_Comic.titulo;
                         $scope.ajaxDataExistencias = response.data.message[i].obj_Comic.existencias;
                         if (response.data.message[i].obj_Comic.existencias === $scope.ajaxDataCantidad) {
-                            $scope.showAlert('Has elgido el maximo de existencias del poducto:' + response.data.message[i].obj_Comic.desc, " Cantidad:" + $scope.ajaxDataCantidad);
+                            $scope.showAlert('Has elegido el maximo de existencias del comic:' + response.data.message[i].obj_Comic.desc, " Cantidad:" + $scope.ajaxDataCantidad);
 
                         } else {
-                            $scope.showAlert("Has añadido el producto: " + $scope.ajaxDataDesc + " a tu carrito", "Cantidad:" + $scope.ajaxDataCantidad);
+                            $scope.showAlert("Has añadido el comic: " + $scope.ajaxDataTitulo + " a tu carrito", "Cantidad:" + $scope.ajaxDataCantidad);
                         }
                     }
                 }
@@ -99,9 +100,6 @@ moduleComic.controller('comicPlistUsuarioController', ['$scope', '$http', '$loca
 
         $http({
             method: 'GET',
-//            header: {
-//                'Content-Type': 'application/json;charset=utf-8'
-//            },
             url: '/json?ob=' + $scope.ob + '&op=getpage&rpp=' + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
         }).then(function (response) {
             $scope.status = response.status;
@@ -109,6 +107,18 @@ moduleComic.controller('comicPlistUsuarioController', ['$scope', '$http', '$loca
         }, function (response) {
             $scope.status = response.status;
             $scope.ajaxDataProductos = response.data.message || 'Request failed';
+        });
+
+
+        $http({
+            method: 'GET',
+            url: '/json?ob=' + $scope.ob2 + '&op=getpage&rpp=' + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
+        }).then(function (response) {
+            $scope.status = response.status;
+            $scope.ajaxDatoComicGenero= response.data.message;
+        }, function (response) {
+            $scope.status = response.status;
+            $scope.ajaxDatoComicGenero = response.data.message || 'Request failed';
         });
 
 

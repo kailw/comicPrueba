@@ -18,7 +18,7 @@ moduleFactura.controller('facturaCreateController', ['$scope', '$http', '$locati
                 id: null,
                 fecha: $scope.myDate,
                 iva: $scope.iva,
-                obj_Usuario: {id: $scope.ajaxDatoFactura.id}
+                id_usuario: $scope.ajaxDatoFactura.id
             };
             $http({
                 method: 'GET',

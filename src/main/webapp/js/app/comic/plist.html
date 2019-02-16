@@ -59,7 +59,7 @@
                 <th style="min-width: 120px;">
                     Título
                 </th>
-                <th>
+                <th  style="max-width: 120px;">
                     Descripción
                 </th>
                 <th>
@@ -144,11 +144,12 @@
             <tr ng-repeat="fila in ajaxDataComic track by $index">
                 <td>{{fila.id}}</td>
                 <td>{{fila.titulo}}</td>
-                <td>{{fila.desc}}</td>
+                <td style="max-width: 240px; overflow: hidden">{{fila.desc}}</td>  
                 <td>{{fila.existencias}}</td>
                 <td>{{fila.precio}}</td>
                 <td>{{fila.foto}}</td>                
                 <td>                    
+                    <a href="coleccion/create" ng-if="fila.obj_coleccion === undifined">NINGUNA</a>
                     <a href="coleccion/view/{{fila.obj_coleccion.id}}">{{fila.obj_coleccion.desc}}</a>
                 </td>  
                 <td> 

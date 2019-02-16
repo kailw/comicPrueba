@@ -1068,6 +1068,9 @@ public class ServiceFactory {
                             case "getpage":
                                 oReplyBean = oComicIdiomaService0.getpage();
                                 break;
+                            case "getpagex":
+                                oReplyBean = oComicIdiomaService0.getpageX();
+                                break;
                             default:
                                 oReplyBean = new ReplyBean(500, "Operation doesn't exist");
                                 break;

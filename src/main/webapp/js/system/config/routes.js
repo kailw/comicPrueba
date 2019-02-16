@@ -94,7 +94,7 @@ wildcart.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/comic/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/comic/plist.html', controller: 'comicPlistController', resolve: {auth: autenticacionAdministrador}});
         $routeProvider.when('/comic/view/:id?', {templateUrl: 'js/app/comic/view.html', controller: 'comicViewController', resolve: {auth: autenticacionAdministrador}});
         $routeProvider.when('/comic/edit/:id?', {templateUrl: 'js/app/comic/edit.html', controller: 'comicEditController', resolve: {auth: autenticacionAdministrador}});
-        $routeProvider.when('/comic/create', {templateUrl: 'js/app/comic/create.html', controller: 'comicCreateController', resolve: {auth: autenticacionAdministrador}});
+        $routeProvider.when('/comic/create/:id?', {templateUrl: 'js/app/comic/create.html', controller: 'comicCreateController', resolve: {auth: autenticacionAdministrador}});
         $routeProvider.when('/comic/remove/:id?', {templateUrl: 'js/app/comic/remove.html', controller: 'comicRemoveController', resolve: {auth: autenticacionAdministrador}});
 
         $routeProvider.when('/factura/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/factura/plist.html', controller: 'facturaPlistController', resolve: {auth: autenticacionAdministrador}});
@@ -172,7 +172,7 @@ wildcart.config(['$routeProvider', function ($routeProvider) {
 //        $routeProvider.when('/user/comic/view/:id?', {templateUrl: 'js/app/comic/view.html', controller: 'comicViewController', resolve: {auth: autenticacionUsuario}});
 
         $routeProvider.when('/user/comic/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/user/comic/plist.html', controller: 'comicPlistUsuarioController', resolve: {auth: autenticacionHome}});
-        $routeProvider.when('/user/comic/view/:id?', {templateUrl: 'js/app/comic/view.html', controller: 'comicViewController', resolve: {auth: autenticacionHome}});
+        $routeProvider.when('/user/comic/view/:id?', {templateUrl: 'js/app/user/comic/view.html', controller: 'comicViewController', resolve: {auth: autenticacionHome}});
 
         $routeProvider.otherwise({redirectTo: '/'});
     }]);

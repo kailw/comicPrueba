@@ -31,7 +31,11 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDatoComic = response.data.message;
-            $scope.seleccionarColeccion = $scope.ajaxDatoComic.obj_coleccion.id;
+            if ($scope.ajaxDatoComic.obj_coleccion === undefined) {
+                $scope.seleccionarColeccion = 0;
+            } else {
+                $scope.seleccionarColeccion = $scope.ajaxDatoComic.obj_coleccion.id;
+            }
             $scope.ajaxDatoComicFecha = response.data.message.fechapublicacion;
             $scope.resultado = $scope.ajaxDatoComicFecha.slice(0, 3);
 
@@ -259,6 +263,7 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
             if ($scope.file !== undefined) {
                 foto = $scope.file.name;
             }
+            $scope.op = $scope.dt;
             var json = {
                 id: $scope.ajaxDatoComic.id,
                 titulo: $scope.ajaxDatoComic.titulo,
@@ -500,6 +505,18 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
             });
         }
         ;
+        //CALENDARIO        
+        $scope.myDate = new Date();
+        $scope.minDate = new Date(
+                $scope.myDate.getFullYear(),
+                $scope.myDate.getMonth() - 2,
+                $scope.myDate.getDate());
+
+        $scope.maxDate = new Date(
+                $scope.myDate.getFullYear(),
+                $scope.myDate.getMonth() + 2,
+                $scope.myDate.getDate());
+
     }
 ]).directive('fileModel', ['$parse', function ($parse) {
         return {

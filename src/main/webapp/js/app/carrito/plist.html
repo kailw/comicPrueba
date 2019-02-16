@@ -17,7 +17,7 @@
                         Foto
                     </th>
                     <th>
-                        Descripción 
+                        Título 
                     </th>
                     <th style="min-width: 110px;">
                         Precio
@@ -35,8 +35,10 @@
               
 
                 <tr ng-repeat="fila in ajaxDataCarritoShow track by $index">
-                    <td>{{fila.obj_Comic.foto}}</td>
-                    <td>{{fila.obj_Comic.desc}}</td>
+                    <td>
+                        <img src="../../images/{{fila.obj_Comic.foto}}" style="min-width: 50px; height: 130px"/>
+                    </td>
+                    <td>{{fila.obj_Comic.titulo}}</td>
                     <td>{{fila.obj_Comic.precio.toFixed(2)}}</td>
                     <td>{{fila.cantidad}}</td>                
                     <td>{{(fila.obj_Comic.precio * fila.cantidad).toFixed(2)}}</td>

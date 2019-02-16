@@ -30,37 +30,27 @@ $(function () {
     var acc = document.getElementsByClassName("accordion");
     var i;
 
-    for (i = 0; i < acc.length; i++) {
-        acc[i].addEventListener("click", function () {
-            this.classList.toggle("active");
-            var panel = this.nextElementSibling;
-            if (panel.style.maxHeight) {
-                panel.style.maxHeight = null;
-            } else {
-                panel.style.maxHeight = panel.scrollHeight + "px";
-            }
-        });
-    }
-    // $('.gallery').flickity({
-    //     arrowShape: 'M 0,50 L 60,00 L 50,30 L 80,30 L 80,70 L 50,70 L 60,100 Z'
-    // });
 
-    // $(".flickity-viewport").css({"height": "100%"});
-
-    // $(".gallery-cell-principal ").css({"height": "800px"});
+//    // $('.gallery').flickity({
+//    //     arrowShape: 'M 0,50 L 60,00 L 50,30 L 80,30 L 80,70 L 50,70 L 60,100 Z'
+//    // });
+//
+//    // $(".flickity-viewport").css({"height": "100%"});
+//
+//    // $(".gallery-cell-principal ").css({"height": "800px"});
 
 
 
-    $(".precio1").html("3,40€");
+    $(".precio1D").html("3,40€");
     $("div[class*=\"precio\"").css({"text-align": "center", "font-size": "1.5em"});
 
-    $(".titulo1").html("The increible Hulk and Wolverine");
+//    $(".titulo1").html("The increible Hulk and Wolverine");
     $("div[class*=\"titulo\"").css({"text-align": "center", "font-size": "1.2em"});
 
-    $(".cesta1").html("AÑADIR A LA CESTA");
+    $("div[class*=\"cesta\"").html("AÑADIR A LA CESTA");
     $("div[class*=\"cesta\"]").css({"background": "#ED1410", "text-align": "center", "color": "white", "padding": "4px 0", "cursor": "pointer", "transform": "skew(-6deg)"});
 
-    $(".cesta1").on("mouseenter", function () {
+    $(".cesta").on("mouseenter", function () {
         $(".cesta1").css({"background": "#0053BA", "transition": "background 0.2s linear"});
     });
     $(".cesta1").on("mouseleave", function () {
@@ -78,17 +68,18 @@ $(function () {
     // $(".portada1").on("mouseleave", function () {        
     //     $(".vistaRapidaCuadrado").css({"display":"none" });
     //   });
-    $(".vistaCuadrado1").on("click", function () {
-        redireccionar();
-    });
-    $(".vistaCuadrado2").on("click", function () {
-        redireccionar();
-    });
+//    $(".vistaCuadrado1").on("click", function () {
+//        redireccionar();
+//    });
+//    $(".vistaCuadrado2").on("click", function () {
+//        redireccionar();
+//    });
+//
 
 
 
-    $(".precio1N").html("5,45 €");
-    $(".precio1N").css({"text-decoration": "line-through", "font-size": "1em"});
+    $(".precio1DN").html("5,45 €");
+    $(".precio1DN").css({"text-decoration": "line-through", "font-size": "1em"});
 
     $(".precio2").html("3,20 €");
     $(".titulo2").html("Dared Evil");
@@ -101,9 +92,9 @@ $(function () {
         $(".cesta2").css({"background": "#ED1410"});
     });
 
-    function redireccionar() {
-        window.location = "vistaRapida.html";
-    }
+//    function redireccionar() {
+//        window.location = "vistaRapida.html";
+//    }
 
     $("div[class*=\"cesta\"").on("click", function () {
     });

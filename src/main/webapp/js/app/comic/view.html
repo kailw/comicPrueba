@@ -73,7 +73,7 @@
 
         <tr>
             <th>FECHA PUBLICACIÓN</th>
-            <td>{{ajaxDatoComic.fechapublicacion}}</td>        
+            <td>{{fechaformato}}</td>        
         </tr>
         <tr>
             <th>PÁGINAS</th>
@@ -101,7 +101,7 @@
 
         <tr>
             <th>IMAGEN</th>
-            <td>{{ajaxDatoComic.foto}} <a target="_blank" href="http://localhost:8081/images/{{ajaxDatoComic.foto}}"> <img id="output" src="images/{{ajaxDatoComic.foto}}" alt="default" style="width: 60px; height: 50px;"/></a></td>            
+            <td>{{ajaxDatoComic.foto}} <a target="_blank" href="http://localhost:8081/images/{{ajaxDatoComic.foto}}"> <img id="output" src="images/{{ajaxDatoComic.foto}}" alt="default" style="width: 67px; height: 80px;"/></a></td>            
         </tr>
 
         <tr>
@@ -111,6 +111,7 @@
 
         <tr>
             <th>COLECCION</th>      
+            <td  ng-if="ajaxDatoComic.obj_coleccion === undifined"><a href="coleccion/create">NINGUNA</a></td>
             <td><a href="coleccion/view/{{ajaxDatoComic.obj_coleccion.id}}">{{ajaxDatoComic.obj_coleccion.desc}}</a></td>
         </tr> 
 

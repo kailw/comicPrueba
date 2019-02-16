@@ -23,8 +23,7 @@ moduleColeccion.controller('coleccionViewController', ['$scope', '$http', '$loca
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDatoComic = response.data.message;
-        }, function (response) {
-            $scope.ajaxDatoComic = response.data.message || 'Request failed';
+        }, function (response) {            
             $scope.status = response.status;
         });
         $scope.isActive = toolService.isActive;

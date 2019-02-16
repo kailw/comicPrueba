@@ -13,6 +13,7 @@ moduleComic.controller('comicCreateController', ['$scope', '$http', '$location',
         $scope.ob8 = "comicidioma";
         $scope.ob9 = "editorial";
         $scope.ob10 = "comiceditorial";
+        $scope.ob11 = "coleccion";
         $scope.fechapublicacion = new Date();
         $scope.aparecer = false;
         $scope.aparecer2 = false;
@@ -45,11 +46,22 @@ moduleComic.controller('comicCreateController', ['$scope', '$http', '$location',
 
         $http({
             method: 'GET',
+            url: '/json?ob=' + $scope.ob11 + '&op=getpage&rpp=1000&page=1'
+        }).then(function (response) {
+            $scope.status = response.status;
+            $scope.ajaxDatoComicColeccion = response.data.message;
+        }, function (response) {
+            $scope.ajaxDatoComicColeccion = response.data.message || 'Request failed';
+            $scope.status = response.status;
+        });
+
+        $http({
+            method: 'GET',
             url: '/json?ob=' + $scope.ob4 + '&op=getpage&rpp=1000&page=1'
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDatoAutor = response.data.message;
-            $scope.ajaxDatoAutoresEspecialidades.push("dsfa");            
+            $scope.ajaxDatoAutoresEspecialidades.push("dsfa");
             //$scope.ajaxDatoAutoresEspecialidades = $scope.ajaxDatoAutor;
         }, function (response) {
             $scope.ajaxDatoAutor = response.data.message || 'Request failed';
@@ -124,7 +136,7 @@ moduleComic.controller('comicCreateController', ['$scope', '$http', '$location',
                 descuento: $scope.descuento,
                 foto: foto,
                 destacado: $scope.destacado,
-                id_coleccion: $scope.ajaxDatoComic.id
+                id_coleccion: $scope.seleccionarColeccion
             };
             $http({
                 method: 'GET',

@@ -130,13 +130,13 @@ body {
 
 /* imagenes de los comics mas destacados */
 
-.portada1 {
+/*.portada1 {
     background: url("../images/destacado1.jpg");
     background-size: cover;
     background-position: top center;
     border: 2px outset black;
     box-shadow: 4px 3px 2px #2F3031;
-}
+}*/
 
 .portada2 {
     background: url("../images/destacado2.jpg");
@@ -305,37 +305,16 @@ div[class*="precio"] {
     display: none;
 }
 
-/* 
-.myframegmap {
-    background: gray;
-    border: 1px solid black;
-    height: 20px;
-}
-*/
 
-/* lo del icono de carrito*/
-
-/* .headerCes {
+#busqueda {   
     display: grid;
-    justify-content: end;
+    grid-template-columns: 1fr 3fr;        
+
 }
 
-.headerCes p {
-    padding: 10px;
-    margin-right: 50px;
-    margin-top: 10px;
-}
 
-.headerCes button {
-    text-decoration: none;
-    color: white;
-    margin-right: 20px;
-    margin-top: 20px;
-}
 
-.headerCes p a:hover {
-    color: green;
-} */
+
 
 /* MEDIA QUERIES*/
 

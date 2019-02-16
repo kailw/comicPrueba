@@ -15,7 +15,6 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 
-
 import net.daw.bean.genericBeanImplementation.GenericBeanImplementation;
 import net.daw.bean.publicBeanInterface.BeanInterface;
 import net.daw.dao.publicDaoInterface.DaoInterface;
@@ -176,15 +175,10 @@ public class ComicBean extends GenericBeanImplementation implements BeanInterfac
         this.setTitulo(oResultSet.getString("titulo"));
         this.setDesc(oResultSet.getString("desc"));
         this.setIsbn(oResultSet.getString("isbn"));
-        
-        
-        
+
         //this.setFechapublicacion((java.util.Date) oResultSet.getDate("fechapublicacion"));
         this.setFechapublicacion((java.util.Date) oResultSet.getTimestamp("fechapublicacion"));
-        
-        
-        
-        
+
         this.setPagina(oResultSet.getInt("pagina"));
         this.setColor(oResultSet.getBoolean("color"));
         this.setExistencias(oResultSet.getInt("existencias"));
@@ -240,7 +234,11 @@ public class ComicBean extends GenericBeanImplementation implements BeanInterfac
         strColumns += descuento + ",";
         strColumns += EncodingHelper.quotate(foto) + ",";
         strColumns += destacado + ",";
-        strColumns += id_coleccion;
+        if (id_coleccion == 0) {
+            strColumns += null;
+        } else {
+            strColumns += id_coleccion;
+        }
 
         return strColumns;
     }
@@ -267,7 +265,7 @@ public class ComicBean extends GenericBeanImplementation implements BeanInterfac
         strPairs += "foto=" + EncodingHelper.quotate(foto) + ",";
         strPairs += "destacado=" + destacado + ",";
         if (id_coleccion == 0) {
-            strPairs += "id_coleccion=" + obj_coleccion.getId();
+            strPairs += "id_coleccion=" + null;
         } else {
             strPairs += "id_coleccion=" + id_coleccion;
         }

@@ -27,6 +27,15 @@
                 </div>
             </div>
         </div>
+        
+        <div class="form-group row justify-content-center">
+            <div class="col-2">
+                <label for="fechapublicacion" class="col-form-label">Fecha Publicación</label>
+            </div>
+            <div class="col-5">
+                <md-datepicker ng-model="fechapublicacion" id="fehcapublicacion" name="fechapublicacion" md-placeholder="fechapublicacion"></md-datepicker>
+            </div>                        
+        </div>
 
         <div class="form-group row justify-content-center">
             <div class="col-2">
@@ -97,7 +106,7 @@
             </div>                
         </div>                
 
-        
+
 
 
         <div class="form-group row justify-content-center">   
@@ -136,14 +145,7 @@
 
 
 
-        <div class="form-group row justify-content-center">
-            <div class="col-2">
-                <label for="fechapublicacion" class="col-form-label">Fecha Publicación</label>
-            </div>
-            <div class="col-5">
-                <md-datepicker ng-model="fechapublicacion" id="fehcapublicacion" name="fechapublicacion" md-placeholder="fechapublicacion"></md-datepicker>
-            </div>                        
-        </div>
+
 
 
         <div class="form-group row justify-content-center">
@@ -235,58 +237,24 @@
         </div>
 
 
-        <coleccion-selection class="modal fade" id="cadd-location-modal" obj="ajaxDatoComic" 
-                             on-tipoproducto-set="tipoProductoRefresh(this,false)"></coleccion-selection>
 
-        <div class="form-group row justify-content-center">
-            <div class="col-2">
-                <label for="id_coleccion" class=" col-form-label">Colección</label>
-            </div>
-            <div class="col-5">          
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text fas fa-search"
-                              data-toggle="modal"
-                              data-target="#cadd-location-modal">                                  
-                        </span>
-                    </div>
-                    <input ng-model="ajaxDatoComic.id"
-                           ng-change="tipoProductoRefresh(this, true)"
-                           aria-describedby="basic-addon2"
-                           id="id_coleccion"
-                           name="id_coleccion"
-                           type="text"
-                           size="5"
-                           ng-model-options="{debounce: 1000}"
-                           maxlength="5" class="form-control" ng-class="{ 'is-invalid' : userForm.id_coleccion.$invalid && !userForm.id_coleccion.$pristine, 'is-valid': userForm.id_coleccion.$valid && !userForm.id_coleccion.$pristine}" />
-                </div>
-            </div>
-        </div>    
-        <div class="form-group row justify-content-center">
-            <div class="col-2">               
-            </div>
-            <div class="col-5">                   
-                <div class="form-group">
-                    <a href="coleccion/view/{{ajaxDatoComic.id}}" class="form-control btn btn-light" 
-                       style="background: lightgray; color:dark; text-align:left;" ng-class="{ 'disabled': userForm.id_coleccion.$invalid}" >
-                        <span >Colección: {{ajaxDatoComic.desc}} {{vacio}}</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-
-
-        <div class="form-group row justify-content-center">
-            <div class="col-2">
-                <label for="id_coleccion" class=" col-form-label"></label>
+        <div class="form-group row justify-content-center">   
+            <div class="col-2" style="margin-top: 16px">
+                <label for="coleccion" class="col-form-label">Colección</label>
             </div>
             <div class="col-5">
-                <div ng-show="!userForm.id_coleccion.$valid && !userForm.id_coleccion.$pristine" class="alert alert-danger" style="width: auto;" role="alert">
-                    La colección es incorrecta
-                </div>
+                <md-input-container style="margin-right: 120px; width: 50%;">
+                    <label>Colección</label>
+                    <md-select ng-model="seleccionarColeccion" data-md-container-class="selectdemoSelectHeader" >
+                        <md-select-header class="demo-select-header">
+                            <input ng-model="editorial" type="text" placeholder="Busca su coleccion" class="demo-header-searchbox" onkeydown="event.stopPropagation()">
+                        </md-select-header>
+                        <md-option ng-value="0">Ninguna</md-option>
+                        <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoComicColeccion| orderBy: 'desc' | filter:editorial">{{fila.desc}}</md-option>
+                    </md-select>                    
+                </md-input-container>
             </div>
-        </div>
+        </div> 
 
         <div class="form-group row justify-content-center">
             <div class="col-2">
@@ -297,7 +265,7 @@
         </div>
     </form>    
     <div class="alert alert-success" ng-show="mensaje">
-        Se ha creado el {{ob}} con el id {{idCreado}} llamado "{{titulo}}"
+        Se ha creado el {{ob1}} con el id {{idCreado}} llamado "{{titulo}}"
     </div>
 </main>
 <!--<footer class="footer" ng-include="'js/app/footer.html'"></footer>-->
