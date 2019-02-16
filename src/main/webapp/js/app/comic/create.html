@@ -9,7 +9,7 @@
                 <label for="titulo" class="col-form-label">Título</label>            
             </div>
             <div class="col-5">
-                <input type="text" class="form-control" id="titulo" name="titulo" ng-model="titulo" ng-required="true"
+                <input type="text" class="form-control" id="titulo" name="titulo" ng-model="titulo" ng-required="true" autofocus
                        ng-class="{ 'is-invalid' : userForm.titulo.$invalid && !userForm.titulo.$pristine, 'is-valid': userForm.titulo.$valid && !userForm.titulo.$pristine}"/>  
                 <div ng-show="userForm.titulo.$invalid && !userForm.titulo.$pristine" class="alert alert-danger" >Título requerido.</div>                
             </div>

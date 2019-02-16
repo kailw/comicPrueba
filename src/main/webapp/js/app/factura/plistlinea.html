@@ -36,13 +36,13 @@
                 </ul>
             </nav>-->
         </div>
-        <div class="col-md-auto col-3">
+<!--        <div class="col-md-auto col-3">
             <a  href="linea/create/{{idFactura}}"> 
                 <button type="button" class="btn btn-warning btn-sm" style="width: 100px; height:30px;">
                     <i class="fa fa-plus"> Crear</i>
                 </button>
             </a>
-        </div>
+        </div>-->
     </div>
 
 
@@ -53,12 +53,14 @@
                 <tr  class="thead-dark">
                     <th>Id</th>
                     <th>Cantidad</th>
-                    <th>Comic</th>
+                    <th>Título</th>
+                    <th>Descripción</th>
                     <th>Acciones</th>
                 </tr>                
                 <tr ng-repeat="fila in ajaxDatoLineaFactura track by $index">
                     <th>{{fila.id}}</th>
                     <td>{{fila.cantidad}}</td>
+                    <td>{{fila.obj_Comic.titulo}}</td>
                     <td><a href="comic/view/{{fila.obj_Comic.id}}">{{fila.obj_Comic.desc}}</a></td>                       
                     <td> 
                         <a  href="linea/view/{{fila.id}}"> 

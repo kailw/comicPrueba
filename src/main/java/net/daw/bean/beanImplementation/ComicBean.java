@@ -179,8 +179,8 @@ public class ComicBean extends GenericBeanImplementation implements BeanInterfac
         
         
         
-        this.setFechapublicacion((java.util.Date) oResultSet.getDate("fechapublicacion"));
-        //this.setFechapublicacion((java.util.Date) oResultSet.getTimestamp("fechapublicacion"));
+        //this.setFechapublicacion((java.util.Date) oResultSet.getDate("fechapublicacion"));
+        this.setFechapublicacion((java.util.Date) oResultSet.getTimestamp("fechapublicacion"));
         
         
         

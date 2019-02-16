@@ -8,9 +8,9 @@ moduleCarrito.controller('carritoPlistController', ['$scope', '$http', '$locatio
         $scope.ob = "carrito";
         $scope.error = "";
         $scope.productoComprado = false;
-        $scope.usuariologeadoID = sessionService.getId();        
+        $scope.usuariologeadoID = sessionService.getId();
         $scope.nologeado = false;
-        
+
         if (!$routeParams.order) {
             $scope.orderURLServidor = "";
             $scope.orderURLCliente = "";
@@ -121,8 +121,8 @@ moduleCarrito.controller('carritoPlistController', ['$scope', '$http', '$locatio
         };
 
 
-        $scope.buy = function () {
-            if (sessionService.getId() > 0) {
+        $scope.buy = function () {            
+            if (sessionService.isSessionActive()) {
                 $http({
                     method: 'GET',
                     url: '/json?ob=' + $scope.ob + '&op=buy'

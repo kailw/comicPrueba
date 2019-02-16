@@ -32,43 +32,7 @@
                         Acciones
                     </th>
                 </tr>
-                <!--                <tr class="thead-dark">
-                                    <th id="colorNegroborder">                    
-                                        <button type="button" class="btn btn-light btn-sm" ng-click="ordena('foto', 'asc')">
-                                            <i class="fas fa-long-arrow-alt-up"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-light btn-sm" ng-click="ordena('foto', 'desc')">
-                                            <i class="fas fa-long-arrow-alt-down"></i>
-                                        </button>                         
-                                    </th>
-                                    <th id="colorNegroborder">                
-                                        <button type="button" class="btn btn-light btn-sm" ng-click="ordena('desc', 'asc')">
-                                            <i class="fas fa-long-arrow-alt-up"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-light btn-sm" ng-click="ordena('desc', 'desc')">
-                                            <i class="fas fa-long-arrow-alt-down"></i>
-                                        </button>                  
-                                    </th>
-                                    <th id="colorNegroborder">                    
-                                        <button type="button" class="btn btn-light btn-sm" ng-click="ordena('precio', 'asc')">
-                                            <a class="fas fa-long-arrow-alt-up" ></a>
-                
-                                        </button>
-                                        <button type="button" class="btn btn-light btn-sm" ng-click="ordena('precio', 'desc')">
-                                            <i class="fas fa-long-arrow-alt-down"></i>
-                                        </button></th>
-                                    <th id="colorNegroborder">
-                                        <button type="button" class="btn btn-light btn-sm" ng-click="ordena('cantidad', 'asc')">
-                                            <i class="fas fa-long-arrow-alt-up"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-light btn-sm" ng-click="ordena('cantidad', 'desc')">
-                                            <i class="fas fa-long-arrow-alt-down"></i>
-                                        </button>
-                                    </th>
-                                    <th id="colorNegroborder">                    
-                                    </th>
-                                </tr>-->
-
+              
 
                 <tr ng-repeat="fila in ajaxDataCarritoShow track by $index">
                     <td>{{fila.obj_Comic.foto}}</td>
@@ -110,7 +74,7 @@
 
     <div ng-show="carritoVacio" class="row justify-content-center">        
         <div class="alert alert-primary col-5" style="text-align: center">
-            Tu carrito esta vacío. <a href="user/comic/plist" class="badge badge-primary"> VER LISTA DE PRODUCTOS </a>
+            Tu carrito esta vacío. <a href="user/comic/plist" class="badge badge-primary"> VER LISTA DE COMICS </a>
         </div>
     </div>    
     <div ng-show="productoComprado" class="row justify-content-center">        

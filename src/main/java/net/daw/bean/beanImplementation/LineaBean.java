@@ -87,7 +87,7 @@ public class LineaBean extends GenericBeanImplementation implements BeanInterfac
             this.setId_comic(oResultSet.getInt("id_comic"));
         }
 
-        if (expand > 0) {
+        if (expand > 0 && oUsuarioBeanSession != null) {
             DaoInterface oFacturaDao = DaoFactory.getDao(oConnection, "factura", oUsuarioBeanSession);
             this.setObj_Factura((FacturaBean) oFacturaDao.get(oResultSet.getInt("id_factura"), expand - 1));
         } else {

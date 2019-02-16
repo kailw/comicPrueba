@@ -163,11 +163,11 @@ public class GenericDaoImplementation implements DaoInterface {
     @Override
     public int update(BeanInterface oBean) throws Exception {
         int iResult = 0;
-//        String strSQL = "UPDATE " + ob + " SET ";
-        strSQL_update += oBean.getPairs();
+        String strSQL = "UPDATE " + ob + " SET ";
+        strSQL += oBean.getPairs();
         PreparedStatement oPreparedStatement = null;
         try {
-            oPreparedStatement = oConnection.prepareStatement(strSQL_update);
+            oPreparedStatement = oConnection.prepareStatement(strSQL);
             iResult = oPreparedStatement.executeUpdate();
 
         } catch (SQLException e) {

@@ -1,7 +1,7 @@
 "use strict";
 
-moduleUsuario.controller("usuarioLogoutController", ["$scope", "$http", "$routeParams", "toolService", 'sessionService', '$location',
-    function ($scope, $http, $routeParams, toolService, sessionService, $location) {
+moduleUsuario.controller("usuarioLogoutController", ["$scope", "$http", "$routeParams", "toolService", 'sessionService', '$location','countcarritoService',
+    function ($scope, $http, $routeParams, toolService, sessionService, $location,countcarritoService) {
 
         $http({
             method: 'GET',
@@ -11,6 +11,8 @@ moduleUsuario.controller("usuarioLogoutController", ["$scope", "$http", "$routeP
             if (response.status === 200) {
                 sessionService.setSessionInactive();
                 sessionService.setUserName("");
+                sessionService.setId();
+                countcarritoService.updateCarrito();
                 $scope.loginH = false;
             }
             $scope.loginH = false;

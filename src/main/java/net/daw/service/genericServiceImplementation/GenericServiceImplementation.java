@@ -197,7 +197,7 @@ public class GenericServiceImplementation implements ServiceInterface {
 //            } else if (campo.equalsIgnoreCase("id_comic")) {
 //                LineaDao_0 od = new LineaDao_0(oConnection, ob, usuarioSession);
 //                alBean = od.getpageX(iRpp, iPage, hmOrder, 1, idAjena, campo);>
-//            }
+//            }    
             alBean = oDao.getpageX(iRpp, iPage, hmOrder, 1, idAjena, campo);
             Gson oGson = (new GsonBuilder()).excludeFieldsWithoutExposeAnnotation().create();
             oReplyBean = new ReplyBean(200, oGson.toJson(alBean));
