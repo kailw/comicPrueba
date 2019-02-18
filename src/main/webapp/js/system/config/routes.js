@@ -81,7 +81,7 @@ var autenticacionHome = function ($q, sessionService, $http) {
 };
 
 
-wildcart.config(['$routeProvider', function ($routeProvider) {
+oncomic.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/', {templateUrl: 'js/app/common/home.html', controller: 'homeController', resolve: {auth: autenticacionHome}});
         $routeProvider.when('/home', {templateUrl: 'js/app/common/home.html', controller: 'homeController', resolve: {auth: autenticacionHome}});
 

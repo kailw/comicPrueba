@@ -250,6 +250,15 @@ div[class*="vistaCuadrado"] {
     text-align: center; /* cuando se hace para movil el titulo no entra en cuadrado y no se centra pero con justify content deberia centrarse peo no lo hace*/
 }
 
+div[class*="cesta"] {
+    background: #ED1410;    
+    text-align: center;
+    color: white;
+    padding: 4px 0;
+    cursor: pointer;
+    transform: skew(-6deg);
+}
+
 .portada1:hover .vistaCuadrado1 {
     opacity: 1;
     cursor: pointer;

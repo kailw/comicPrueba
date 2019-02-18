@@ -1,6 +1,6 @@
 'use strict'
 
-var wildcart = angular.module('MyApp', [
+var oncomic = angular.module('MyApp', [
     'ngRoute',
     'services',
     'commonControllers',

@@ -1,4 +1,4 @@
-//wildcart.run(['$rootScope', 'sessionService', '$location', '$http', 'countcarritoService',
+//oncomic.run(['$rootScope', 'sessionService', '$location', '$http', 'countcarritoService',
 //    function ($rootScope, oSessionService, $location, $http, countcarritoService) {
 //        $rootScope.$on("$routeChangeStart", function (event, next, current) {
 //            var nextUrl = next.$$route.originalPath;

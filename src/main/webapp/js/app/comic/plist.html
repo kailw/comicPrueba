@@ -89,10 +89,10 @@
                     </button>
                 </th>
                 <th id="colorNegroborder">
-                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('codigo', 'asc')">
+                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('titulo', 'asc')">
                         <i class="fas fa-long-arrow-alt-up"></i>
                     </button>
-                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('codigo', 'desc')">
+                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('titulo', 'desc')">
                         <i class="fas fa-long-arrow-alt-down"></i>
                     </button>
                 </th>
@@ -146,7 +146,7 @@
                 <td>{{fila.titulo}}</td>
                 <td style="max-width: 240px; overflow: hidden">{{fila.desc}}</td>  
                 <td>{{fila.existencias}}</td>
-                <td>{{fila.precio}}</td>
+                <td>{{fila.precio.toFixed(2)}}</td>
                 <td>{{fila.foto}}</td>                
                 <td>                    
                     <a href="coleccion/create" ng-if="fila.obj_coleccion === undifined">NINGUNA</a>
