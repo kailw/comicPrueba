@@ -1,7 +1,7 @@
 'use strict';
 
-moduleComic.controller('comicEditController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService',
-    function ($scope, $http, $location, toolService, $routeParams, sessionService) {
+moduleComic.controller('comicEditController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService', '$interval',
+    function ($scope, $http, $location, toolService, $routeParams, sessionService, $interval) {
         $scope.id = $routeParams.id;
         $scope.ob = "comic";
         $scope.ob2 = "genero";
@@ -23,7 +23,20 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
         $scope.autorEstado = false;
         $scope.editorialEstado = false;
 
+        var self = this;
 
+        self.activated = true;
+        self.determinateValue = 30;
+
+        // Iterate every 100ms, non-stop and increment
+        // the Determinate loader.
+        $interval(function () {
+            self.determinateValue += 1;
+            if (self.determinateValue > 100) {
+                self.determinateValue = 30;
+            }
+
+        }, 100);
 /////////////////////////////comic
         $http({
             method: 'GET',

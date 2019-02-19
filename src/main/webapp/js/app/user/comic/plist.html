@@ -56,11 +56,11 @@
                 </nav>
             </div>
 
-            <div class="col-12 col-sm-5 col-md-auto">            
-                <button type="button" class="btn btn-danger btn-sm" style="width: auto; height:30px;" ng-click="resetOrder()">
-                    <i class="fa fa-broom"> Limpiar</i>
-                </button>                      
-            </div>
+            <!--            <div class="col-12 col-sm-5 col-md-auto">            
+                            <button type="button" class="btn btn-danger btn-sm" style="width: auto; height:30px;" ng-click="resetOrder()">
+                                <i class="fa fa-broom"> Limpiar</i>
+                            </button>                      
+                        </div>-->
         </div>    
 
         <div class="grid-container">
@@ -81,7 +81,7 @@
                                 </div>
                                 <div class="cesta1">
                                 </div>-->
-                <div class="portada1" style="background: url('../images/{{fila.foto}}'); 
+                <div class="portada" style="background: url('../images/{{fila.foto}}'); 
                      background-size: cover; background-position: center center;   border-radius: 5px;   border: 2px outset black;box-shadow: 4px 3px 2px #2F3031;" ng-class="{'desactivado': fila.existencias == 0 }">                                        
                     <div class="vistaCuadrado1"> <a href="/user/comic/view/{{fila.id}}" style="color: white" >VISTA RÁPIDA</a></div>
                 </div>
@@ -91,10 +91,10 @@
                 <div class="precio1">
                     {{fila.precio.toFixed(2)}} €
                 </div>
-                <div class="cesta" ng-click="add(fila.id)" ng-if="fila.existencias !== 0" style="margin-left: 10px;">   
+                <div class="cestacomic" ng-click="add(fila.id,$event)" ng-if="fila.existencias !== 0" style="margin-left: 10px;">   
                     AÑADIR A LA CESTA
                 </div>
-                <div class="" ng-click="add(fila.id)" ng-if="fila.existencias == 0"  style="margin-left: 10px;">       
+                <div class="" ng-click="add(fila.id,$event)" ng-if="fila.existencias == 0"  style="margin-left: 10px;">       
                 </div>
             </div>
         </div>

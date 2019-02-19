@@ -26,12 +26,9 @@
     border-top:  1px solid rgb(33,37,41);
 }
 
-
-
-
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(150px,210px));     
+    grid-template-columns: repeat(auto-fill,minmax(180px,210px));     
     grid-auto-rows: 500px;
     grid-gap: 50px 10%;
     padding: 10px;    
@@ -53,6 +50,8 @@
 .grid-contenido {
     align-self: center;
 }
+
+
 
 /*.noExistencias {
     background: url('../images/agotado.jpg');   

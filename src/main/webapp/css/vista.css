@@ -76,7 +76,7 @@
 }
 
 .cestV:hover {
-    background: blue;
+    background: #0053BA;
     transition: all 500ms ease;
     cursor: pointer;
 }

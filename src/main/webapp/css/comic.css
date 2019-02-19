@@ -13,7 +13,7 @@ body {
     display: grid;
     grid-template-rows: auto 1fr 0.1fr;    
     grid-template-areas: "HEADER" "CONTENIDO" "FOOTER";
-/*    background-color: #42403F;*/
+    /*    background-color: #42403F;*/
     row-gap: 50px;
 }
 
@@ -250,7 +250,7 @@ div[class*="vistaCuadrado"] {
     text-align: center; /* cuando se hace para movil el titulo no entra en cuadrado y no se centra pero con justify content deberia centrarse peo no lo hace*/
 }
 
-div[class*="cesta"] {
+/*div[class*="cesta"] {
     background: #ED1410;    
     text-align: center;
     color: white;
@@ -258,12 +258,18 @@ div[class*="cesta"] {
     cursor: pointer;
     transform: skew(-6deg);
 }
+.cesta:hover {
+    background: green;
+}*/
 
-.portada1:hover .vistaCuadrado1 {
+
+.portada:hover .vistaCuadrado1 {
     opacity: 1;
     cursor: pointer;
     transition: all 190ms linear;
 }
+
+
 
 .portada2:hover .vistaCuadrado2 {
     opacity: 1;
@@ -275,6 +281,7 @@ div[class*="cesta"] {
 
 div[class*="titulo"] {
     align-self: center;
+
 }
 
 /* descuentos comics*/

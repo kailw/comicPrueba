@@ -18,7 +18,11 @@ var oncomic = angular.module('MyApp', [
     'components',
     'ngMaterial',
     'carritoControllers'
-]).config(function ($mdDateLocaleProvider) {
+], function ($mdThemingProvider) {
+    $mdThemingProvider.theme('docs-dark', 'default')
+            .primaryPalette('yellow')
+            .dark();
+}).config(function ($mdDateLocaleProvider) {
     // Example of a Spanish localization.
     $mdDateLocaleProvider.months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
         'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];

@@ -26,21 +26,7 @@ $(function () {
         source: availableTags
     });
 
-
-    var acc = document.getElementsByClassName("accordion");
-    var i;
-
-
-//    // $('.gallery').flickity({
-//    //     arrowShape: 'M 0,50 L 60,00 L 50,30 L 80,30 L 80,70 L 50,70 L 60,100 Z'
-//    // });
-//
-//    // $(".flickity-viewport").css({"height": "100%"});
-//
-//    // $(".gallery-cell-principal ").css({"height": "800px"});
-
-
-
+    //precio home
     $(".precio1D").html("3,40€");
     $("div[class*=\"precio\"").css({"text-align": "center", "font-size": "1.5em"});
 
@@ -55,6 +41,12 @@ $(function () {
     });
     $(".cesta1").on("mouseleave", function () {
         $(".cesta1").css({"background": "#ED1410"});
+    });
+
+    $(".cestacomic").hover(function () {
+        $(this).css("background-color", "#0053BA");
+    }, function () {
+        $(this).css("background-color", "#ED1410");
     });
 
 

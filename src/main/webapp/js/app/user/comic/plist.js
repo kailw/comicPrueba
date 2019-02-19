@@ -40,7 +40,7 @@ moduleComic.controller('comicPlistUsuarioController', ['$scope', '$http', '$loca
         };
 
 
-        $scope.add = function (id) {
+        $scope.add = function (id, ev) {
             $http({
                 method: 'GET',
                 url: '/json?ob=carrito&op=add&comic=' + id + '&cantidad=1'
@@ -53,10 +53,10 @@ moduleComic.controller('comicPlistUsuarioController', ['$scope', '$http', '$loca
                         $scope.ajaxDataTitulo = response.data.message[i].obj_Comic.titulo;
                         $scope.ajaxDataExistencias = response.data.message[i].obj_Comic.existencias;
                         if (response.data.message[i].obj_Comic.existencias === $scope.ajaxDataCantidad) {
-                            $scope.showAlert('Has elegido el maximo de existencias del comic:' + response.data.message[i].obj_Comic.desc, " Cantidad:" + $scope.ajaxDataCantidad);
+                            $scope.showAlert('Has elegido el maximo de existencias del comic:' + response.data.message[i].obj_Comic.desc, " Cantidad:" + $scope.ajaxDataCantidad, ev);
 
                         } else {
-                            $scope.showAlert("Has añadido el comic: " + $scope.ajaxDataTitulo + " a tu carrito", "Cantidad:" + $scope.ajaxDataCantidad);
+                            $scope.showAlert("Has añadido el comic: " + $scope.ajaxDataTitulo + " a tu carrito", "Cantidad:" + $scope.ajaxDataCantidad,ev);
                         }
                     }
                 }
@@ -115,7 +115,7 @@ moduleComic.controller('comicPlistUsuarioController', ['$scope', '$http', '$loca
             url: '/json?ob=' + $scope.ob2 + '&op=getpage&rpp=' + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
         }).then(function (response) {
             $scope.status = response.status;
-            $scope.ajaxDatoComicGenero= response.data.message;
+            $scope.ajaxDatoComicGenero = response.data.message;
         }, function (response) {
             $scope.status = response.status;
             $scope.ajaxDatoComicGenero = response.data.message || 'Request failed';
@@ -153,14 +153,15 @@ moduleComic.controller('comicPlistUsuarioController', ['$scope', '$http', '$loca
 
         $scope.isActive = toolService.isActive;
 
-        $scope.showAlert = function (titulo, description) {
+        $scope.showAlert = function (titulo, description, ev) {
             $mdDialog.show(
                     $mdDialog.alert()
-                    .clickOutsideToClose(false)
+                    .clickOutsideToClose(true)
                     .title(titulo)
                     .textContent(description)
                     .ariaLabel('Alert Dialog Demo')
                     .ok('OK!')
+                    .targetEvent(ev)
                     );
         };
     }
