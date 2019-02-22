@@ -10,7 +10,8 @@ moduleCarrito.controller('carritoPlistController', ['$scope', '$http', '$locatio
         $scope.productoComprado = false;
         $scope.usuariologeadoID = sessionService.getId();
         $scope.nologeado = false;
-
+        $scope.carritoVacioTabla = false;
+        
         if (!$routeParams.order) {
             $scope.orderURLServidor = "";
             $scope.orderURLCliente = "";
@@ -131,7 +132,7 @@ moduleCarrito.controller('carritoPlistController', ['$scope', '$http', '$locatio
 
                     if (operacion === "reduce") {
                         for (var j = 0; j < response.data.message.length; j++) {
-                            $scope.precioProducto +=  (response.data.message[j].obj_Comic.precio * response.data.message[j].cantidad);
+                            $scope.precioProducto += (response.data.message[j].obj_Comic.precio * response.data.message[j].cantidad);
                             $scope.cantidadProducto += response.data.message[j].cantidad;
                         }
                     }

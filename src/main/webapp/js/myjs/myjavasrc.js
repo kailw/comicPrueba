@@ -48,7 +48,7 @@ $(function () {
     }, function () {
         $(this).css("background-color", "#ED1410");
     });
-
+    console.log("usuando");
 
 
     // $(".portada1").append("<div class=\"vistaRapidaCuadrado\" style=\"background-color: lightgreen; margin-top: 50px; margin-left: 38px; padding: 10px; color:black; display: none\">VISTA RÁPIDA</div>");
