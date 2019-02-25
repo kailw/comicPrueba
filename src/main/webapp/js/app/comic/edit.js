@@ -1,7 +1,6 @@
 'use strict';
-
-moduleComic.controller('comicEditController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService', '$interval',
-    function ($scope, $http, $location, toolService, $routeParams, sessionService, $interval) {
+moduleComic.controller('comicEditController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService', '$interval', '$timeout',
+    function ($scope, $http, $location, toolService, $routeParams, sessionService, $interval, $timeout) {
         $scope.id = $routeParams.id;
         $scope.ob = "comic";
         $scope.ob2 = "genero";
@@ -22,21 +21,13 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
         $scope.idiomaEstado = false;
         $scope.autorEstado = false;
         $scope.editorialEstado = false;
-
-        var self = this;
-
-        self.activated = true;
-        self.determinateValue = 30;
-
-        // Iterate every 100ms, non-stop and increment
-        // the Determinate loader.
-        $interval(function () {
-            self.determinateValue += 1;
-            if (self.determinateValue > 100) {
-                self.determinateValue = 30;
-            }
-
-        }, 100);
+        
+        $scope.cargando = false;
+        
+        $timeout(function(){
+           $scope.cargando = true;
+        },1200);
+        
 /////////////////////////////comic
         $http({
             method: 'GET',
@@ -51,7 +42,6 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
             }
             $scope.ajaxDatoComicFecha = response.data.message.fechapublicacion;
             $scope.resultado = $scope.ajaxDatoComicFecha.slice(0, 3);
-
             switch ($scope.resultado) {
                 case "ene":
                     $scope.fecha = $scope.ajaxDatoComicFecha.replace("ene", "jan");
@@ -74,9 +64,6 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
             $scope.ajaxDatoComic = response.data.message || 'Request failed';
             $scope.status = response.status;
         });
-
-
-
 /////////////////////////////genero
         $http({
             method: 'GET',
@@ -97,8 +84,6 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
                     $scope.GenerosTotales.push($scope.idGenero);
                 }
                 $scope.seleccionarGenero = $scope.GenerosTotales;
-
-
             }, function (response) {
                 $scope.ajaxDatoComicGenero = response.data.message || 'Request failed';
                 $scope.status = response.status;
@@ -107,7 +92,6 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
             $scope.ajaxDatoGenero = response.data.message || 'Request failed';
             $scope.status = response.status;
         });
-
 /////////////////////////////idioma
         $http({
             method: 'GET',
@@ -119,7 +103,6 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
             $scope.ajaxDatoIdioma = response.data.message || 'Request failed';
             $scope.status = response.status;
         });
-
 /////////////////////////////comicIdioma
         $scope.seleccionarEditorial = [];
         $http({
@@ -138,8 +121,6 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
             $scope.ajaxDatoComicIdioma = response.data.message || 'Request failed';
             $scope.status = response.status;
         });
-
-
 /////////////////////////////autor
         $http({
             method: 'GET',
@@ -162,8 +143,6 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
             $scope.ajaxDatoAutorEspecialidad = response.data.message || 'Request failed';
             $scope.status = response.status;
         });
-
-
 /////////////////////////////autorEspecialidad
         $http({
             method: 'GET',
@@ -176,7 +155,6 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
             $scope.ajaxDatoComicAutor = response.data.message || 'Request failed';
             $scope.status = response.status;
         });
-
 /////////////////////////////editorial
         $http({
             method: 'GET',
@@ -188,7 +166,6 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
             $scope.ajaxDatoEditorial = response.data.message || 'Request failed';
             $scope.status = response.status;
         });
-
 /////////////////////////////coleccion
         $http({
             method: 'GET',
@@ -200,8 +177,6 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
             $scope.ajaxDatoColeccion = response.data.message || 'Request failed';
             $scope.status = response.status;
         });
-
-
 /////////////////////////////getpageAutorEspecialidad
         $http({
             method: 'GET',
@@ -230,11 +205,6 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
             $scope.ajaxDatoAutorEspecialSeleccionado = response.data.message || 'Request failed';
             $scope.status = response.status;
         });
-
-
-
-
-
 /////////////////////////////comicEditorial
         $http({
             method: 'GET',
@@ -247,13 +217,6 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
             $scope.ajaxDatoComicEditorial = response.data.message || 'Request failed';
             $scope.status = response.status;
         });
-
-
-
-
-
-
-
         $scope.ajaxDatoComic = {
             id: null,
             titulo: null,
@@ -269,7 +232,6 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
             destacado: null,
             obj_coleccion: {id: null}
         };
-
         $scope.guardar = function () {
             $scope.upload();
             var foto = $scope.ajaxDatoComic.foto;
@@ -299,8 +261,6 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
                 params: {json: JSON.stringify(json)}
             }).then(function (response) {
                 $scope.status = response.status;
-
-
                 $scope.idEditorial = $scope.seleccionarEditorial;
                 var json4 = {
                     id: $scope.ajaxDatoComicEditorial[0].id,
@@ -317,8 +277,6 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
                 }, function (response) {
                     $scope.status = response.status;
                 });
-
-
                 if ($scope.generoEstado) {
                     if ($scope.ajaxDatoComicGenero.length >= 1) {
                         for (var i = 0; i < $scope.ajaxDatoComicGenero.length; i++) {
@@ -436,15 +394,12 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
             });
         };
         $scope.isActive = toolService.isActive;
-
-
         $scope.otroInput = function () {
             if ($scope.ajaxArrayAutorEspecial.length <= 5) {
                 $scope.ajaxArrayAutorEspecial.push("d");
                 $scope.menos = true;
             }
         };
-
         $scope.quitarInput = function (indice) {
             $scope.seleccionarAutor.splice(indice, 1);
             $scope.seleccionarEspecialidad.splice(indice, 1);
@@ -454,7 +409,6 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
                 $scope.menos = false;
             }
         };
-
         $scope.cambiar = function (cambio) {
             switch (cambio) {
                 case "genero":
@@ -469,11 +423,8 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
                 case "editorial":
                     $scope.editorialEstado = true;
                     break;
-
             }
         };
-
-
         $scope.tipoProductoRefresh = function (quiensoy, consulta) {
             var form = quiensoy;
             if ($scope.vacio === "") {
@@ -505,7 +456,6 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
             var file = $scope.file;
             var oformData = new FormData();
             oformData.append('file', file);
-
             $http({
                 headers: {'Content-Type': undefined},
                 method: 'POST',
@@ -524,12 +474,10 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
                 $scope.myDate.getFullYear(),
                 $scope.myDate.getMonth() - 2,
                 $scope.myDate.getDate());
-
         $scope.maxDate = new Date(
                 $scope.myDate.getFullYear(),
                 $scope.myDate.getMonth() + 2,
                 $scope.myDate.getDate());
-
     }
 ]).directive('fileModel', ['$parse', function ($parse) {
         return {
@@ -537,7 +485,6 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
             link: function (scope, element, attrs) {
                 var model = $parse(attrs.fileModel);
                 var modelSetter = model.assign;
-
                 element.bind('change', function () {
                     scope.$apply(function () {
                         modelSetter(scope, element[0].files[0]);

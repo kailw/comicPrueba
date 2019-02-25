@@ -21,16 +21,20 @@ moduleColeccion.controller('coleccionEditController', ['$scope', '$http', '$loca
             var json = {
                 id: $scope.ajaxDataColeccion.id,
                 desc: $scope.ajaxDataColeccion.desc
-            }
-            $http({
+            };
+
+            var config = {
                 method: 'GET',
                 withCredentials: true,
                 url: '/json?ob=' + $scope.ob + '&op=update',
                 params: {json: JSON.stringify(json)}
-            }).then(function (response) {
-                $scope.status = response.status;
-                $scope.mensaje = true;
-            }, function (response) {
+            };
+
+            $http(config)
+                    .success(function (status) {
+                        $scope.status = status;
+                        $scope.mensaje = true;
+                    }).error(function (response) {
                 $scope.ajaxDataColeccion = response.data.message || 'Request failed';
                 $scope.status = response.status;
             });
