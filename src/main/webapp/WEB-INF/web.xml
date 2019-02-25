@@ -18,11 +18,12 @@
   
     <welcome-file-list>
         <welcome-file>
-            index.html
+            inicio.html
         </welcome-file>
     </welcome-file-list>
+    <!--
     <error-page>
         <error-code>404</error-code>
         <location>/rewrite-404.jsp</location>      
-    </error-page>
+    </error-page>-->
 </web-app>
