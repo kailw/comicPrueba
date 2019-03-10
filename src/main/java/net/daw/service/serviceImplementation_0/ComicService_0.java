@@ -45,25 +45,40 @@ public class ComicService_0 extends GenericServiceImplementation implements Serv
             iRpp = Integer.parseInt(oRequest.getParameter("rpp"));
             iPage = Integer.parseInt(oRequest.getParameter("page"));
 
-            String campocoleccion = oRequest.getParameter("campocoleccion");            
+            String campocoleccion = oRequest.getParameter("campocoleccion");
 
             String campoeditorialString = oRequest.getParameter("campoeditorial");
-            String[] campoeditorial = campoeditorialString.split(",");
+            String[] campoeditorial = null;
+            if (campoeditorialString != null) {
+                campoeditorial = campoeditorialString.split(",");
+            }
 
             String campoautorString = oRequest.getParameter("campoautor");
-            String[] campoautor = campoautorString.split(",");
+//            String[] campoautor = campoautorString.split(",");
+            String[] campoautor = null;
 
             String campoespecialString = oRequest.getParameter("campoespecial");
-            String[] campoespecial = campoespecialString.split(",");
+//            String[] campoespecial = campoespecialString.split(",");
+            String[] campoespecial = null;
 
 //          HashMap<String, String> campogenero = ParameterCook.getParams(oRequest.getParameter("campogenero"));            
             String campogeneroString = oRequest.getParameter("campogenero");
-            String[] campogenero = campogeneroString.split(",");
+            String[] campogenero = null;
+            if (campogeneroString != null) {
+                campogenero = campogeneroString.split(",");
+            }
+
+            String campoidiomaString = oRequest.getParameter("campoidioma");
+            String[] campoidioma = null;
+            if (campoidiomaString != null) {
+                campoidioma = campoidiomaString.split(",");
+            }
+            
             
             oConnectionPool = ConnectionFactory.getConnection(ConnectionConstants.connectionPool);
             oConnection = oConnectionPool.newConnection();
             ComicDao_0 oDao = new ComicDao_0(oConnection, ob, usuarioSession);
-            ArrayList<BeanInterface> alBean = oDao.getpagecomicadvanced(iRpp, iPage, campocoleccion, campoeditorial, campoautor, campoespecial, campogenero);
+            ArrayList<BeanInterface> alBean = oDao.getpagecomicadvanced(iRpp, iPage, campocoleccion, campoeditorial, campoautor, campoidioma, campoespecial, campogenero);
             Gson oGson = (new GsonBuilder()).excludeFieldsWithoutExposeAnnotation().create();
             oReplyBean = new ReplyBean(200, oGson.toJson(alBean));
         } catch (Exception ex) {

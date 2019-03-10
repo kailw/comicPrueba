@@ -31,15 +31,15 @@ public class ParameterCook {
         return oHMOrder;
     }
 
-    public static String getParams(String[] campogenero, int length) {
-        String campoGeneroString = "";
-        for (int i = 0; i < campogenero.length; i++) {
-            campoGeneroString += "\"" + campogenero[i] + "\"";
+    public static String getParams(String[] campodoble, int length) {
+        String campoDobleString = "";
+        for (int i = 0; i < campodoble.length; i++) {
+            campoDobleString += campodoble[i];
             if (length > 1) {
-                campoGeneroString += ",";
+                campoDobleString += ",";
                 length--;
             }
         }
-        return campoGeneroString;
+        return campoDobleString;
     }
 }
