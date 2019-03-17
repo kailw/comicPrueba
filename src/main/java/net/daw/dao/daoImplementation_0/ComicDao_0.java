@@ -40,10 +40,10 @@ public class ComicDao_0 extends GenericDaoImplementation implements DaoInterface
         throw new Exception("Error en Dao create de " + ob + ": No autorizado");
     }
 
-    public ArrayList<BeanInterface> getpagecomicadvanced(int iRpp, int iPage, String campocoleccion, String[] campoeditorial, String[] campoautor,String[] campoidioma, String[] campoespecial, String[] campogenero) throws Exception {
+    public ArrayList<BeanInterface> getpagecomicadvanced(int iRpp, int iPage, String campocoleccion, String[] campoeditorial, String[] campoautor, String[] campoidioma, String[] campoespecial, String[] campogenero, int campodescuento) throws Exception {
         String strSQL = "";
         strSQL = "SELECT c.id, c.titulo, c.desc, c.isbn, c.fechapublicacion, c.pagina, c.color, c.existencias, c.precio, c.descuento, c.foto, c.destacado, c.id_coleccion ";
-        strSQL += "From comic c, genero g, comicgenero cg, comiceditorial ce, editorial ed, coleccion cl, autorespecialidad ae, especialidad es, autor a, idioma i, comicidioma ci ";
+        strSQL += "FROM comic c, genero g, comicgenero cg, comiceditorial ce, editorial ed, coleccion cl, autorespecialidad ae, especialidad es, autor a, idioma i, comicidioma ci ";
         strSQL += "WHERE c.id = cg.id_comic AND "
                 + "g.id = cg.id_genero AND "
                 + "ed.id = ce.id_editorial AND "
@@ -53,7 +53,7 @@ public class ComicDao_0 extends GenericDaoImplementation implements DaoInterface
                 + "a.id = ae.id_autor AND "
                 + "c.id = ae.id_comic AND "
                 + "c.id = ci.id_comic AND "
-                + "i.id = ci.id_idioma ";       
+                + "i.id = ci.id_idioma ";
         if (campocoleccion != null) {
             strSQL += " AND cl.desc=" + "\"" + campocoleccion + "\"";
         }
@@ -70,23 +70,30 @@ public class ComicDao_0 extends GenericDaoImplementation implements DaoInterface
         if (campoespecial != null) {
             String campoEspecialString = "";
             campoEspecialString = ParameterCook.getParams(campoespecial, campoespecial.length);
-            strSQL += " AND es.id in (" + campoEspecialString + ")" ;
+            strSQL += " AND es.id in (" + campoEspecialString + ")";
         }
-        
+
         if (campogenero != null) {
             String campoGeneroString = "";
             campoGeneroString = ParameterCook.getParams(campogenero, campogenero.length);
             strSQL += " AND g.id in (" + campoGeneroString + ") ";
         }
-                
+
         if (campoidioma != null) {
             String campoIdiomaString = "";
             campoIdiomaString = ParameterCook.getParams(campoidioma, campoidioma.length);
             strSQL += " AND i.id in (" + campoIdiomaString + ") ";
         }
-        
-        
+
+        if (campodescuento == 3) {
+            strSQL += "";
+        } else if (campodescuento != 0) {
+            strSQL += " AND c.descuento <> 0 ";
+        } else {
+            strSQL += " AND c.descuento = 0 ";
+        }
         strSQL += " GROUP BY c.id";
+        strSQL += " LIMIT " + (iPage - 1) * iRpp + ", " + iRpp;
         ArrayList<BeanInterface> alBean;
         ResultSet oResultSet = null;
         PreparedStatement oPreparedStatement = null;

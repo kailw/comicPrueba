@@ -73,12 +73,16 @@ public class ComicService_0 extends GenericServiceImplementation implements Serv
             if (campoidiomaString != null) {
                 campoidioma = campoidiomaString.split(",");
             }
-            
-            
+            int campodescuentoint = 3;
+
+            if (oRequest.getParameter("campodescuento") != null) {
+                campodescuentoint = Integer.parseInt(oRequest.getParameter("campodescuento"));
+            }
+
             oConnectionPool = ConnectionFactory.getConnection(ConnectionConstants.connectionPool);
             oConnection = oConnectionPool.newConnection();
             ComicDao_0 oDao = new ComicDao_0(oConnection, ob, usuarioSession);
-            ArrayList<BeanInterface> alBean = oDao.getpagecomicadvanced(iRpp, iPage, campocoleccion, campoeditorial, campoautor, campoidioma, campoespecial, campogenero);
+            ArrayList<BeanInterface> alBean = oDao.getpagecomicadvanced(iRpp, iPage, campocoleccion, campoeditorial, campoautor, campoidioma, campoespecial, campogenero, campodescuentoint);
             Gson oGson = (new GsonBuilder()).excludeFieldsWithoutExposeAnnotation().create();
             oReplyBean = new ReplyBean(200, oGson.toJson(alBean));
         } catch (Exception ex) {
