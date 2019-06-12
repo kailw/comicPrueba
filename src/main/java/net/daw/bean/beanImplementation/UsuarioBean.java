@@ -215,7 +215,11 @@ public class UsuarioBean extends GenericBeanImplementation implements BeanInterf
             strColumns += 2 + ",";
         }
         strColumns += EncodingHelper.quotate(SecureTokenGenerator.nextToken()) + ",";
-        strColumns += 0;
+        if(validacion == null ){
+        strColumns += 0;    
+        } else {
+          strColumns += validacion;
+        }        
         return strColumns;
     }
 
